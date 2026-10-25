@@ -11,11 +11,12 @@ This file records checks actually run while preparing version 0.1.0. The GitHub 
 - The skill passed the skill-creator structural validator.
 - The installed skill was discovered and loaded by the actual DSH **0.1.2-rc.1** filesystem provider as `user-dsh`, with model and user invocation enabled and no discovery warnings.
 - The installed launcher executed the pinned Python interpreter successfully. It does not need an additional API key.
+- An actual DSH **0.1.2-rc.1** headless model session completed using the official DeepSeek provider and `deepseek-flash` on 2026-10-25. The durable session trace confirms a successful `skill` tool call for `dsh-property-lab`, followed by the installed runner's `doctor` and `demo` commands, both exiting 0. All six demo outcomes matched expectations. This checks the model-to-skill execution path, not just filesystem discovery.
+- That model-driven run read the generated summary and three buggy reports. Hypothesis shrank their inputs to `"+"`, three ASCII spaces, and `[0, -1]`; each counterexample reproduced three times. The three fixed fixtures had no counterexample within the configured budgets. One additional, optional read-only Python cross-check initially failed because of shell quoting; the model corrected the command and reran it successfully. The recorded trace retains both attempts.
 - An independent skill-guided check used a separate integer-money formatting fixture, not the six bundled examples. It found and replayed an input of `10554679156284893` cents where floating-point formatting returned `105546791562848.94` instead of the documented `105546791562848.93`. Both exported tests failed on that implementation, and source hashes were unchanged. This was a constructed local fixture, not a finding in an external project.
 
 ## Not established
 
-- A real DSH headless model run was attempted, but the configured API provider rejected its existing credentials with an authentication error before the task ran. This does not invalidate the local execution or discovery checks, but **full model-to-skill execution is not confirmed**. Configure a working credential in DSH, then ask it to use `/dsh-property-lab` and run `demo`.
 - Linux/macOS and remote GitHub Actions have not been executed in this local session.
 - The automated browser preview rejected the local `file:` URL. Report data and HTML escaping were tested; screenshot/layout inspection was not completed.
 - A bounded search with no counterexample is not a correctness proof. A reproduced counterexample still requires review of the proposed contract and input domain.
@@ -30,6 +31,8 @@ python -m build
 ```
 
 `requirements-dev.lock` records the dependency versions used for the local checks. Runtime evidence is written under the ignored `.property-lab/` directory; do not treat this summary as a substitute for inspecting a run's JSON and logs.
+
+The local model-to-skill run is recorded in `.property-lab/dsh-verified-run.json`, `.property-lab/dsh-trace-verification.json`, and `.property-lab/dsh-verified-demo/`. These local artifacts are intentionally excluded from source archives. DSH supplies its own configured model credential; this project does not store it.
 
 To verify discovery with a local DSH installation, supply its package directory explicitly:
 

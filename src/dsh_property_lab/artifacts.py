@@ -23,6 +23,7 @@ import os
 from pathlib import Path
 import sys
 import tempfile
+from uuid import uuid4
 
 # Run from the tested project root, or set PROPERTY_LAB_PROJECT to that directory.
 _project = Path(os.environ.get("PROPERTY_LAB_PROJECT", str(Path.cwd())))
@@ -33,12 +34,13 @@ for _directory in (_project / "src", _project):
 def _load(reference):
     module_name, attribute = reference.split(":", 1)
     old_cache, old_write = sys.pycache_prefix, sys.dont_write_bytecode
-    with tempfile.TemporaryDirectory(prefix="property-lab-import-") as cache:
-        try:
-            sys.pycache_prefix, sys.dont_write_bytecode = cache, True
-            value = importlib.import_module(module_name)
-        finally:
-            sys.pycache_prefix, sys.dont_write_bytecode = old_cache, old_write
+    # An unused cache path avoids stale bytecode without creating a directory.
+    cache = Path(tempfile.gettempdir()) / ("property-lab-import-" + uuid4().hex)
+    try:
+        sys.pycache_prefix, sys.dont_write_bytecode = str(cache), True
+        value = importlib.import_module(module_name)
+    finally:
+        sys.pycache_prefix, sys.dont_write_bytecode = old_cache, old_write
     for part in attribute.split("."):
         value = getattr(value, part)
     return value

@@ -1,6 +1,29 @@
 # python-dotenv：带引号的字符串写入/读取往返
 
-2026-10-25 在 **python-dotenv 1.2.4** 上实际执行：`no_counterexample`，固定 seed `20261025`，搜索预算和实际评估次数均为 **2,500**。导出的属性测试与 14 个直接文件 API 边界样例随后运行，结果为 **15 passed in 7.05s**。本案例没有确认 bug；这也不是“项目不存在 bug”的证明。
+2026-10-25 在 **python-dotenv 1.2.4** 上，独立 CLI 和修复后的真实 DSH 受限环境均完成 **2,500 次评估，`no_counterexample`**。DSH 内新导出属性测试加 14 个直接文件 API 样例得到 **15 passed in 11.64s**。本案例没有确认上游 bug；这不是“项目不存在 bug”的证明。
+
+## DSH 受限环境修复与复验
+
+首次 DSH 运行返回 `inconclusive / exit 2`，保存在[原始验证摘要](../dsh-verification.json)。同一测试在普通 CLI 成功，原因是测试目录权限与 DSH 受限令牌不兼容：
+
+- [CPython 3.13 的 `mkdir(0o700)`](https://docs.python.org/3.13/library/os.html#os.mkdir)在 Windows 设置专有权限；`TemporaryDirectory` 使用该模式。实际检查到 6 个失败残留目录均启用受保护 DACL、继承规则数为 0；父案例目录有 5 条继承规则及 DSH 工作区授权。
+- [Windows 受限令牌](https://learn.microsoft.com/en-us/windows/win32/secauthz/restricted-tokens)需要额外通过 restricting SID 的访问检查，缺少继承授权会造成拒绝访问。
+- [fixture_directory.py](fixture_directory.py)只为公开合成数据创建 UUID 唯一子目录。Windows 使用默认 `mkdir()` 继承项目已有 ACL，非 Windows 继续使用 `TemporaryDirectory`。`finally` 检查目录范围后严格清理，错误仍会上报；没有修改 ACL、令牌或全局沙箱配置。
+- 执行器生成的独立测试原来也用 `TemporaryDirectory` 隔离旧字节码。现在缓存隔离使用不创建的唯一目录路径，保留禁止写入字节码和导入后恢复状态，避免引入第二处相同权限问题。已有导出及旧字节码检查共 9 项通过。
+
+修复没有修改 python-dotenv 的 `set_key` / `dotenv_values`、规格 JSON、字符域、seed `20261025` 或预算 `2500`，也没有忽略清理错误。此次仅修复测试宿主与 DSH 权限模型的兼容性。
+
+| DSH 实际检查 | 结果 |
+| --- | --- |
+| Skill / provider / model | `dsh-property-lab` / `deepseek-official` / `deepseek-flash` |
+| 权限模式 / Python | `workspace-write` / 3.13.15 |
+| [权限探针](probe_permissions.py) | `restricted_token=true`；`protected=false`；继承规则数 `5` |
+| 合成目录操作 | 创建、写入、重命名、读取、删除均成功；`directory_removed=true` |
+| 属性搜索 | `no_counterexample`，实际 `2500` 次，退出 `0`；引擎耗时 `10.221755 s` |
+| 新导出测试 + 14 个直接 API 样例 | `15 passed in 11.64s`，退出 `0` |
+| 本轮新增残留目录 | `0`；此前 6 个失败残留未触碰 |
+
+[dsh-permission-fix.json](dsh-permission-fix.json)记录新会话的工具调用、实际输出、版本及源码/产物哈希。原始本地报告在 `.property-lab/dotenv-dsh-fixed-20261025/`。旧的 [result-summary.json](result-summary.json) 与原 DSH 失败摘要保留原值，描述的是修复前提交 `ba5d11b` 的适配器及导出器；其中旧源码哈希不应拿来校验修复后文件。
 
 ## 被测版本与性质依据
 
@@ -16,7 +39,7 @@
 
 关闭展开非常关键：`${VALUE}` 等内容在本性质中是字面字符串；默认 POSIX 展开改变它们是预期功能，不能作为往返 bug。所有文件都是合成数据，适配器始终给出明确文件路径或 stream，不调用 `find_dotenv` / `load_dotenv`，不读取用户已有 `.env`，不修改进程环境。临时目录位于本案例目录，通过上下文管理器自动清理；本节记录的 CLI 验证正常完成。若其他执行环境拒绝清理，应单独记录为环境问题，不据此认定上游 bug。案例 `.gitignore` 排除了这些运行目录。
 
-## 实际结果
+## 首次独立 CLI 结果（修复前，历史记录）
 
 | 项目 | 记录 |
 | --- | --- |
@@ -38,9 +61,12 @@
 - [adapter.py](adapter.py)：薄适配器。
 - [roundtrip.json](roundtrip.json)：包含性质依据和输入域的规格。
 - [requirements.txt](requirements.txt)：本次目标包和测试依赖的固定版本；执行器从本仓库安装。
-- [test_property_exported.py](test_property_exported.py)：执行器导出的测试，原字节复制，未手工改写。
+- [fixture_directory.py](fixture_directory.py)：只管理本案例合成目录的权限继承与严格清理。
+- [probe_permissions.py](probe_permissions.py)：记录受限令牌、目录 ACL 和真实文件操作结果。
+- [test_property_dsh_exported.py](test_property_dsh_exported.py)：修复后 DSH 本轮生成并执行的测试，原字节复制。
+- [test_property_exported.py](test_property_exported.py)：首次 CLI 的历史导出，原样保留；DSH 中请使用上面的新导出。
 - [test_direct_examples.py](test_direct_examples.py)：14 个明确边界值的独立文件 API 控制。
-- [result-summary.json](result-summary.json)：真实报告的可移植摘录、时间/计数、版本、源码和产物 SHA256。
+- [result-summary.json](result-summary.json)：首次 CLI 历史摘录；[dsh-permission-fix.json](dsh-permission-fix.json)：修复后的 DSH 证据。两者均保留真实时间/计数、版本、源码和产物 SHA256。
 
 摘要明确标注了路径变换：原机器的项目路径改为仓库相对路径，输出和解释器改为 `<WORK>` / `<ISOLATED_VENV>` 占位符。它不是未修改的原始报告，不能冒充原始证据文件。原始 `report.json`、HTML/Markdown、worker/process 日志、安装日志、pytest 日志与完整本机 provenance 保留在本次工作目录的 `work/real-projects/dotenv/`，不纳入可移植案例。
 
@@ -53,11 +79,12 @@
 ```powershell
 python -m venv case-studies/dotenv/.venv
 & ./case-studies/dotenv/.venv/Scripts/python.exe -m pip install -r case-studies/dotenv/requirements.txt -e .
+& ./case-studies/dotenv/.venv/Scripts/python.exe case-studies/dotenv/probe_permissions.py
 & ./case-studies/dotenv/.venv/Scripts/python.exe -m dsh_property_lab run case-studies/dotenv/roundtrip.json --project case-studies/dotenv --seed 20261025 --max-examples 2500 --timeout 180 --output .property-lab/dotenv-reproduction
 
 Push-Location case-studies/dotenv
-& ./.venv/Scripts/python.exe -m pytest -q -p no:cacheprovider test_property_exported.py test_direct_examples.py
+& ./.venv/Scripts/python.exe -m pytest -q -p no:cacheprovider test_property_dsh_exported.py test_direct_examples.py
 Pop-Location
 ```
 
-输出目录必须不存在或为空；再次运行时更换 `--output`。macOS/Linux 使用该平台的虚拟环境解释器路径 `case-studies/dotenv/.venv/bin/python`，其他参数相同。案例只验证上述字符串域内的公开接口行为，搜索预算耗尽不建立完整正确性。
+输出目录必须不存在或为空；再次运行时更换 `--output`。要验证 DSH 权限，需在 DSH 的 `pwsh` 工具中执行这些命令，并确认探针的 `restricted_token=true`；普通命令行的 `false` 不能作为 DSH 受限环境证明。macOS/Linux 使用 `.venv/bin/python`，探针的 Windows 令牌字段为 `null`；本次实际验证平台只有 Windows。案例只验证声明输入域内的公开接口行为，搜索预算耗尽不建立完整正确性。

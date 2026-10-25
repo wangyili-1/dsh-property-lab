@@ -1,0 +1,374 @@
+{
+  "schema": "dsh-property-lab.dotenv-permission-fix-verification.v1",
+  "verifiedAtUtc": "2026-10-25T09:17:24.067Z",
+  "verificationVerdict": "verified",
+  "scope": "Model-orchestrated rerun of a prewritten python-dotenv case in DSH workspace-write after fixing synthetic fixture directory creation and exported cache isolation.",
+  "session": {
+    "id": "session-afcd2773-04c0-4136-8e04-6b97af066c8a",
+    "tag": "DSH_DOTENV_PERMISSION_FIX_20261025",
+    "cwd": "<repo>",
+    "driverStartedAtUtc": "2026-10-25T09:12:57.788427+00:00",
+    "driverFinishedAtUtc": "2026-10-25T09:13:52.774523+00:00",
+    "driverExitCode": 0,
+    "createdAtUtc": "2026-10-25T09:13:04.125Z",
+    "completedAtUtc": "2026-10-25T09:13:52.711Z",
+    "completedSeq": 1919,
+    "turnReason": "completed",
+    "context": [
+      {
+        "seq": 12,
+        "provider": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "tracePath": "<DSH_HOME>/sessions/<encoded-repo-cwd>/session-afcd2773-04c0-4136-8e04-6b97af066c8a/session.jsonl.zstd",
+    "traceBytes": 49040,
+    "traceSha256": "8fd31e54f6a0c7dafdccaa22ad9aa322f646bf09fdc525fba298f0643c5fd64e",
+    "zstdFrames": 64,
+    "storedRows": 140,
+    "toolCalls": 8,
+    "toolResults": 8,
+    "taggedPromptSha256": "95cff06b6f18601259ae36de26641b150c7ad856b581803347ac077b885d9c4a"
+  },
+  "assertions": {
+    "traceTimeWorkspaceAndUniqueTagMatched": true,
+    "driverCompletedWithExitZero": true,
+    "modelLoadedActualSkillContent": true,
+    "preparedFilesReadBeforeProbe": true,
+    "threeCommandsExactlyMatchDriver": true,
+    "commandsOrderedAndModelRequested": true,
+    "noCommandRequestedSandboxEscalation": true,
+    "workspaceWritePolicyRecorded": true,
+    "probeRanUnderRestrictedToken": true,
+    "probeInheritedAclAndCompletedIoAndCleanup": true,
+    "propertyRunCompleted2500WithExitZero": true,
+    "currentExportAndFourteenDirectExamplesPassed": true,
+    "exportHasNonCreatingCacheIsolation": true,
+    "modelReadUnchangedReportAfterTests": true,
+    "trackedSourceAndSettingsHashesUnchanged": true,
+    "noNewFixtureResidueAndOldResiduePreserved": true,
+    "reportAdapterFingerprintMatches": true,
+    "upstreamSourcesMatchEarlierProvenanceAndCleanCheckout": true,
+    "artifactsWrittenDuringSession": true,
+    "allToolCallsPairedAndModelRequested": true,
+    "turnCompleted": true
+  },
+  "skill": {
+    "name": "dsh-property-lab",
+    "callSeq": 51,
+    "resultSeq": 52,
+    "modelRequested": true,
+    "isError": false,
+    "argumentsSha256": "7f57bc9c1286a2bfd41406a7cebf689c1cf77e161b6491642cc5a9b4f3f8c435",
+    "resultSha256": "5851119ead2c18dc72f4320afec83ecf7b1830176cfaf759f66b8bc51fb76638",
+    "instructionsPresent": true,
+    "instructionsSha256": "78e1848824f0dfb68e81ab5db52f759c7c5cf7e2f30dc686fc460bf23f7913d2"
+  },
+  "preparedReads": [
+    {
+      "name": "read",
+      "callSeq": 207,
+      "resultSeq": 210,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "b31f2c9565741e2bbf76a0a75f044f0c576793d92cacc191af228cad872d30f8",
+      "resultSha256": "c306a5f2985297a9dd921afe31941463ba4831b71870f1f26988a9065a4ec01f",
+      "file": "case-studies/dotenv/fixture_directory.py",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 208,
+      "resultSeq": 211,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "3a21c333983c5ab63e4a9f4c6b026002c4848132384e63d0d65b295983fa5c74",
+      "resultSha256": "5d37dec8a2323179461684ebfa96f0d0fd3a1ad70f2fa11353405d59b2eb61f3",
+      "file": "case-studies/dotenv/adapter.py",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 209,
+      "resultSeq": 212,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "85d2767e539702c511b568b1b6bd0ed9a17539017e394eb952f3f0995e9a543e",
+      "resultSha256": "97ab516cbac2f82a5bf6fa7b56bd39f533be5b62a3ab1ae2a18fd7f732d579aa",
+      "file": "case-studies/dotenv/roundtrip.json",
+      "contentMatchesCurrentFile": true
+    }
+  ],
+  "execution": {
+    "permissionMode": "workspace-write",
+    "commandsExactlyMatchDriverRecord": true,
+    "probe": {
+      "name": "pwsh",
+      "callSeq": 380,
+      "resultSeq": 381,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "cc3b8760c1f8772814182ced48634c54eae89e6935a24228c13c7161b2cbbb63",
+      "resultSha256": "ecfe38506a1d627755d9cd00460f5cbde04eaf601fc8736bc771fecc413fe248",
+      "processExitCode": 0,
+      "observations": {
+        "python": "3.13.15",
+        "restricted_token": true,
+        "acl": {
+          "inherited_rules": 5,
+          "protected": false
+        },
+        "create_write_rename_read_unlink": true,
+        "directory_removed": true
+      }
+    },
+    "property": {
+      "name": "pwsh",
+      "callSeq": 701,
+      "resultSeq": 702,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "ed5f7c12367c712e03fa8a43141b65c1cd583d0a6d78f4876a640ae18a1095f7",
+      "resultSha256": "f3c4711bbac6a1a12745a939b97f4eaf81130c2536f266ae06e6b0f030f0cc40",
+      "processExitCode": 0,
+      "status": "no_counterexample",
+      "hasCounterexample": false,
+      "evaluations": 2500,
+      "seed": 20261025,
+      "maxExamples": 2500,
+      "startedAtUtc": "2026-10-25T09:13:15.416210+00:00",
+      "finishedAtUtc": "2026-10-25T09:13:27.163036+00:00",
+      "durationSeconds": 10.2233,
+      "report": ".property-lab/dotenv-dsh-fixed-20261025/run/report.json",
+      "reportSha256": "a7943d5da7d87f8b7313ecba1f85e5da324b78a11578a63505aced5ebfd48203",
+      "canonicalSpecSha256": "a2c5f4029f3764db136398a509b3eb4fd30ecc539cecbabce0754f07dbaa662f",
+      "reportRead": {
+        "name": "read",
+        "callSeq": 1039,
+        "resultSeq": 1040,
+        "modelRequested": true,
+        "isError": false,
+        "argumentsSha256": "ff3d46078b921a05c3a010c5ee73e0a971e2ee3f19a0cdbfec303b667ad6b8a6",
+        "resultSha256": "589bc1848a054c775598b86a65775e0a0934a50c0d0696d1939c2398a1d69d68",
+        "contentMatchesCurrentFile": true
+      },
+      "excerpt": "Status: no_counterexample; RUN_EXIT=0"
+    },
+    "pytest": {
+      "name": "pwsh",
+      "callSeq": 1037,
+      "resultSeq": 1038,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "bd50738f608bc231b7a5982f867517ca620a3b1384467f7d8674aef7e06d1ddf",
+      "resultSha256": "bdacd7b1a776a64fb9b26faa7e453411c3d1eeedde499381c49812f738b32d8c",
+      "processExitCode": 0,
+      "testsPassed": 15,
+      "durationSeconds": 11.64,
+      "generatedPropertyTests": 1,
+      "parameterizedDirectExamples": 14,
+      "testFiles": [
+        ".property-lab/dotenv-dsh-fixed-20261025/run/test_property.py",
+        "case-studies/dotenv/test_direct_examples.py"
+      ],
+      "excerpt": "...............                                                          [100%]\r\n15 passed in 11.64s\r\nPYTEST_EXIT=0"
+    }
+  },
+  "trackedFiles": [
+    {
+      "file": "case-studies/dotenv/fixture_directory.py",
+      "beforeSha256": "89cb6dd26b8ea16a533deacfe99dbeb71037b95c55335ee8b0635e8bca199042",
+      "afterSha256": "89cb6dd26b8ea16a533deacfe99dbeb71037b95c55335ee8b0635e8bca199042",
+      "currentSha256": "89cb6dd26b8ea16a533deacfe99dbeb71037b95c55335ee8b0635e8bca199042",
+      "unchangedAcrossRun": true
+    },
+    {
+      "file": "case-studies/dotenv/adapter.py",
+      "beforeSha256": "e0ae55646b419f49d7f7d1af3b3543b5b9afb92c37eb002dfa0ecb7ed9d8369d",
+      "afterSha256": "e0ae55646b419f49d7f7d1af3b3543b5b9afb92c37eb002dfa0ecb7ed9d8369d",
+      "currentSha256": "e0ae55646b419f49d7f7d1af3b3543b5b9afb92c37eb002dfa0ecb7ed9d8369d",
+      "unchangedAcrossRun": true
+    },
+    {
+      "file": "case-studies/dotenv/roundtrip.json",
+      "beforeSha256": "e2435e3852221197310390f0793cd367df4dd6096b67f22b20e1895677447bd0",
+      "afterSha256": "e2435e3852221197310390f0793cd367df4dd6096b67f22b20e1895677447bd0",
+      "currentSha256": "e2435e3852221197310390f0793cd367df4dd6096b67f22b20e1895677447bd0",
+      "unchangedAcrossRun": true
+    },
+    {
+      "file": "case-studies/dotenv/probe_permissions.py",
+      "beforeSha256": "6682b37459bc06e8b1412481e4970f6ff6c18cd96fbe8ff6efa1b24dcb84eed4",
+      "afterSha256": "6682b37459bc06e8b1412481e4970f6ff6c18cd96fbe8ff6efa1b24dcb84eed4",
+      "currentSha256": "6682b37459bc06e8b1412481e4970f6ff6c18cd96fbe8ff6efa1b24dcb84eed4",
+      "unchangedAcrossRun": true
+    },
+    {
+      "file": "case-studies/dotenv/test_direct_examples.py",
+      "beforeSha256": "5395ffad67a817789822f30e9c40c70f6a46281f76d9af76ad3847ced90f5aeb",
+      "afterSha256": "5395ffad67a817789822f30e9c40c70f6a46281f76d9af76ad3847ced90f5aeb",
+      "currentSha256": "5395ffad67a817789822f30e9c40c70f6a46281f76d9af76ad3847ced90f5aeb",
+      "unchangedAcrossRun": true
+    },
+    {
+      "file": "src/dsh_property_lab/artifacts.py",
+      "beforeSha256": "e45355a787b577cd4ce5da772293da1bf18e267fa1a7ebb30bc20db9be07b6a5",
+      "afterSha256": "e45355a787b577cd4ce5da772293da1bf18e267fa1a7ebb30bc20db9be07b6a5",
+      "currentSha256": "e45355a787b577cd4ce5da772293da1bf18e267fa1a7ebb30bc20db9be07b6a5",
+      "unchangedAcrossRun": true
+    },
+    {
+      "file": "<DSH_HOME>/settings.yaml",
+      "beforeSha256": "33aa273cdd747795770cb293c9b8ae6b806be3052a45dea5a96b2b877cf5bad4",
+      "afterSha256": "33aa273cdd747795770cb293c9b8ae6b806be3052a45dea5a96b2b877cf5bad4",
+      "currentSha256": "33aa273cdd747795770cb293c9b8ae6b806be3052a45dea5a96b2b877cf5bad4",
+      "unchangedAcrossRun": true
+    }
+  ],
+  "residue": {
+    "prefixes": [
+      ".dotenv-case-",
+      ".dotenv-control-"
+    ],
+    "beforeCount": 6,
+    "afterCount": 6,
+    "verificationCount": 6,
+    "oldNamesPreserved": true,
+    "newlyAddedCount": 0
+  },
+  "previousFailedRun": {
+    "report": ".property-lab/real-dsh-20261025/dotenv/report.json",
+    "reportSha256": "e2f53ea9d720c67a6c605f8b2c31787f94ec73502312c120dbbb73f266802b95",
+    "status": "inconclusive",
+    "evaluations": 3,
+    "hasCounterexample": false,
+    "failure": "PermissionError / WinError 5 on protected temporary directories; inconclusive, not a confirmed library defect."
+  },
+  "upstream": {
+    "repository": "https://github.com/theskumar/python-dotenv",
+    "tag": "v1.2.4",
+    "commit": "a565c2cc41599c48eabc6b7b7f5b826d43c5a6d7",
+    "packageVersion": "1.2.4",
+    "provenanceRecordedAtUtc": "2026-10-25T08:55:57.368562+00:00",
+    "earlierProvenanceSha256": "e971247da97e5ca6ffc0afdab07a19aec8893a6f334d3667adc6124413c0cdb1",
+    "sourceFiles": [
+      {
+        "name": "dotenv/main.py",
+        "installedSha256": "697eb33eee75d78b73db61eaf96bf9a6547548c1811c93501b67e056e5470dea",
+        "earlierProvenanceSha256": "697eb33eee75d78b73db61eaf96bf9a6547548c1811c93501b67e056e5470dea",
+        "installedMatchesEarlierProvenance": true,
+        "upstreamCheckoutSha256": "816ab6c0cd1d06fc178aca2a229d358994deb6b8199bdef4056e15e211f0302d",
+        "lfNormalizedSha256": "697eb33eee75d78b73db61eaf96bf9a6547548c1811c93501b67e056e5470dea",
+        "installedMatchesUpstreamIgnoringLineEndings": true
+      },
+      {
+        "name": "dotenv/parser.py",
+        "installedSha256": "0bc1350444eeff987f2c22924400ad0b7727563798118c641cd4c0de55bd30d0",
+        "earlierProvenanceSha256": "0bc1350444eeff987f2c22924400ad0b7727563798118c641cd4c0de55bd30d0",
+        "installedMatchesEarlierProvenance": true,
+        "upstreamCheckoutSha256": "1898a1370e44471c1b559a85d9b05b9634459dd6ea7178dc4b1ee7d338d4c9ec",
+        "lfNormalizedSha256": "0bc1350444eeff987f2c22924400ad0b7727563798118c641cd4c0de55bd30d0",
+        "installedMatchesUpstreamIgnoringLineEndings": true
+      }
+    ],
+    "sourceVerificationNote": "Installed sources were resolved with the same venv interpreter after execution, matched the earlier provenance hashes, and matched the clean upstream checkout after CRLF-to-LF normalization."
+  },
+  "runtime": {
+    "python": "3.13.15",
+    "hypothesis": "6.170.9",
+    "propertyLab": "0.1.0",
+    "pytest": "9.1.1",
+    "dsh": "0.1.2-rc.1",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "artifacts": [
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T09:13:15.417Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/report.html",
+      "bytes": 4667,
+      "sha256": "51dce5d2ab496327c48a10144a0afb849ef01a756db5a641bff757451d027582",
+      "lastModifiedUtc": "2026-10-25T09:13:27.165Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/report.json",
+      "bytes": 2841,
+      "sha256": "a7943d5da7d87f8b7313ecba1f85e5da324b78a11578a63505aced5ebfd48203",
+      "lastModifiedUtc": "2026-10-25T09:13:27.164Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/report.md",
+      "bytes": 1573,
+      "sha256": "512464325f9fa664859de2b948440f04d43d8e7a7ecba32c394aa0a30381da97",
+      "lastModifiedUtc": "2026-10-25T09:13:27.165Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/request.json",
+      "bytes": 1607,
+      "sha256": "bd6df9a1568f96997cd1c2fb9e4998e5be5c0b7f10bc07dad4740a03b03c9f0c",
+      "lastModifiedUtc": "2026-10-25T09:13:15.417Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/spec.json",
+      "bytes": 1387,
+      "sha256": "2fdb474e8336ada1704f471e50db6f8f77a0c597ecc8b0ee9d9542e77e7d3fa3",
+      "lastModifiedUtc": "2026-10-25T09:13:15.416Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/test_property.py",
+      "bytes": 2274,
+      "sha256": "94c4011d3e55a2d44e7bb7b93d0e64fd2486b3bf8245621c20e960a511dfe66d",
+      "lastModifiedUtc": "2026-10-25T09:13:27.163Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/worker.json",
+      "bytes": 921,
+      "sha256": "9fcc693e7ef6ac13c79027d5031225265ef47a835572fcd0c0e2e952b254a069",
+      "lastModifiedUtc": "2026-10-25T09:13:27.049Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run/worker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T09:13:27.163Z",
+      "modifiedDuringSession": true
+    }
+  ],
+  "retainedEvidence": [
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/run-record.json",
+      "sha256": "cce5f9cd49dfd3cbc01a077ed02b3da4953a98cfb3dfad989470ddffd22052e9"
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/stdout.log",
+      "sha256": "30810c79138b9233558322e5c752a6ef332f454bb11dc476b7bb01bb6d9ff1bf"
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".property-lab/dotenv-dsh-fixed-20261025/trace-verification-detail.json",
+      "sha256": "93294f3ee443b8c6ceae8cd51ace84242b0fe888b5b1bf321eaeed33b6d1c09e"
+    }
+  ],
+  "limitations": [
+    "The restricted-token and ACL probe verifies this session; Windows ACL sandbox enforcement remains the DSH backend's documented partial boundary.",
+    "Source and settings immutability covers the seven files recorded before and after by the driver; it is not a system-wide configuration audit.",
+    "The 2500-evaluation property search plus 15 passing pytest items are bounded evidence, not a proof of correctness or a claim of a new upstream defect.",
+    "The original failed report, old exported test, raw trace and historical fixture residue were preserved. This rerun does not rewrite the earlier outcome.",
+    "No absolute personal paths, ACL identities, raw model reasoning, request headers or credentials are included in this summary."
+  ]
+}

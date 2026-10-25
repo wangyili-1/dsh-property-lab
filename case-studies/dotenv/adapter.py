@@ -1,17 +1,15 @@
 """Thin python-dotenv adapter; all files are synthetic and auto-cleaned."""
 
 from io import StringIO
-from pathlib import Path
-from tempfile import TemporaryDirectory
-
 from dotenv import dotenv_values, set_key
+from fixture_directory import fixture_directory
 
 
 def write_value(value: str) -> str:
     """Serialize VALUE and a following sentinel through the public set_key API."""
     # Stay inside this case directory; never search for or load a user's .env.
-    with TemporaryDirectory(prefix=".dotenv-case-", dir=Path(__file__).parent) as tmp:
-        path = Path(tmp) / "synthetic.env"
+    with fixture_directory() as tmp:
+        path = tmp / "synthetic.env"
         set_key(path, "VALUE", value, quote_mode="always", encoding="utf-8")
         set_key(path, "SENTINEL", "unchanged", quote_mode="always", encoding="utf-8")
         # Standard text mode normalizes platform line endings to LF. The input

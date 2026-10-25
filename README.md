@@ -31,7 +31,7 @@ DSH 负责阅读代码、提出有依据的性质和输入域；本项目的本�
 | 项目与固定版本 | 实际检查的规则 | 首轮 CLI 评估次数 | 结果与证据 |
 | --- | --- | --- | --- |
 | [toml 0.10.2](https://pypi.org/project/toml/0.10.2/) | 字符串、字符串列表的序列化/解析往返 | 29 / 32 | U+001F 触发 `IndexError`；`['"']` 往返变为 `['']`。各稳定复现三次。[过程与复现](case-studies/toml/README.md) |
-| [python-dotenv 1.2.4](https://pypi.org/project/python-dotenv/1.2.4/) | 带引号值写入/读取，关闭变量展开并检查后续键 | 2,500 | `no_counterexample`；导出属性测试及 14 个独立边界样例共 15 项通过。[过程与复现](case-studies/dotenv/README.md) |
+| [python-dotenv 1.2.4](https://pypi.org/project/python-dotenv/1.2.4/) | 带引号值写入/读取，关闭变量展开并检查后续键 | 2,500 | CLI 未找到反例；修复测试目录权限兼容后，DSH 内也完成 2,500 次评估及 15 项测试。[过程与复现](case-studies/dotenv/README.md) |
 | [boltons 26.2.0](https://pypi.org/project/boltons/26.2.0/) | `unique` 与独立保序去重实现等价 | 3,000 | `no_counterexample`；第二个 seed 再评估 3,000 次也未发现差异。[过程与复现](case-studies/boltons/README.md) |
 
 toml 的控制字符问题对应已公开的 [issue #246](https://github.com/uiri/toml/issues/246)，属于**已知问题复现**。数组引号问题经独立复核支持定性为实现缺陷，但没有确认首次发现。0.10.2 虽是该包最新发布版，发布时间是 2020 年；本次也对获取的上游 HEAD 直接复现了这两个输入。没有向上游提交 issue 或 PR。
@@ -41,10 +41,12 @@ toml 的控制字符问题对应已公开的 [issue #246](https://github.com/uir
 1. 核对官方版本、文档、源码及现有测试，先确定输入域与性质；每个目标使用独立虚拟环境。
 2. 编写可审查的 JSON 规格和薄适配器，固定版本及 seed `20261025`，执行真正的 `dsh-property-lab run`。toml 每条搜索预算为 2,000，dotenv 为 2,500，boltons 为 3,000；表中记录实际评估数。
 3. 对 toml 反例执行独立 `replay` 与导出的回归测试：两项回归测试均按预期失败；再绕过适配器调用公开 API，并用标准库 `tomllib` 交叉检查。
-4. 让真实 DSH `0.1.2-rc.1` / `deepseek-flash` 加载技能，用准备好的独立环境重跑四份规格，再核对持久化工具调用与报告。[DSH 调用证据](case-studies/dsh-verification.json)
+4. 让真实 DSH `0.1.2-rc.1` / `deepseek-flash` 加载技能，用准备好的独立环境重跑四份规格，再核对持久化工具调用与报告。保留[首次调用证据](case-studies/dsh-verification.json)，并对 dotenv 的权限兼容修复进行[独立复验](case-studies/dotenv/dsh-permission-fix.json)。
 5. 保存版本、命令、输入域、真实观测、时间与源码/报告 SHA-256；仓库中的摘要明确标注了本机路径的替换方式。
 
-**DSH 复跑有一项环境限制：** toml 两条结果一致，boltons 仍未找到反例；dotenv 的临时目录清理触发 `PermissionError / WinError 5`，该轮状态是 `inconclusive`、退出码 2，不能算 dotenv 缺陷，也不能算 DSH 验证通过。上表 2,500 次是独立 CLI 的成功运行。原始记录保留，未关闭沙箱或忽略清理错误来改变结论。
+**DSH 的 dotenv 权限兼容问题已修复并复验：** 首次运行因临时目录权限返回 `inconclusive / 2`，该失败记录仍保留。Python 3.13 在 Windows 用 `mkdir(0o700)` 创建的受保护 ACL 丢失了 DSH 工作区的继承授权；案例现用随机目录继承已有工作区 ACL，并严格清理。导出测试的缓存隔离也改用不实际创建的唯一路径。未改变被测库、性质、输入域或沙箱策略。
+
+修复后，DSH 内探针记录 `restricted_token=true`、目录继承权限及创建/读写/删除成功；同一 seed 和预算完成 **2,500 次评估，`no_counterexample`，退出码 0**，新导出属性测试及 14 个直接 API 边界样例 **15 passed**。本轮没有新增临时目录残留。[修复细节及完整证据](case-studies/dotenv/README.md#dsh-受限环境修复与复验)
 
 可独立复现的 toml 示例（安装案例的固定依赖后）：
 

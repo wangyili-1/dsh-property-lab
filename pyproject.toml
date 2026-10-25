@@ -25,6 +25,9 @@ where = ["src"]
 [tool.setuptools.package-data]
 dsh_property_lab = ["resources/**/*"]
 
+[tool.setuptools.exclude-package-data]
+"*" = ["**/__pycache__/*", "**/*.py[cod]"]
+
 [tool.setuptools.data-files]
 "share/dsh-property-lab/examples" = ["examples/*.py", "examples/*.json"]
 

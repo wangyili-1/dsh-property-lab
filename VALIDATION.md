@@ -1,9 +1,10 @@
 # Local validation — 2026-10-25
 
-This file records checks actually run while preparing version 0.1.0. The GitHub Actions workflow is provided but has not run remotely; this repository has not been published.
+This file records checks actually run while preparing version 0.1.0. Local results are listed below; remote GitHub Actions results are recorded separately when verified.
 
 ## Confirmed
 
+- Publication check on 2026-10-25: the current Windows / Python 3.13.15 checkout passed **40 tests in 45.45 seconds**. A freshly built wheel includes the skill runner and excludes bytecode caches; explicit package-data exclusions prevent local `__pycache__` files entering new builds. Historical build output was moved aside before checking the new wheel.
 - Windows, Python 3.13.15, Hypothesis 6.170.9: **40 tests passed**. Tests exercise the engine, real CLI subprocesses, timeout handling, error classification, code repair and replay, standalone exports, stale bytecode, source fingerprints, HTML escaping and installer ownership checks.
 - Windows, Python 3.10, Hypothesis 6.168.5 (the version selected by pip for this interpreter): **40 tests passed** in a separate virtual environment.
 - All six demo runs matched their expected outcomes: three deliberately buggy fixtures yielded reproducible counterexamples; three corrected versions had no counterexample in their configured search budgets.

@@ -2,9 +2,70 @@
 
 [English](README.en.md)
 
-让 DeepSeek Harness（DSH）用 **Python + Hypothesis** 找到边界输入，把失败情况缩减成反例，并保存可重复运行的测试。
+让 DeepSeek Harness（DSH）用 **Python + Hypothesis** 找到边界输入，把失败情况缩减成反例，并导出可重复运行的测试。CLI 本身不调用模型，也不需要额外的模型 API key。
 
-DSH 负责阅读代码、提出有依据的性质和输入域；本项目的本地执行器负责实际运行、缩减和导出证据。CLI 本身不调用模型，也不需要额外的模型 API key。
+## 三个真实反例
+
+**整数被改值、XML 注释被改写、连续分隔符漏进结果。** 以下差异均在未修改的开源发布版上实际复现，包含性质依据、独立核对和导出的回归测试；不宣称首次发现。按各案例说明安装固定依赖后，可直接调用公开 API：
+
+```python
+import humanize  # 4.16.0
+import xmltodict  # 1.0.4
+from boltons.iterutils import split  # boltons 26.2.0
+
+# 给整数加千分位，却改变了末位；默认 ndigits=None 则保留原值。
+humanize.intcomma(9007199254740993, 0)  # '9,007,199,254,740,992'
+# 预期：'9,007,199,254,740,993'
+
+# XML 注释里的实体引用是字面文本，错误转义会改变内容。
+encoded = xmltodict.unparse({'root': {'#comment': '<'}})
+xmltodict.parse(encoded, process_comments=True, strip_whitespace=False)['root']['#comment']
+# 实际：'&lt;'
+# 预期：'<'
+
+# 连续 None 应被视为一个分隔段；后一个 None 却漏进结果。
+split([0, None, None], sep=None, maxsplit=1)  # [[0], [None]]
+# 按文档所述 str.split 分组语义，预期：[[0]]
+```
+
+[humanize：完整复现与精度对照](case-studies/humanize/README.md) · [xmltodict：完整复现与文本对照](case-studies/xmltodict/README.md) · [boltons：契约与独立参考实现](case-studies/boltons-boundaries/README.md)
+
+## 真实开源项目验证
+
+2026-10-25，在 Windows 11 / Python 3.13.15 / Hypothesis 6.170.9 上，使用独立环境检查了五个项目当日的 PyPI 最新稳定版，**共复现五项实现缺陷**。案例调用未修改的第三方包，本仓库提供薄适配器、独立参考实现和测试规格。保留未发现反例的结果，避免只展示失败案例。
+
+| 项目与固定版本 | 实际检查的规则 | 首轮 CLI 评估次数 | 结果与证据 |
+| --- | --- | --- | --- |
+| [humanize 4.16.0](case-studies/humanize/README.md) | 整数千分位格式化，显式 `ndigits=0` 应保留整数值 | 146 | `9007199254740993` 被格式化成末位为 `992` 的数；同域默认参数对照 3,000 次无反例。 |
+| [xmltodict 1.0.4](case-studies/xmltodict/README.md) | 单个合法 XML 注释的序列化/解析往返 | 19 | 注释内容 `<` 变成字面量 `&lt;`；同字符域普通文本对照 3,000 次无反例。 |
+| [boltons 26.2.0：split](case-studies/boltons-boundaries/README.md) | `sep=None, maxsplit=1` 的连续分隔符分组语义 | 44 | `[0, None, None]` 得到 `[[0], [None]]`，应为 `[[0]]`；第二个 seed 也复现。 |
+| [toml 0.10.2](case-studies/toml/README.md) | 字符串、字符串列表的序列化/解析往返 | 29 / 32 | U+001F 触发 `IndexError`；`['"']` 往返变为 `['']`。两项缺陷各稳定复现三次。 |
+| [python-dotenv 1.2.4](case-studies/dotenv/README.md) | 带引号值写入/读取，关闭变量展开并检查后续键 | 2,500 | `no_counterexample`；DSH 权限兼容修复后的复验结果相同。 |
+| [boltons 26.2.0：unique](case-studies/boltons/README.md) | 与独立保序去重实现等价 | 3,000 | `no_counterexample`；第二个 seed 再评估 3,000 次也未发现差异。 |
+
+**已知问题与新颖性：** xmltodict 注释问题对应已有的 [PR #423](https://github.com/martinblech/xmltodict/pull/423)，toml 控制字符问题对应 [issue #246](https://github.com/uiri/toml/issues/246)，均属于已知问题复现。另外三项有契约和独立复现支持，但首次发现未确认，也未获得上游维护者确认。toml 0.10.2 发布于 2020 年；两个输入也在案例记录的上游 HEAD 复现。没有向上游提交 issue 或 PR。
+
+### 如何核对这些结论
+
+先核对官方文档、源码和现有测试，再固定合法输入域与 seed `20261025`，运行真实 CLI 搜索和缩减。反例经过独立重放、公开 API 核对及导出测试验证：五项回归测试在原版依赖上均按预期失败。humanize 另用 `Decimal` 核对，xmltodict 用标准库 DOM 交叉解析，toml 用 `tomllib` 对照。
+
+boltons 的独立参考实现遵循 `str.split(None, 1)`，保留未分割余段内部的 `None`，排除了上游明确特殊处理的 `maxsplit=0`；另以位置扫描算法对 5,461 个有限域列表进行交叉核对。没有将“结果中不能出现任何分隔符”当作性质。
+
+humanize 的 34 项上游 `intcomma` 测试、xmltodict 的两个上游测试模块共 119 项仍通过；这些计数仅代表所选测试，说明已通过的测试没有覆盖对应边界。`unique` 无反例的结果也与 `split` 的缺陷分别保留。
+
+### 真实 DSH 执行证据
+
+真实 DSH `0.1.2-rc.1` / `deepseek-flash` 加载技能，在 `workspace-write` 模式及独立环境中依次执行 humanize 主规格/对照、xmltodict 主规格/对照、boltons 分割规格。每份规格预算 3,000，实际评估 **146 / 3,000 / 19 / 3,000 / 44** 次，退出码 **1 / 0 / 1 / 0 / 1**。三个反例均内部稳定重放三次。[持久化调用与报告核验](case-studies/counterexamples-dsh-verification.json)覆盖技能加载、实际命令、报告读取和文件哈希。**规格由本项目先行审查编写，DSH 负责执行复验；这些记录不证明模型自主发现性质。**
+
+[toml、dotenv、boltons unique 的 DSH 记录](case-studies/dsh-verification.json)保留了 dotenv 首次因临时目录权限返回 `inconclusive / 2` 的失败。修复测试目录与导出测试缓存的 Windows 权限兼容后，在相同性质、输入域、seed、预算及沙箱策略下，DSH 完成 **2,500 次评估、`no_counterexample`、退出码 0**，并通过 **15 项测试**。这是环境兼容修复，不计作第三方缺陷；详见[案例说明](case-studies/dotenv/README.md#dsh-受限环境修复与复验)与[复验记录](case-studies/dotenv/dsh-permission-fix.json)。
+
+原始 CLI 报告保留 `classification: needs_review`；本页定性来自后续契约、合法输入域和公开 API 的独立复核。DSH 文字总结中对 boltons 结果和对照能力的两处不准确表述已在核验记录中单列，未作为结论依据。
+
+每个案例提供固定依赖、安装/运行命令、规格及带源码/报告 SHA-256 的可移植证据摘要；本机路径的替换方式已注明。未发现反例不等于证明正确；评估次数包含生成与缩减，轮次间输入可能重叠，不能当作独立输入总数。核心测试、案例测试、第三方缺陷复现和 DSH 环境问题分别记录。完整本地检查与尚未验证范围见 [VALIDATION.md](VALIDATION.md)。
+
+## 工作方式与支持范围
+
+DSH 阅读代码、文档和现有测试，提出有依据的性质和输入域；本地执行器实际运行 JSON 规格、缩减反例并导出证据。
 
 ```text
 源码 / 文档 / 现有测试
@@ -14,89 +75,24 @@ DSH 负责阅读代码、提出有依据的性质和输入域；本项目的本�
   反例 + 运行报告 + 回归测试
 ```
 
-## 第一版支持什么
-
 | 性质 | 要验证的规则 | 适用例子 |
 | --- | --- | --- |
 | 往返 `roundtrip` | `inverse(function(x)) == x` | 编码与解码、序列化与反序列化 |
 | 幂等 `idempotence` | `function(function(x)) == function(x)` | 规范化、格式化 |
 | 等价 `equivalence` | `function(x) == reference(x)` | 重构、优化、替代实现 |
 
-支持同步、单个位置参数的 Python 函数。输入策略包括字符串、整数、布尔值、列表、固定 JSON 值和策略组合。性质规格必须包含依据 `rationale` 和有效输入域 `domain`，避免把模型猜测直接当作程序契约。
-
-## 真实开源项目验证
-
-2026-10-25，在 Windows 11 / Python 3.13.15 / Hypothesis 6.170.9 上，实际检查了五个项目当日的 PyPI 最新稳定版。**新增 humanize、xmltodict 和 boltons 三个真实反例，加上此前 toml 的两个，共复现五项实现缺陷。** 这些案例调用未修改的第三方包；本仓库只提供薄适配器、独立参考实现和测试规格。这里的“新增”指本项目新增案例，不宣称首次发现上游问题。
-
-| 项目与固定版本 | 实际检查的规则 | 首轮 CLI 评估次数 | 结果与证据 |
-| --- | --- | --- | --- |
-| [humanize 4.16.0](https://pypi.org/project/humanize/4.16.0/) | 整数千分位格式化，显式 `ndigits=0` 应保留整数值 | 146 | `9007199254740993` 被格式化成末位为 `992` 的数；默认参数对照 3,000 次无反例。[过程与复现](case-studies/humanize/README.md) |
-| [xmltodict 1.0.4](https://pypi.org/project/xmltodict/1.0.4/) | 单个合法 XML 注释的序列化/解析往返 | 19 | 注释内容 `<` 变成字面量 `&lt;`；普通文本对照 3,000 次无反例。[过程与复现](case-studies/xmltodict/README.md) |
-| [boltons 26.2.0](https://pypi.org/project/boltons/26.2.0/) | `split(sep=None, maxsplit=1)` 的连续分隔符分组语义 | 44 | `[0, None, None]` 得到 `[[0], [None]]`，应为 `[[0]]`；第二个 seed 也复现。[过程与复现](case-studies/boltons-boundaries/README.md) |
-| [toml 0.10.2](https://pypi.org/project/toml/0.10.2/) | 字符串、字符串列表的序列化/解析往返 | 29 / 32 | U+001F 触发 `IndexError`；`['"']` 往返变为 `['']`。各稳定复现三次。[过程与复现](case-studies/toml/README.md) |
-| [python-dotenv 1.2.4](https://pypi.org/project/python-dotenv/1.2.4/) | 带引号值写入/读取，关闭变量展开并检查后续键 | 2,500 | CLI 未找到反例；修复测试目录权限兼容后，DSH 内也完成 2,500 次评估及 15 项测试。[过程与复现](case-studies/dotenv/README.md) |
-| [boltons 26.2.0](https://pypi.org/project/boltons/26.2.0/) | `unique` 与独立保序去重实现等价 | 3,000 | `no_counterexample`；第二个 seed 再评估 3,000 次也未发现差异。[过程与复现](case-studies/boltons/README.md) |
-
-xmltodict 注释问题对应已有的 [PR #423](https://github.com/martinblech/xmltodict/pull/423)，toml 的控制字符问题对应已公开的 [issue #246](https://github.com/uiri/toml/issues/246)，均属于**已知问题复现**。另外三项有文档、独立参考实现和直接 API 复现支持，但首次发现未确认，也未获得上游维护者确认。toml 0.10.2 虽是该包最新发布版，发布时间是 2020 年；本次也对获取的上游 HEAD 直接复现了它的两个输入。没有向上游提交 issue 或 PR。
-
-### 三个新增反例
-
-分别安装案例目录中的固定依赖后，可直接调用公开 API 看到差异：
-
-```python
-import humanize
-from boltons.iterutils import split
-import xmltodict
-
-# 给整数加千分位，却改变了末位；默认 ndigits=None 则保留原值。
-humanize.intcomma(9007199254740993, 0)  # '9,007,199,254,740,992'
-# 预期：'9,007,199,254,740,993'
-
-# 连续 None 应被视为一个分隔段；后一个 None 却漏进结果。
-split([0, None, None, 1], sep=None, maxsplit=1)  # [[0], [None, 1]]
-# 按文档所述 str.split 分组语义，预期：[[0], [1]]
-
-# XML 注释里的实体引用是字面文本，错误转义会改变内容。
-encoded = xmltodict.unparse({'root': {'#comment': '<'}})
-xmltodict.parse(encoded, process_comments=True)['root']['#comment']  # '&lt;'
-# 预期：'<'
-```
-
-这些性质都先核对了官方契约，再用 Hypothesis 搜索和缩减。humanize 另用 `Decimal` 核对，xmltodict 用标准库 DOM 交叉解析，boltons 用 `str.split(None, 1)` 的独立编码参考核对。boltons 参考实现会保留未继续分割的余段内部的 `None`，没有使用“结果里不能出现任何分隔符”这种过强规则，也排除了上游明确特殊处理的 `maxsplit=0`。
-
-### 实际验证流程
-
-1. 核对官方版本、文档、源码及现有测试，先确定输入域与性质；每个目标使用独立虚拟环境。
-2. 编写可审查的 JSON 规格和薄适配器，固定版本及 seed `20261025`，执行真正的 `dsh-property-lab run`。toml 和 boltons 分割案例首轮预算为 2,000，dotenv 为 2,500，其余主规格和对照为 3,000；表中记录实际评估数。
-3. 对反例执行独立重放、直接公开 API 核对和导出的回归测试。新增三个案例的回归测试在原版依赖上均按预期失败；humanize 的 34 项上游 `intcomma` 测试、xmltodict 的两个上游测试模块共 119 项仍通过，说明这些已通过的测试未覆盖本次边界。
-4. 让真实 DSH `0.1.2-rc.1` / `deepseek-flash` 加载技能，用准备好的独立环境重跑四份规格，再核对持久化工具调用与报告。保留[首次调用证据](case-studies/dsh-verification.json)，并对 dotenv 的权限兼容修复进行[独立复验](case-studies/dotenv/dsh-permission-fix.json)。
-5. 保存版本、命令、输入域、真实观测、时间与源码/报告 SHA-256；仓库中的摘要明确标注了本机路径的替换方式。
-
-新增案例另在真实 DSH 中重跑了五份规格，依次为 humanize 主规格/对照、xmltodict 主规格/对照、boltons 分割规格。三个反例仍分别缩减为 `9007199254740993`、`"<"`、`[0, None, None]`，内部均稳定重放三次；两个对照各完成 3,000 次评估。五条命令退出码依次为 **1 / 0 / 1 / 0 / 1**，没有环境失败。DSH 采用原有 `workspace-write` 权限模式及准备好的独立环境，本轮统一预算 3,000；[持久化工具调用与报告核验](case-studies/counterexamples-dsh-verification.json)记录了技能加载、实际执行和报告读取。规格由本项目先行审查编写，DSH 此轮负责执行复验，不将其描述为模型自主发现。
-
-原始 CLI 报告仍保留 `classification: needs_review`，不会自动把任意失败断言认定为库缺陷。本页定性来自后续对文档契约、合法输入域和独立公开 API 结果的复核，没有改写原始报告。核验以真实调用和报告为依据：DSH 文字总结误称 boltons 的额外第二组为“第三个空段”，并夸大了对照的排除能力；这两处表述偏差已在证据中单列，未采纳到本页结论。
-
-**DSH 的 dotenv 权限兼容问题已修复并复验：** 首次运行因临时目录权限返回 `inconclusive / 2`，该失败记录仍保留。Python 3.13 在 Windows 用 `mkdir(0o700)` 创建的受保护 ACL 丢失了 DSH 工作区的继承授权；案例现用随机目录继承已有工作区 ACL，并严格清理。导出测试的缓存隔离也改用不实际创建的唯一路径。未改变被测库、性质、输入域或沙箱策略。
-
-修复后，DSH 内探针记录 `restricted_token=true`、目录继承权限及创建/读写/删除成功；同一 seed 和预算完成 **2,500 次评估，`no_counterexample`，退出码 0**，新导出属性测试及 14 个直接 API 边界样例 **15 passed**。本轮没有新增临时目录残留。[修复细节及完整证据](case-studies/dotenv/README.md#dsh-受限环境修复与复验)
-
-可独立复现的 toml 示例（安装案例的固定依赖后）：
-
-```python
-import toml
-import tomllib  # Python 3.11+
-
-original = {"value": ['"']}
-encoded = toml.dumps(original)
-print(toml.loads(encoded))     # {'value': ['']}
-print(tomllib.loads(encoded))  # {'value': ['"']}
-```
-
-每个案例目录都提供安装/运行命令、规格与可移植证据。未发现反例不等于证明正确；不同轮次的输入可能重叠，评估次数不能直接当作独立输入总数。核心测试、案例测试、第三方缺陷复现和 DSH 环境问题分别记录，不汇总成一个“全通过”数字。
+支持同步、单个位置参数的 Python 函数。输入策略包括字符串、整数、布尔值、列表、固定 JSON 值和策略组合。规格必须包含依据 `rationale` 和有效输入域 `domain`，避免把模型猜测直接当作程序契约。
 
 ## 本地安装
 
 需要 Python **3.10 或更高版本**。建议在项目独立的虚拟环境运行，目标代码的依赖也需安装在该环境中。
+
+获取仓库：
+
+```sh
+git clone https://github.com/wangyili-1/dsh-property-lab.git
+cd dsh-property-lab
+```
 
 Windows PowerShell，在仓库根目录执行：
 
@@ -232,7 +228,7 @@ python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
-仓库包含可用于 GitHub Actions 的测试工作流。将此目录发布为自己的 GitHub 仓库即可；项目未绑定任何预设的远程地址或账号。
+仓库包含 [GitHub Actions 测试工作流](.github/workflows/ci.yml)。本地验证记录不代表远程 CI 已通过；实际运行状态见仓库的 [Actions 页面](https://github.com/wangyili-1/dsh-property-lab/actions)。
 
 本次实际执行过的测试、兼容性与尚未验证的范围见 [VALIDATION.md](VALIDATION.md)。
 

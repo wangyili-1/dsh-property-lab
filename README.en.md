@@ -2,9 +2,70 @@
 
 [中文](README.md)
 
-A local **Python + Hypothesis** execution companion for DeepSeek Harness (DSH). DSH reads your code and proposes a justified property and input domain. The runner executes that specification, shrinks counterexamples, and exports reproducible evidence and tests. The CLI does not call an LLM or require a model API key.
+A local **Python + Hypothesis** execution companion for DeepSeek Harness (DSH): search boundary inputs, shrink failures, and export reproducible tests. The CLI does not call an LLM or require a model API key.
 
-## Supported properties
+## Three real counterexamples
+
+**An integer changes value, an XML comment changes content, and a grouped separator leaks into the result.** These differences were reproduced on unmodified open-source releases, with reviewed contracts, independent checks, and exported regression tests. No first-discovery claim is made. After installing the pinned dependencies in each case study, the public APIs show the failures directly:
+
+```python
+import humanize  # 4.16.0
+import xmltodict  # 1.0.4
+from boltons.iterutils import split  # boltons 26.2.0
+
+# Grouping an integer changes its last digit; default ndigits=None preserves it.
+humanize.intcomma(9007199254740993, 0)  # '9,007,199,254,740,992'
+# Expected: '9,007,199,254,740,993'
+
+# Entity references inside XML comments are literal text.
+encoded = xmltodict.unparse({'root': {'#comment': '<'}})
+xmltodict.parse(encoded, process_comments=True, strip_whitespace=False)['root']['#comment']
+# Actual: '&lt;'
+# Expected: '<'
+
+# Consecutive None values should form one separator run.
+split([0, None, None], sep=None, maxsplit=1)  # [[0], [None]]
+# Expected under the documented str.split grouping semantics: [[0]]
+```
+
+[humanize: reproduction and precision control](case-studies/humanize/README.md) · [xmltodict: reproduction and text control](case-studies/xmltodict/README.md) · [boltons: contract and independent oracle](case-studies/boltons-boundaries/README.md)
+
+## Real open-source case studies
+
+On 2026-10-25, five projects' latest stable PyPI releases as of that date were tested on Windows 11, Python 3.13.15 and Hypothesis 6.170.9, in separate environments. **Five implementation defects were reproduced.** Target code was not modified; this repository supplies thin adapters, independent reference implementations, and reviewed specifications with explicit input domains. Results without a counterexample are retained alongside the failures.
+
+| Target | Property | Actual initial CLI evaluations | Observed result |
+| --- | --- | --- | --- |
+| [humanize 4.16.0](case-studies/humanize/README.md) | Integer grouping with explicit `ndigits=0` preserves the value | 146 | `9007199254740993` becomes `'9,007,199,254,740,992'`. Default-precision control in the same domain: 3,000 evaluations without a violation. |
+| [xmltodict 1.0.4](case-studies/xmltodict/README.md) | One legal XML comment roundtrips unchanged | 19 | Comment `'<'` becomes literal `'&lt;'`. Text-node control with the same character domain: 3,000 evaluations without a violation. |
+| [boltons 26.2.0 split](case-studies/boltons-boundaries/README.md) | Grouped separators with `sep=None, maxsplit=1` | 44 | `[0, None, None]` returns `[[0], [None]]`, expected `[[0]]`; reproduced with a second seed. |
+| [toml 0.10.2](case-studies/toml/README.md) | String and string-list roundtrips | 29 / 32 | U+001F causes an encoder `IndexError`; `['"']` roundtrips to `['']`. Both reproduce three times. |
+| [python-dotenv 1.2.4](case-studies/dotenv/README.md) | Quoted values through public write/read APIs, interpolation disabled | 2,500 | No counterexample; DSH reproduces this result after a fixture permission compatibility fix. |
+| [boltons 26.2.0 unique](case-studies/boltons/README.md) | Ordered integer deduplication vs an independent oracle | 3,000 | No counterexample; a second seed also completes 3,000 evaluations without a violation. |
+
+**Known issues and novelty:** the xmltodict comment result reproduces the defect addressed by existing [PR #423](https://github.com/martinblech/xmltodict/pull/423); the toml control-character result reproduces known [issue #246](https://github.com/uiri/toml/issues/246). Novelty and maintainer confirmation of the other three findings are not established. The two toml inputs also reproduce at the upstream HEAD recorded in the case study; release 0.10.2 dates from 2020. No upstream issues or PRs were submitted.
+
+### How the findings were checked
+
+Official documentation, source, and existing tests were reviewed before specifying legal input domains and running the actual CLI with seed `20261025`. Counterexamples were replayed and checked through public APIs and exported tests. All five exported regressions fail as expected on the unmodified targets. Independent checks use `Decimal` for humanize, the standard-library DOM for xmltodict, and `tomllib` for toml.
+
+The boltons reference follows `str.split(None, 1)`, preserves separators inside the unsplit remainder, and excludes the explicitly special-cased `maxsplit=0` behavior. It was also cross-checked against a separate positional-scan algorithm over 5,461 finite-domain lists. The property does not require every output group to be free of separators.
+
+Selected upstream tests still pass: 34 humanize `intcomma` tests and 119 tests across two xmltodict modules. These counts describe the selected tests, not entire upstream suites; they did not cover the observed boundaries. The bounded no-counterexample result for boltons `unique` is retained separately from the defect in `split`.
+
+### Real DSH execution evidence
+
+A real DSH `0.1.2-rc.1` / `deepseek-flash` session loaded the skill and ran humanize defect/control, xmltodict defect/control, and boltons split, in that order. It used `workspace-write`, isolated environments, and a 3,000-example budget per specification. Actual evaluations were **146 / 3,000 / 19 / 3,000 / 44**, with exit codes **1 / 0 / 1 / 0 / 1**. All three counterexamples reproduced internally three times. [Durable trace verification](case-studies/counterexamples-dsh-verification.json) covers skill loading, actual commands, report reads, and file hashes. **These were model-orchestrated reruns of prewritten, reviewed specifications; the evidence does not establish autonomous model discovery of properties.**
+
+The [DSH record for toml, dotenv, and boltons unique](case-studies/dsh-verification.json) retains the initial dotenv `inconclusive / 2` result caused by temporary-directory permissions. After a Windows compatibility fix to fixture directories and exported-test caching, DSH completed **2,500 evaluations, no counterexample, exit 0**, followed by **15 passing tests**, with the same property, domain, seed, budget, and sandbox policy. This was an environment fix, not an upstream defect. See the [case details](case-studies/dotenv/README.md#dsh-受限环境修复与复验) and [verification record](case-studies/dotenv/dsh-permission-fix.json).
+
+Raw CLI reports retain `classification: needs_review`; the defect classifications here reflect subsequent independent contract and public-API review. The DSH trace also records two inaccuracies in the model's prose about the boltons result and the controls' evidentiary strength. Those descriptions were not used as evidence for the conclusions above.
+
+Each case includes fixed dependencies, commands, specifications, and a portable evidence summary with source/report SHA-256 hashes and labelled local-path substitutions. Raw local evidence is retained separately. Counts include generation and shrinking and can overlap across runs; they are not counts of unique inputs. No-counterexample is not a correctness proof. Core tests, case tests, upstream defect reproductions, and environment failures are recorded separately. See [VALIDATION.md](VALIDATION.md) for local checks and unverified scope.
+
+## How it works
+
+DSH reads code, documentation, and existing tests to propose a justified property and input domain. The local runner executes the JSON specification with Hypothesis, shrinks failures, and exports reports and tests.
 
 | Kind | Assertion |
 | --- | --- |
@@ -14,36 +75,16 @@ A local **Python + Hypothesis** execution companion for DeepSeek Harness (DSH). 
 
 Version 1 supports synchronous functions taking one positional argument and JSON-compatible inputs: text, integers, booleans, lists, fixed values, and combinations of strategies. Each specification must explain its contract in `rationale` and its valid input domain in `domain`.
 
-## Real open-source case studies
-
-On 2026-10-25, five projects' current PyPI releases were tested on Windows 11, Python 3.13.15 and Hypothesis 6.170.9, in separate environments. **Three additional counterexamples in humanize, xmltodict and boltons bring the collection to five reproduced implementation defects**, including the earlier two toml cases. These are new cases for this repository, not claims of first discovery. Target code was not modified. Specifications follow upstream contracts and explicitly bound the input domain.
-
-| Target | Property | Actual initial CLI evaluations | Observed result |
-| --- | --- | --- | --- |
-| [humanize 4.16.0](case-studies/humanize/README.md) | Integer grouping with explicit `ndigits=0` preserves the value | 146 | `9007199254740993` becomes `'9,007,199,254,740,992'`. Default-precision control: 3,000 evaluations without a violation. |
-| [xmltodict 1.0.4](case-studies/xmltodict/README.md) | One legal XML comment roundtrips unchanged | 19 | Comment `'<'` becomes literal `'&lt;'`. Text-node control: 3,000 evaluations without a violation. |
-| [boltons 26.2.0 split](case-studies/boltons-boundaries/README.md) | Grouped separators with `sep=None, maxsplit=1` | 44 | `[0, None, None]` returns `[[0], [None]]`, expected `[[0]]`; reproduced with a second seed. |
-| [toml 0.10.2](case-studies/toml/README.md) | String and string-list roundtrips | 29 / 32 | U+001F causes an encoder `IndexError`; `['"']` roundtrips to `['']`. Both reproduce three times. |
-| [python-dotenv 1.2.4](case-studies/dotenv/README.md) | Quoted values through public write/read APIs, interpolation disabled | 2,500 | No counterexample; after a fixture permission fix, DSH also completes 2,500 evaluations and 15 tests. |
-| [boltons 26.2.0](case-studies/boltons/README.md) | Ordered integer deduplication vs an independent oracle | 3,000 | No counterexample; a second seed also completes 3,000 evaluations without a violation. |
-
-The xmltodict comment result reproduces the defect addressed by existing [PR #423](https://github.com/martinblech/xmltodict/pull/423); the toml control-character result reproduces known [issue #246](https://github.com/uiri/toml/issues/246). Novelty and maintainer confirmation of the other three findings are not established. Independent checks use `Decimal`, the standard-library DOM, a `str.split(None, 1)` oracle and `tomllib`. All five exported regressions fail as expected on the unmodified targets. The boltons oracle preserves separators inside the unsplit remainder and excludes the explicitly special-cased `maxsplit=0` behavior. The two toml inputs also reproduce at the checked upstream HEAD; its latest release dates from 2020.
-
-The original passing boltons deduplication case is retained: finding a defect in `split` does not invalidate the bounded result for `unique`. The new humanize and xmltodict controls each complete 3,000 evaluations. Meanwhile, 34 upstream humanize `intcomma` tests and the two checked xmltodict test modules (119 tests) still pass. These counts describe the selected upstream tests, not entire upstream suites.
-
-A real DSH 0.1.2-rc.1 / `deepseek-flash` session loaded the skill and reran all four prepared specifications. The toml and boltons results matched. The initial dotenv attempt returned `inconclusive / 2`; its [original evidence](case-studies/dsh-verification.json) is retained.
-
-A separate real DSH session reran the five new specifications: humanize defect/control, xmltodict defect/control, and boltons split. Actual evaluations were **146 / 3,000 / 19 / 3,000 / 44**, with exit codes **1 / 0 / 1 / 0 / 1**. All three counterexamples reproduced three times; both controls completed their budgets. The session used `workspace-write` and the prepared isolated environments, with a 3,000-example budget for each specification. [Durable trace verification](case-studies/counterexamples-dsh-verification.json) covers skill loading, commands and report reads. These were model-orchestrated reruns of reviewed specifications, not autonomous model discovery. Raw reports retain `classification: needs_review`; defect classification here reflects the subsequent independent contract and public-API review.
-
-**The dotenv permission compatibility issue is now fixed and verified in DSH.** On Windows, Python 3.13's `mkdir(0o700)` drops the inherited workspace ACL. The synthetic fixture helper now creates a unique directory inheriting that ACL and still requires successful cleanup. Exported tests isolate bytecode using a unique path without creating a temporary directory. The target library, property, input domain and sandbox policy are unchanged. A new DSH probe records `restricted_token=true`, inherited ACLs, successful I/O and cleanup; the full run completes **2,500 evaluations, no counterexample, exit 0**, followed by **15 passing tests**, with no new fixture leftovers. See the [new verification](case-studies/dotenv/dsh-permission-fix.json).
-
-Each linked case includes contract sources, fixed dependencies, commands, source hashes and a clearly labelled portable evidence summary. Raw local evidence is retained separately; no upstream issues or PRs were submitted. Counts include shrinking and can overlap across runs. No-counterexample is not a correctness proof, and environment failures are not upstream bugs.
-
-The new DSH trace also records two narrative inaccuracies: the extra second boltons group was called a third empty group, and a control's ability to rule out domain/generator problems was overstated. Execution and report checks passed; the summary above relies on the raw evidence and independent review, not those model descriptions.
-
 ## Install
 
 Python **3.10+** is required. Use a dedicated virtual environment and install the target project's dependencies in the same environment.
+
+Clone the repository:
+
+```sh
+git clone https://github.com/wangyili-1/dsh-property-lab.git
+cd dsh-property-lab
+```
 
 Windows PowerShell, from the repository root:
 
@@ -136,7 +177,7 @@ python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
-The repository includes a GitHub Actions test workflow and does not assume a GitHub account or remote URL.
+The repository includes a [GitHub Actions test workflow](.github/workflows/ci.yml). Local validation does not establish that remote CI has passed; actual runs appear on the repository's [Actions page](https://github.com/wangyili-1/dsh-property-lab/actions).
 
 ## License and acknowledgments
 

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "split-grouped-candidate",
+  "kind": "equivalence",
+  "function": "probes:split_grouped_once",
+  "reference": "probes:split_builtin_once",
+  "strategy": {
+    "type": "text",
+    "alphabet": "ab ",
+    "min_size": 0,
+    "max_size": 40
+  },
+  "rationale": "CANDIDATE FOR REVIEW: split docs describe str.split analogy and grouping separators with sep=None. Map each literal space to None, split once, then map the output back. This probes whether a consecutive separator run remains grouped at maxsplit=1, rather than treating every remaining separator as content. A mismatch is a documentation/behavior discrepancy requiring review, not automatically a confirmed defect.",
+  "domain": "Strings from a, b, and literal space, length 0 through 40. maxsplit is fixed at positive 1; maxsplit=0 is deliberately excluded because upstream tests specify unchanged output."
+}

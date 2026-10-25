@@ -1,0 +1,1361 @@
+{
+  "schema": "dsh-property-lab.counterexamples-dsh-verification.v1",
+  "verifiedAtUtc": "2026-10-25T09:36:21.160Z",
+  "verificationVerdict": "verified_execution_with_narrative_caveats",
+  "scope": "Actual DSH model orchestration of five prewritten reviewed property specifications across three unmodified PyPI dependencies; not a claim that the model independently discovered the properties.",
+  "session": {
+    "id": "session-dc396078-2929-4d83-b608-c1aad4c436c6",
+    "tag": "DSH_REAL_COUNTEREXAMPLES_20261025",
+    "cwd": "<repo>",
+    "driverStartedAtUtc": "2026-10-25T09:31:25.273550+00:00",
+    "driverFinishedAtUtc": "2026-10-25T09:32:40.431730+00:00",
+    "driverExitCode": 0,
+    "createdAtUtc": "2026-10-25T09:31:36.752Z",
+    "completedAtUtc": "2026-10-25T09:32:39.938Z",
+    "completedSeq": 3020,
+    "turnReason": "completed",
+    "context": [
+      {
+        "seq": 12,
+        "provider": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "tracePath": "<DSH_HOME>/sessions/<encoded-repo-cwd>/session-dc396078-2929-4d83-b608-c1aad4c436c6/session.jsonl.zstd",
+    "traceBytes": 77145,
+    "traceSha256": "e471ebee35ab7aa99cb0aab53afdb8ecddeb3d6373d589e7307d385f6ca9075b",
+    "zstdFrames": 110,
+    "storedRows": 277,
+    "toolCalls": 21,
+    "toolResults": 21,
+    "taggedPromptSha256": "12ec6d339fe501462b9c7eb37a9d156589b7e8bf751438c4489cece905650454"
+  },
+  "assertions": {
+    "uniqueSessionPromptTagTimeAndWorkspaceMatched": true,
+    "driverCompletedSuccessfully": true,
+    "skillLoadedAndReturnedInstructions": true,
+    "eightPreparedFilesReadAfterSkillBeforeCommands": true,
+    "exactlyFiveCommandsMatchDriver": true,
+    "fiveCommandsOrderedAndRequestedByModel": true,
+    "expectedExitCodesObserved": true,
+    "reportsAndFingerprintsVerified": true,
+    "workspaceWritePolicyRecorded": true,
+    "noCommandRequestedEscalation": true,
+    "preparedFilesUnchanged": true,
+    "installedSourcesMatchEarlierProvenance": true,
+    "allCallsPairedWithResultsAndModelRequests": true,
+    "turnCompletedAfterReportReads": true
+  },
+  "skill": {
+    "name": "dsh-property-lab",
+    "callId": "call_00_ZoGWWmbr7NvYsT30UqTm5464",
+    "callSeq": 40,
+    "resultSeq": 41,
+    "callTimeUtc": "2026-10-25T09:31:39.079Z",
+    "resultTimeUtc": "2026-10-25T09:31:39.090Z",
+    "modelRequested": true,
+    "isError": false,
+    "argumentsSha256": "9fa5e27d98764e7091079680831d93d3185593343b14cf95a2516140f6277487",
+    "resultSha256": "5851119ead2c18dc72f4320afec83ecf7b1830176cfaf759f66b8bc51fb76638",
+    "instructionsSha256": "78e1848824f0dfb68e81ab5db52f759c7c5cf7e2f30dc686fc460bf23f7913d2"
+  },
+  "preparedReads": [
+    {
+      "name": "read",
+      "callId": "call_00_XYckwlSUJzjgsZYEf8on8886",
+      "callSeq": 631,
+      "resultSeq": 632,
+      "callTimeUtc": "2026-10-25T09:31:50.206Z",
+      "resultTimeUtc": "2026-10-25T09:31:50.212Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "5eee96612964b7ac246a372a59fec64fead8a2c1b9f99c8d73cca30896605c71",
+      "resultSha256": "139fed8ac65230e9645aee48de525cdce478896d2e42142da862232f502cd4b3",
+      "file": "case-studies/boltons-boundaries/boltons_boundaries_adapter.py",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_04_TaWQER2UQK0JE0WyzTe56914",
+      "callSeq": 399,
+      "resultSeq": 404,
+      "callTimeUtc": "2026-10-25T09:31:46.155Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.171Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "142a9c3dc01bcff94739aae879e077df92b32b3f46a8f656df3b89d3251bdfe1",
+      "resultSha256": "babe160d43c168c0974bf723a472516443a5349198e60d9a2e6c799239d99244",
+      "file": "case-studies/boltons-boundaries/split-grouped-limit.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_00_2e8uoOSv2dhZimyC0xtV9708",
+      "callSeq": 565,
+      "resultSeq": 567,
+      "callTimeUtc": "2026-10-25T09:31:48.276Z",
+      "resultTimeUtc": "2026-10-25T09:31:48.286Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "eef96599cea931cfc63ff18c2c946e992867220ae5674acca3f7b27544339278",
+      "resultSha256": "2cc4c9b6e717495cd95673e813366f94a4ac076829c8084850118bb83fe5d6ca",
+      "file": "case-studies/humanize/adapter.py",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_01_VtFr5T5jclQWz2bUANpe9863",
+      "callSeq": 396,
+      "resultSeq": 401,
+      "callTimeUtc": "2026-10-25T09:31:46.153Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.168Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "4260bf3ba2a0b466e7681c516d9b35845c28aefd3124b71272f4f25c01153dc8",
+      "resultSha256": "e8d662e613c314d7693af3876404946d558fc48fd746c3ef57fe4eb3243552dc",
+      "file": "case-studies/humanize/intcomma-default-control.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_00_wb583xoFrr3UV2Z345YB2560",
+      "callSeq": 395,
+      "resultSeq": 400,
+      "callTimeUtc": "2026-10-25T09:31:46.153Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.165Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "15d15646a0c978a3efca86461b03ec7262d7342d670d6cb66b4d354e109014fa",
+      "resultSha256": "6b4fe200d2fbc9f1fda5f26fcea423586c1e5f2b37b37dd804612cdfb7646eab",
+      "file": "case-studies/humanize/intcomma-zero-digits.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_02_8xbgPRf2LGs0EqV8Hw6A6808",
+      "callSeq": 397,
+      "resultSeq": 402,
+      "callTimeUtc": "2026-10-25T09:31:46.154Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.169Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "020b54afb048be1d99d9e4f0ce33f0dfc3aa6e81affa19ca353b0915ad17c094",
+      "resultSha256": "a70f4852578ba247f5e3060932029b5045844414d727a7a94e849ea6af8c81da",
+      "file": "case-studies/xmltodict/comment-roundtrip.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_03_Lip91ApOYCumO7Dmd14c3427",
+      "callSeq": 398,
+      "resultSeq": 403,
+      "callTimeUtc": "2026-10-25T09:31:46.154Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.170Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "cb46f82f7c7dd816ce2be4bff557ceb88a3b3daa645bd62bd51e47e0f05085bd",
+      "resultSha256": "c4f2958d2de2aaed1a4b3159e9fc1c1c4433ff8bc2986d1b425d86f1be9d9bc1",
+      "file": "case-studies/xmltodict/text-roundtrip.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callId": "call_01_V8CE37IJyTsst5ITZ6i00403",
+      "callSeq": 566,
+      "resultSeq": 568,
+      "callTimeUtc": "2026-10-25T09:31:48.276Z",
+      "resultTimeUtc": "2026-10-25T09:31:48.287Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "4b0fd89626fe4234cb520b9316fd59f8e27bdc173452affb4e49461f1d2ccca2",
+      "resultSha256": "b688c0d07bd4907b8f8ddaf1a7f35b1aa08595d5c6f823ca35ddc8dac437b228",
+      "file": "case-studies/xmltodict/xmltodict_adapter.py",
+      "contentMatchesCurrentFile": true
+    }
+  ],
+  "executions": [
+    {
+      "label": "humanize",
+      "name": "pwsh",
+      "callId": "call_00_mSJQyXkl3WqGJZlGqsxs8669",
+      "callSeq": 896,
+      "resultSeq": 897,
+      "callTimeUtc": "2026-10-25T09:31:52.772Z",
+      "resultTimeUtc": "2026-10-25T09:31:56.802Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "672d9456010ef70a40e1ca17e191b47c4b1b1204c54327495e317e4ef1b55430",
+      "resultSha256": "654b3f8836e152ff61d05ed14895a628fbc9ddc81ad177fb88cecbe84705f910",
+      "command": "& '<task-workspace>\\work\\counterexamples\\humanize\\.venv\\Scripts\\python.exe' -m dsh_property_lab run '<repo>\\case-studies\\humanize\\intcomma-zero-digits.json' --project '<repo>\\case-studies\\humanize' --seed 20261025 --max-examples 3000 --timeout 120 --output '<repo>\\.property-lab\\counterexamples-dsh-20261025\\humanize'; \"CASE_1_EXIT=$LASTEXITCODE\"",
+      "commandExactlyMatchedDriver": true,
+      "processExitCode": 1,
+      "expectedExitCode": 1,
+      "status": "counterexample",
+      "expectedStatus": "counterexample",
+      "hasCounterexample": true,
+      "counterexampleJson": "9007199254740993",
+      "counterexampleRepresentationNote": "Exact JSON text read by Python, retained as a string to avoid JavaScript number precision loss.",
+      "evaluations": 146,
+      "seed": 20261025,
+      "maxExamples": 3000,
+      "observation": {
+        "passed": false,
+        "actual": "'9,007,199,254,740,992'",
+        "expected": "'9,007,199,254,740,993'",
+        "error": null
+      },
+      "replayCount": 3,
+      "replayObservations": [
+        {
+          "passed": false,
+          "actual": "'9,007,199,254,740,992'",
+          "expected": "'9,007,199,254,740,993'",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "'9,007,199,254,740,992'",
+          "expected": "'9,007,199,254,740,993'",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "'9,007,199,254,740,992'",
+          "expected": "'9,007,199,254,740,993'",
+          "error": null
+        }
+      ],
+      "startedAtUtc": "2026-10-25T09:31:54.285708+00:00",
+      "finishedAtUtc": "2026-10-25T09:31:56.595025+00:00",
+      "durationSeconds": 0.4797,
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "propertyLab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "report": ".property-lab/counterexamples-dsh-20261025/humanize/report.json",
+      "reportSha256": "586de4fd6aa274fd7925936cc11587204baca68da80653865eb27548e8b675e6",
+      "sourceChecks": [
+        {
+          "file": "<repo>\\case-studies\\humanize\\adapter.py",
+          "recordedSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+          "currentSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+          "matches": true
+        }
+      ],
+      "spec": "case-studies/humanize/intcomma-zero-digits.json",
+      "specFileSha256": "4e4ef5d8ceed4b011600e4f07df1cbfd00a04a3835e76bb0cf65837585205874",
+      "canonicalSpecSha256": "bcba1a91e0d22f5e2083c635a1ec1475573817aea748118733b6964fce49dec0",
+      "reportRead": {
+        "name": "read",
+        "callId": "call_00_sYE3rIMWlt5sQpw3jh4I3827",
+        "callSeq": 2134,
+        "resultSeq": 2136,
+        "callTimeUtc": "2026-10-25T09:32:33.178Z",
+        "resultTimeUtc": "2026-10-25T09:32:33.192Z",
+        "modelRequested": true,
+        "isError": false,
+        "argumentsSha256": "5597c579a41861827ef1091e6a33e691bb88b48fb052a540c35365efc6acd6b2",
+        "resultSha256": "ac3cc3a0401e919c50ae36e6be72e0c52af42c359193fee22fbc0871ddc4600d",
+        "contentMatchesCurrentFile": true
+      },
+      "artifacts": [
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/process.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:31:54.287Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/report.html",
+          "sha256": "42607616e5b1cfa49b1cecae2d4a3d0527c46eb587bc2f2ba30bed6c743f2b0a",
+          "bytes": 4970,
+          "lastModifiedUtc": "2026-10-25T09:31:56.597Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/report.json",
+          "sha256": "586de4fd6aa274fd7925936cc11587204baca68da80653865eb27548e8b675e6",
+          "bytes": 3610,
+          "lastModifiedUtc": "2026-10-25T09:31:56.597Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/report.md",
+          "sha256": "0fc22dc6f30428d739cbb5a73cbc7a08e66ef48f13479feb35ab0f2a9ecd8d84",
+          "bytes": 1712,
+          "lastModifiedUtc": "2026-10-25T09:31:56.598Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/request.json",
+          "sha256": "88ec6a58639941b5c9d1875dc289c548a76ebc6f7c767096523221f7956e5c92",
+          "bytes": 1623,
+          "lastModifiedUtc": "2026-10-25T09:31:54.286Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/spec.json",
+          "sha256": "fdb56eca21662f00885d81855bdb8926cde67d31fe3e4f4f545cf7ca00a90ae0",
+          "bytes": 1403,
+          "lastModifiedUtc": "2026-10-25T09:31:54.286Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/test_property.py",
+          "sha256": "ced988c920af5c45f8f2c9c35f42f607fb026e0dcbc92d70a9343c29e042ab73",
+          "bytes": 2496,
+          "lastModifiedUtc": "2026-10-25T09:31:56.595Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/test_regression.py",
+          "sha256": "f64ccb835a2d5b7970ec712b18d761b5b44ef27d75ba074aac42618c1fa9e78a",
+          "bytes": 2267,
+          "lastModifiedUtc": "2026-10-25T09:31:56.596Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/worker.json",
+          "sha256": "14170d98c42b182d22ebe7f413e0ad9d4f54172dfd67b66964fd32661bf1299a",
+          "bytes": 1666,
+          "lastModifiedUtc": "2026-10-25T09:31:56.499Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize/worker.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:31:56.595Z",
+          "modifiedDuringCommand": true
+        }
+      ],
+      "checks": {
+        "exitCodeMatches": true,
+        "statusMatches": true,
+        "reportSpecMatchesCurrentSpec": true,
+        "sourceFingerprintsMatch": true,
+        "reportTimesInsideCommand": true,
+        "reportReadAfterAllCommands": true,
+        "artifactsWrittenDuringCommand": true,
+        "threeInternalReplaysAgree": true
+      }
+    },
+    {
+      "label": "humanize-control",
+      "name": "pwsh",
+      "callId": "call_00_ZEtwgYk44TZl6iIr64Ea3270",
+      "callSeq": 1169,
+      "resultSeq": 1170,
+      "callTimeUtc": "2026-10-25T09:32:02.116Z",
+      "resultTimeUtc": "2026-10-25T09:32:07.771Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "de6a67248d895bf3ed7e5696a4a629899fa4ac099a11897cee2cc60b3273ded7",
+      "resultSha256": "6986a852b56cdb76f7126d62d192da9a8e17a1dc85c968ae09e611a842669212",
+      "command": "& '<task-workspace>\\work\\counterexamples\\humanize\\.venv\\Scripts\\python.exe' -m dsh_property_lab run '<repo>\\case-studies\\humanize\\intcomma-default-control.json' --project '<repo>\\case-studies\\humanize' --seed 20261025 --max-examples 3000 --timeout 120 --output '<repo>\\.property-lab\\counterexamples-dsh-20261025\\humanize-control'; \"CASE_2_EXIT=$LASTEXITCODE\"",
+      "commandExactlyMatchedDriver": true,
+      "processExitCode": 0,
+      "expectedExitCode": 0,
+      "status": "no_counterexample",
+      "expectedStatus": "no_counterexample",
+      "hasCounterexample": false,
+      "counterexampleJson": "null",
+      "counterexampleRepresentationNote": "Exact JSON text read by Python, retained as a string to avoid JavaScript number precision loss.",
+      "evaluations": 3000,
+      "seed": 20261025,
+      "maxExamples": 3000,
+      "observation": null,
+      "replayCount": 0,
+      "replayObservations": [],
+      "startedAtUtc": "2026-10-25T09:32:04.112708+00:00",
+      "finishedAtUtc": "2026-10-25T09:32:07.531026+00:00",
+      "durationSeconds": 1.4453,
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "propertyLab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "report": ".property-lab/counterexamples-dsh-20261025/humanize-control/report.json",
+      "reportSha256": "ac61a3cd9d22b8c1a1d3e5f52781f4d9515611d3afbbbb01f6d7a6d7e60585ea",
+      "sourceChecks": [
+        {
+          "file": "<task-workspace>\\work\\counterexamples\\humanize\\.venv\\Lib\\site-packages\\humanize\\__init__.py",
+          "recordedSha256": "69586bc9cba2dbe0daa63d9f82eed16f8511a9da1ccf2e1045cd5175a9028e40",
+          "currentSha256": "69586bc9cba2dbe0daa63d9f82eed16f8511a9da1ccf2e1045cd5175a9028e40",
+          "matches": true
+        },
+        {
+          "file": "<repo>\\case-studies\\humanize\\adapter.py",
+          "recordedSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+          "currentSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+          "matches": true
+        }
+      ],
+      "spec": "case-studies/humanize/intcomma-default-control.json",
+      "specFileSha256": "07e66986a50ea3774fbce31dbcf1c4e748c828a57ed4561dc3481cb8cdbec719",
+      "canonicalSpecSha256": "adf605ec050b2f7565351632b9f1d77630224ca25b91a980417e01ec4dfc45ad",
+      "reportRead": {
+        "name": "read",
+        "callId": "call_01_yKX3FQVXLDGJJxXWd0AJ8401",
+        "callSeq": 2135,
+        "resultSeq": 2137,
+        "callTimeUtc": "2026-10-25T09:32:33.178Z",
+        "resultTimeUtc": "2026-10-25T09:32:33.194Z",
+        "modelRequested": true,
+        "isError": false,
+        "argumentsSha256": "dd3af0be006000af4de631d8af3202ea55db0d3a19b297aad82d53c035b4b307",
+        "resultSha256": "9416deb1cf7e8502d30da4cbd8ad04fa7ba9993830f8d653f108d5c9c06a721c",
+        "contentMatchesCurrentFile": true
+      },
+      "artifacts": [
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/process.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:04.114Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/report.html",
+          "sha256": "dc20e0e3430460b59fce2ae48e1487591c8818ded72d45670c0d3d4570f9a4d3",
+          "bytes": 4321,
+          "lastModifiedUtc": "2026-10-25T09:32:07.533Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/report.json",
+          "sha256": "ac61a3cd9d22b8c1a1d3e5f52781f4d9515611d3afbbbb01f6d7a6d7e60585ea",
+          "bytes": 2643,
+          "lastModifiedUtc": "2026-10-25T09:32:07.532Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/report.md",
+          "sha256": "81328927f3a278abe2f87503554071ca977e4aed2081fe9bb1997a242d84a3b1",
+          "bytes": 1202,
+          "lastModifiedUtc": "2026-10-25T09:32:07.533Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/request.json",
+          "sha256": "ddcad38a07be8ab0664b66f31e4388843338e1acaba33e476970864064813e21",
+          "bytes": 1143,
+          "lastModifiedUtc": "2026-10-25T09:32:04.114Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/spec.json",
+          "sha256": "e7342716a68c2be53ed559ebc9f7002ad753a3fe7b44ae1ddcc0871ccc7f57d2",
+          "bytes": 923,
+          "lastModifiedUtc": "2026-10-25T09:32:04.113Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/test_property.py",
+          "sha256": "b15583352da40eb2bf8e76549c424a630c6e5135fdb20e914a97101fceea6e36",
+          "bytes": 2162,
+          "lastModifiedUtc": "2026-10-25T09:32:07.532Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/worker.json",
+          "sha256": "2e387c196f0355b401d0b58e8302b2c064a809b4a9a2074d9246b4d8ac61e21f",
+          "bytes": 1171,
+          "lastModifiedUtc": "2026-10-25T09:32:07.418Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/humanize-control/worker.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:07.531Z",
+          "modifiedDuringCommand": true
+        }
+      ],
+      "checks": {
+        "exitCodeMatches": true,
+        "statusMatches": true,
+        "reportSpecMatchesCurrentSpec": true,
+        "sourceFingerprintsMatch": true,
+        "reportTimesInsideCommand": true,
+        "reportReadAfterAllCommands": true,
+        "artifactsWrittenDuringCommand": true,
+        "threeInternalReplaysAgree": true
+      }
+    },
+    {
+      "label": "xmltodict",
+      "name": "pwsh",
+      "callId": "call_00_qnrnydQdauvBY6Qaxpcl1625",
+      "callSeq": 1441,
+      "resultSeq": 1442,
+      "callTimeUtc": "2026-10-25T09:32:11.696Z",
+      "resultTimeUtc": "2026-10-25T09:32:15.404Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "def3679b3f255f0cdcc89aa2efda816a54abf4ab7cc37827178794a4cde810c7",
+      "resultSha256": "077b219195ce683b39c59053da0c606749c5fed0053a384c76e808c6662b2725",
+      "command": "& '<task-workspace>\\work\\counterexamples\\serialization\\venv\\Scripts\\python.exe' -m dsh_property_lab run '<repo>\\case-studies\\xmltodict\\comment-roundtrip.json' --project '<repo>\\case-studies\\xmltodict' --seed 20261025 --max-examples 3000 --timeout 120 --output '<repo>\\.property-lab\\counterexamples-dsh-20261025\\xmltodict'; \"CASE_3_EXIT=$LASTEXITCODE\"",
+      "commandExactlyMatchedDriver": true,
+      "processExitCode": 1,
+      "expectedExitCode": 1,
+      "status": "counterexample",
+      "expectedStatus": "counterexample",
+      "hasCounterexample": true,
+      "counterexampleJson": "\"<\"",
+      "counterexampleRepresentationNote": "Exact JSON text read by Python, retained as a string to avoid JavaScript number precision loss.",
+      "evaluations": 19,
+      "seed": 20261025,
+      "maxExamples": 3000,
+      "observation": {
+        "passed": false,
+        "actual": "'&lt;'",
+        "expected": "'<'",
+        "error": null
+      },
+      "replayCount": 3,
+      "replayObservations": [
+        {
+          "passed": false,
+          "actual": "'&lt;'",
+          "expected": "'<'",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "'&lt;'",
+          "expected": "'<'",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "'&lt;'",
+          "expected": "'<'",
+          "error": null
+        }
+      ],
+      "startedAtUtc": "2026-10-25T09:32:13.338878+00:00",
+      "finishedAtUtc": "2026-10-25T09:32:15.174452+00:00",
+      "durationSeconds": 0.0974,
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "propertyLab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "report": ".property-lab/counterexamples-dsh-20261025/xmltodict/report.json",
+      "reportSha256": "0a83c06107a618bb742e3c20bd04d8de508cba39be264faf756a50c6cddb0d0f",
+      "sourceChecks": [
+        {
+          "file": "<repo>\\case-studies\\xmltodict\\xmltodict_adapter.py",
+          "recordedSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+          "currentSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+          "matches": true
+        }
+      ],
+      "spec": "case-studies/xmltodict/comment-roundtrip.json",
+      "specFileSha256": "3ddd473c5277713864452ee688b4356aaad60eb95724a07652b2f6ed4ea532d8",
+      "canonicalSpecSha256": "e6162cb198f46b57ff8cb420a365813644bd595c4b24f0b7ac52913987c0ea2f",
+      "reportRead": {
+        "name": "read",
+        "callId": "call_00_iePQTV0FWg2Wq4PijvvV9974",
+        "callSeq": 2316,
+        "resultSeq": 2319,
+        "callTimeUtc": "2026-10-25T09:32:35.298Z",
+        "resultTimeUtc": "2026-10-25T09:32:35.312Z",
+        "modelRequested": true,
+        "isError": false,
+        "argumentsSha256": "1347f287802ed685ebf9680a19e76ed79f0c0f99ec8defb7230289424fdb0363",
+        "resultSha256": "006e2a910df793dae7d6a5259cce2adfe56ea5f8c720a395fa98e95a10444e66",
+        "contentMatchesCurrentFile": true
+      },
+      "artifacts": [
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/process.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:13.340Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/report.html",
+          "sha256": "18993053095e5a815119f3062f3955bc52cbf7fe1bb2c9040792657d2745f745",
+          "bytes": 4824,
+          "lastModifiedUtc": "2026-10-25T09:32:15.177Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/report.json",
+          "sha256": "0a83c06107a618bb742e3c20bd04d8de508cba39be264faf756a50c6cddb0d0f",
+          "bytes": 3452,
+          "lastModifiedUtc": "2026-10-25T09:32:15.177Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/report.md",
+          "sha256": "9111bb82b7ff52fe86aaccafb0f60601e581fe69d79dd072f034a1627a0e3962",
+          "bytes": 1551,
+          "lastModifiedUtc": "2026-10-25T09:32:15.178Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/request.json",
+          "sha256": "0672ab02d2c0f50e79d5831b8023998373623acd1ca784026d81821f6432f13b",
+          "bytes": 1612,
+          "lastModifiedUtc": "2026-10-25T09:32:13.339Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/spec.json",
+          "sha256": "96d61b1b4d7070642860b673bbceb64eeee6f9fe2e2f873131b28155871f99cc",
+          "bytes": 1389,
+          "lastModifiedUtc": "2026-10-25T09:32:13.339Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/test_property.py",
+          "sha256": "1089601d862769ae4df03332752f2d2c405bae5e29f2b4184eb505f39881d8a2",
+          "bytes": 2402,
+          "lastModifiedUtc": "2026-10-25T09:32:15.175Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/test_regression.py",
+          "sha256": "f82ffbd37d106d40d1640b3706cd96398c04584736217a5cc088801edafca91c",
+          "bytes": 2105,
+          "lastModifiedUtc": "2026-10-25T09:32:15.176Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/worker.json",
+          "sha256": "395a866c62b15415671c12ed6df85ee0b8ac8838b212ea56e20702d316b2f522",
+          "bytes": 1518,
+          "lastModifiedUtc": "2026-10-25T09:32:15.079Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict/worker.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:15.175Z",
+          "modifiedDuringCommand": true
+        }
+      ],
+      "checks": {
+        "exitCodeMatches": true,
+        "statusMatches": true,
+        "reportSpecMatchesCurrentSpec": true,
+        "sourceFingerprintsMatch": true,
+        "reportTimesInsideCommand": true,
+        "reportReadAfterAllCommands": true,
+        "artifactsWrittenDuringCommand": true,
+        "threeInternalReplaysAgree": true
+      }
+    },
+    {
+      "label": "xmltodict-control",
+      "name": "pwsh",
+      "callId": "call_00_BsVqqVmL8jfFG47cc4zx1648",
+      "callSeq": 1716,
+      "resultSeq": 1717,
+      "callTimeUtc": "2026-10-25T09:32:18.311Z",
+      "resultTimeUtc": "2026-10-25T09:32:23.487Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "bfc68f9a3df31196bfdad9beb66882357948b0fca3ee3219032897911962ce5e",
+      "resultSha256": "0cbce83860b16b65b102657f7ae44967a860833c3d9fe4e0dae889d26176ae36",
+      "command": "& '<task-workspace>\\work\\counterexamples\\serialization\\venv\\Scripts\\python.exe' -m dsh_property_lab run '<repo>\\case-studies\\xmltodict\\text-roundtrip.json' --project '<repo>\\case-studies\\xmltodict' --seed 20261025 --max-examples 3000 --timeout 120 --output '<repo>\\.property-lab\\counterexamples-dsh-20261025\\xmltodict-control'; \"CASE_4_EXIT=$LASTEXITCODE\"",
+      "commandExactlyMatchedDriver": true,
+      "processExitCode": 0,
+      "expectedExitCode": 0,
+      "status": "no_counterexample",
+      "expectedStatus": "no_counterexample",
+      "hasCounterexample": false,
+      "counterexampleJson": "null",
+      "counterexampleRepresentationNote": "Exact JSON text read by Python, retained as a string to avoid JavaScript number precision loss.",
+      "evaluations": 3000,
+      "seed": 20261025,
+      "maxExamples": 3000,
+      "observation": null,
+      "replayCount": 0,
+      "replayObservations": [],
+      "startedAtUtc": "2026-10-25T09:32:19.835708+00:00",
+      "finishedAtUtc": "2026-10-25T09:32:23.230241+00:00",
+      "durationSeconds": 1.6489,
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "propertyLab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "report": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/report.json",
+      "reportSha256": "d3eea1d0ae4577c6bf5de0e60e00609c86d3ba286cac9577ab10a66e596561e2",
+      "sourceChecks": [
+        {
+          "file": "<repo>\\case-studies\\xmltodict\\xmltodict_adapter.py",
+          "recordedSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+          "currentSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+          "matches": true
+        }
+      ],
+      "spec": "case-studies/xmltodict/text-roundtrip.json",
+      "specFileSha256": "8152e27c16d02bf1483c3cbf32465bb465171b719a68c521e6d58faf2c075216",
+      "canonicalSpecSha256": "47c4542a642da6a44cf4b773795fc60710e4f4455226a878099c4d55581bd799",
+      "reportRead": {
+        "name": "read",
+        "callId": "call_01_4IkZw5vH0JN9uYaWrcVe0458",
+        "callSeq": 2317,
+        "resultSeq": 2320,
+        "callTimeUtc": "2026-10-25T09:32:35.299Z",
+        "resultTimeUtc": "2026-10-25T09:32:35.313Z",
+        "modelRequested": true,
+        "isError": false,
+        "argumentsSha256": "bc6793c3f2b8d354d56940d05e420b0223f6af46bb2b17fb10b925de4b5bfdf6",
+        "resultSha256": "2566cff6c0df6bdafa014de8ec584854e897f6a3dd065b2293291312e743a1cc",
+        "contentMatchesCurrentFile": true
+      },
+      "artifacts": [
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/process.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:19.837Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/report.html",
+          "sha256": "f0e36fde7a392a5740f6260ea41f7f2a6b673d43fc38872e40b711d6f59c5981",
+          "bytes": 4359,
+          "lastModifiedUtc": "2026-10-25T09:32:23.232Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/report.json",
+          "sha256": "d3eea1d0ae4577c6bf5de0e60e00609c86d3ba286cac9577ab10a66e596561e2",
+          "bytes": 2551,
+          "lastModifiedUtc": "2026-10-25T09:32:23.231Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/report.md",
+          "sha256": "cdeaee15c7bdfcceddad57bf13c69757d9e685f17865a452f5e228adb10f7185",
+          "bytes": 1236,
+          "lastModifiedUtc": "2026-10-25T09:32:23.233Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/request.json",
+          "sha256": "dfb586da01d4fbdfa2f8f1d8c4cee180a839d8315f9f0823ad17a4601b83926b",
+          "bytes": 1281,
+          "lastModifiedUtc": "2026-10-25T09:32:19.836Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/spec.json",
+          "sha256": "fceaf66884db0da956348fb6883507e33022b64cacd2adb9f09f7e63e07d7f4a",
+          "bytes": 1058,
+          "lastModifiedUtc": "2026-10-25T09:32:19.836Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/test_property.py",
+          "sha256": "5f42d5c8928df97ea42007b612b9feefa9efeb25e193e96f29d13e222c48e577",
+          "bytes": 2161,
+          "lastModifiedUtc": "2026-10-25T09:32:23.230Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/worker.json",
+          "sha256": "d526b7e7052d40e3e1a5faeae1d839f76af0b70b49a9a905ab2ef42c0c8a4d2a",
+          "bytes": 940,
+          "lastModifiedUtc": "2026-10-25T09:32:23.099Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/worker.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:23.230Z",
+          "modifiedDuringCommand": true
+        }
+      ],
+      "checks": {
+        "exitCodeMatches": true,
+        "statusMatches": true,
+        "reportSpecMatchesCurrentSpec": true,
+        "sourceFingerprintsMatch": true,
+        "reportTimesInsideCommand": true,
+        "reportReadAfterAllCommands": true,
+        "artifactsWrittenDuringCommand": true,
+        "threeInternalReplaysAgree": true
+      }
+    },
+    {
+      "label": "boltons-split",
+      "name": "pwsh",
+      "callId": "call_00_ud6sdckq8uYUJ355yGnY2428",
+      "callSeq": 1993,
+      "resultSeq": 1994,
+      "callTimeUtc": "2026-10-25T09:32:26.360Z",
+      "resultTimeUtc": "2026-10-25T09:32:30.777Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "0b7ce5b264138aff8cdc899222d58c2d5fa24ded187d795367cca91c7d9f4dab",
+      "resultSha256": "ca953c45c25981ca4b9186acab924a3983120431a3ee5772e58271c162106026",
+      "command": "& '<task-workspace>\\work\\real-projects\\boltons\\.venv\\Scripts\\python.exe' -m dsh_property_lab run '<repo>\\case-studies\\boltons-boundaries\\split-grouped-limit.json' --project '<repo>\\case-studies\\boltons-boundaries' --seed 20261025 --max-examples 3000 --timeout 120 --output '<repo>\\.property-lab\\counterexamples-dsh-20261025\\boltons-split'; \"CASE_5_EXIT=$LASTEXITCODE\"",
+      "commandExactlyMatchedDriver": true,
+      "processExitCode": 1,
+      "expectedExitCode": 1,
+      "status": "counterexample",
+      "expectedStatus": "counterexample",
+      "hasCounterexample": true,
+      "counterexampleJson": "[0, null, null]",
+      "counterexampleRepresentationNote": "Exact JSON text read by Python, retained as a string to avoid JavaScript number precision loss.",
+      "evaluations": 44,
+      "seed": 20261025,
+      "maxExamples": 3000,
+      "observation": {
+        "passed": false,
+        "actual": "[[0], [None]]",
+        "expected": "[[0]]",
+        "error": null
+      },
+      "replayCount": 3,
+      "replayObservations": [
+        {
+          "passed": false,
+          "actual": "[[0], [None]]",
+          "expected": "[[0]]",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "[[0], [None]]",
+          "expected": "[[0]]",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "[[0], [None]]",
+          "expected": "[[0]]",
+          "error": null
+        }
+      ],
+      "startedAtUtc": "2026-10-25T09:32:28.018075+00:00",
+      "finishedAtUtc": "2026-10-25T09:32:30.528960+00:00",
+      "durationSeconds": 0.4605,
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "propertyLab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "report": ".property-lab/counterexamples-dsh-20261025/boltons-split/report.json",
+      "reportSha256": "5d1430ccabee0a574069da36e10405338bee8efc0812bf72da4ceb7cb513ab3d",
+      "sourceChecks": [
+        {
+          "file": "<repo>\\case-studies\\boltons-boundaries\\boltons_boundaries_adapter.py",
+          "recordedSha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5",
+          "currentSha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5",
+          "matches": true
+        }
+      ],
+      "spec": "case-studies/boltons-boundaries/split-grouped-limit.json",
+      "specFileSha256": "b55579a767dc42627306cf72571db55c04fdb485e48ba5323eb0574505bcaef1",
+      "canonicalSpecSha256": "e055e6a0e77ddf6c1a45a02965f677dae6d02d760c4696fa29d3bd4d3ed92cc2",
+      "reportRead": {
+        "name": "read",
+        "callId": "call_02_rWyXc5tr5klYqg2egVU28407",
+        "callSeq": 2318,
+        "resultSeq": 2321,
+        "callTimeUtc": "2026-10-25T09:32:35.299Z",
+        "resultTimeUtc": "2026-10-25T09:32:35.314Z",
+        "modelRequested": true,
+        "isError": false,
+        "argumentsSha256": "aec22c99a6984665510637512773f04bdbc6c3084c632e4425be3c60f1a79c47",
+        "resultSha256": "ef2efb73c72bf0f4a24b9e481ed8726d8f8d22e6df5c8e09306ef6e3d35070ed",
+        "contentMatchesCurrentFile": true
+      },
+      "artifacts": [
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/process.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:28.019Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/report.html",
+          "sha256": "0d76e995f59b8a1c759cb1ede4e8c3ffe05f86253f1f034af4f21df3c85339a8",
+          "bytes": 4883,
+          "lastModifiedUtc": "2026-10-25T09:32:30.531Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/report.json",
+          "sha256": "5d1430ccabee0a574069da36e10405338bee8efc0812bf72da4ceb7cb513ab3d",
+          "bytes": 3816,
+          "lastModifiedUtc": "2026-10-25T09:32:30.531Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/report.md",
+          "sha256": "de71811b1657cbd7ec399ade0e4fb3440548dcee55a15dab2bd461057c1af2c9",
+          "bytes": 1660,
+          "lastModifiedUtc": "2026-10-25T09:32:30.532Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/request.json",
+          "sha256": "3f96ca9e79078776cb2109085677e4ae4d3668b63278d616ed90e25d5c35b8f5",
+          "bytes": 1892,
+          "lastModifiedUtc": "2026-10-25T09:32:28.019Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/spec.json",
+          "sha256": "7c415f0b048741eb7e04682a92c9903a045d5bd9a5f54f2c186bea511f4c5e8f",
+          "bytes": 1634,
+          "lastModifiedUtc": "2026-10-25T09:32:28.018Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/test_property.py",
+          "sha256": "6af53f164f06af15b904de4333b4007a9df89b0317d1722d552ab1473c4e1c20",
+          "bytes": 2525,
+          "lastModifiedUtc": "2026-10-25T09:32:30.530Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/test_regression.py",
+          "sha256": "93d0097fc8694f33dc8a35fa8bf565f28ea67426ae7fff404f3bb1e41d7e68de",
+          "bytes": 2271,
+          "lastModifiedUtc": "2026-10-25T09:32:30.530Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/worker.json",
+          "sha256": "b27609be6ac866b9cae068c3d260f4798a3c12fdeec570ed87d2de7ddd37bce5",
+          "bytes": 1598,
+          "lastModifiedUtc": "2026-10-25T09:32:30.424Z",
+          "modifiedDuringCommand": true
+        },
+        {
+          "file": ".property-lab/counterexamples-dsh-20261025/boltons-split/worker.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0,
+          "lastModifiedUtc": "2026-10-25T09:32:30.529Z",
+          "modifiedDuringCommand": true
+        }
+      ],
+      "checks": {
+        "exitCodeMatches": true,
+        "statusMatches": true,
+        "reportSpecMatchesCurrentSpec": true,
+        "sourceFingerprintsMatch": true,
+        "reportTimesInsideCommand": true,
+        "reportReadAfterAllCommands": true,
+        "artifactsWrittenDuringCommand": true,
+        "threeInternalReplaysAgree": true
+      }
+    }
+  ],
+  "installedSources": [
+    {
+      "module": "humanize.number",
+      "distribution": "humanize",
+      "version": "4.16.0",
+      "sha256": "dfbd68811a62fa8d824da8aaffc288409ae01351852ec2d301899ea1a6270307",
+      "earlierProvenanceSha256": "dfbd68811a62fa8d824da8aaffc288409ae01351852ec2d301899ea1a6270307",
+      "matchesEarlierProvenance": true
+    },
+    {
+      "module": "xmltodict",
+      "distribution": "xmltodict",
+      "version": "1.0.4",
+      "sha256": "701d42ae7298bbdf154163aed261e4f0fd3cc6c803748ec52f312a5bc402c46e",
+      "earlierProvenanceSha256": "701d42ae7298bbdf154163aed261e4f0fd3cc6c803748ec52f312a5bc402c46e",
+      "matchesEarlierProvenance": true
+    },
+    {
+      "module": "boltons.iterutils",
+      "distribution": "boltons",
+      "version": "26.2.0",
+      "sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+      "earlierProvenanceSha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+      "matchesEarlierProvenance": true
+    }
+  ],
+  "trackedFiles": [
+    {
+      "file": "case-studies/boltons-boundaries/boltons_boundaries_adapter.py",
+      "beforeSha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5",
+      "afterSha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5",
+      "currentSha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/boltons-boundaries/split-grouped-limit.json",
+      "beforeSha256": "b55579a767dc42627306cf72571db55c04fdb485e48ba5323eb0574505bcaef1",
+      "afterSha256": "b55579a767dc42627306cf72571db55c04fdb485e48ba5323eb0574505bcaef1",
+      "currentSha256": "b55579a767dc42627306cf72571db55c04fdb485e48ba5323eb0574505bcaef1",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/humanize/adapter.py",
+      "beforeSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+      "afterSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+      "currentSha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/humanize/intcomma-default-control.json",
+      "beforeSha256": "07e66986a50ea3774fbce31dbcf1c4e748c828a57ed4561dc3481cb8cdbec719",
+      "afterSha256": "07e66986a50ea3774fbce31dbcf1c4e748c828a57ed4561dc3481cb8cdbec719",
+      "currentSha256": "07e66986a50ea3774fbce31dbcf1c4e748c828a57ed4561dc3481cb8cdbec719",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/humanize/intcomma-zero-digits.json",
+      "beforeSha256": "4e4ef5d8ceed4b011600e4f07df1cbfd00a04a3835e76bb0cf65837585205874",
+      "afterSha256": "4e4ef5d8ceed4b011600e4f07df1cbfd00a04a3835e76bb0cf65837585205874",
+      "currentSha256": "4e4ef5d8ceed4b011600e4f07df1cbfd00a04a3835e76bb0cf65837585205874",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/xmltodict/comment-roundtrip.json",
+      "beforeSha256": "3ddd473c5277713864452ee688b4356aaad60eb95724a07652b2f6ed4ea532d8",
+      "afterSha256": "3ddd473c5277713864452ee688b4356aaad60eb95724a07652b2f6ed4ea532d8",
+      "currentSha256": "3ddd473c5277713864452ee688b4356aaad60eb95724a07652b2f6ed4ea532d8",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/xmltodict/text-roundtrip.json",
+      "beforeSha256": "8152e27c16d02bf1483c3cbf32465bb465171b719a68c521e6d58faf2c075216",
+      "afterSha256": "8152e27c16d02bf1483c3cbf32465bb465171b719a68c521e6d58faf2c075216",
+      "currentSha256": "8152e27c16d02bf1483c3cbf32465bb465171b719a68c521e6d58faf2c075216",
+      "unchangedAcrossRunAndVerification": true
+    },
+    {
+      "file": "case-studies/xmltodict/xmltodict_adapter.py",
+      "beforeSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+      "afterSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+      "currentSha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c",
+      "unchangedAcrossRunAndVerification": true
+    }
+  ],
+  "modelSummaryReview": {
+    "finalMessageSeq": 3018,
+    "finalAnswerSha256": "be0b9abb8f4189dfe52cff95e2e9cea0db2b8508494b2d4a31c05dd03c372b81",
+    "rawReportsAreAuthoritative": true,
+    "hasNarrativeInaccuracies": true,
+    "corrections": [
+      {
+        "case": "boltons-split",
+        "modelPhrase": "第三个无意义空段 [None]",
+        "correction": "The authoritative report is actual [[0], [None]] versus expected [[0]]. [None] is an extra second group containing a separator, not a third group or an empty list.",
+        "report": ".property-lab/counterexamples-dsh-20261025/boltons-split/report.json"
+      },
+      {
+        "case": "humanize-control",
+        "modelPhrase": "排除了域/生成器问题",
+        "correction": "A passing bounded control supports the comparison but cannot alone rule out every domain or generator problem. The separate contract and independent-oracle review provides the additional evidence."
+      }
+    ],
+    "note": "These corrections concern the final natural-language summary, not the recorded commands, exit codes or original reports. No reasoning blocks are copied."
+  },
+  "toolSequence": [
+    {
+      "name": "skill",
+      "callId": "call_00_ZoGWWmbr7NvYsT30UqTm5464",
+      "callSeq": 40,
+      "resultSeq": 41,
+      "callTimeUtc": "2026-10-25T09:31:39.079Z",
+      "resultTimeUtc": "2026-10-25T09:31:39.090Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "9fa5e27d98764e7091079680831d93d3185593343b14cf95a2516140f6277487",
+      "resultSha256": "5851119ead2c18dc72f4320afec83ecf7b1830176cfaf759f66b8bc51fb76638"
+    },
+    {
+      "name": "glob",
+      "callId": "call_00_0QGGAbNmoocKNAvIj6w88915",
+      "callSeq": 113,
+      "resultSeq": 114,
+      "callTimeUtc": "2026-10-25T09:31:43.046Z",
+      "resultTimeUtc": "2026-10-25T09:31:43.200Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "aec767cab3526376e90a62761b9b2b10acbb5782496f225cefe9213afd826aef",
+      "resultSha256": "6f6caedfbd372c5712d0c680b43d9da95df7cae35d3a16f9d92979816a99b8ec"
+    },
+    {
+      "name": "read",
+      "callId": "call_00_wb583xoFrr3UV2Z345YB2560",
+      "callSeq": 395,
+      "resultSeq": 400,
+      "callTimeUtc": "2026-10-25T09:31:46.153Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.165Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "15d15646a0c978a3efca86461b03ec7262d7342d670d6cb66b4d354e109014fa",
+      "resultSha256": "6b4fe200d2fbc9f1fda5f26fcea423586c1e5f2b37b37dd804612cdfb7646eab",
+      "resource": "case-studies/humanize/intcomma-zero-digits.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_01_VtFr5T5jclQWz2bUANpe9863",
+      "callSeq": 396,
+      "resultSeq": 401,
+      "callTimeUtc": "2026-10-25T09:31:46.153Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.168Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "4260bf3ba2a0b466e7681c516d9b35845c28aefd3124b71272f4f25c01153dc8",
+      "resultSha256": "e8d662e613c314d7693af3876404946d558fc48fd746c3ef57fe4eb3243552dc",
+      "resource": "case-studies/humanize/intcomma-default-control.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_02_8xbgPRf2LGs0EqV8Hw6A6808",
+      "callSeq": 397,
+      "resultSeq": 402,
+      "callTimeUtc": "2026-10-25T09:31:46.154Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.169Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "020b54afb048be1d99d9e4f0ce33f0dfc3aa6e81affa19ca353b0915ad17c094",
+      "resultSha256": "a70f4852578ba247f5e3060932029b5045844414d727a7a94e849ea6af8c81da",
+      "resource": "case-studies/xmltodict/comment-roundtrip.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_03_Lip91ApOYCumO7Dmd14c3427",
+      "callSeq": 398,
+      "resultSeq": 403,
+      "callTimeUtc": "2026-10-25T09:31:46.154Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.170Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "cb46f82f7c7dd816ce2be4bff557ceb88a3b3daa645bd62bd51e47e0f05085bd",
+      "resultSha256": "c4f2958d2de2aaed1a4b3159e9fc1c1c4433ff8bc2986d1b425d86f1be9d9bc1",
+      "resource": "case-studies/xmltodict/text-roundtrip.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_04_TaWQER2UQK0JE0WyzTe56914",
+      "callSeq": 399,
+      "resultSeq": 404,
+      "callTimeUtc": "2026-10-25T09:31:46.155Z",
+      "resultTimeUtc": "2026-10-25T09:31:46.171Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "142a9c3dc01bcff94739aae879e077df92b32b3f46a8f656df3b89d3251bdfe1",
+      "resultSha256": "babe160d43c168c0974bf723a472516443a5349198e60d9a2e6c799239d99244",
+      "resource": "case-studies/boltons-boundaries/split-grouped-limit.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_00_2e8uoOSv2dhZimyC0xtV9708",
+      "callSeq": 565,
+      "resultSeq": 567,
+      "callTimeUtc": "2026-10-25T09:31:48.276Z",
+      "resultTimeUtc": "2026-10-25T09:31:48.286Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "eef96599cea931cfc63ff18c2c946e992867220ae5674acca3f7b27544339278",
+      "resultSha256": "2cc4c9b6e717495cd95673e813366f94a4ac076829c8084850118bb83fe5d6ca",
+      "resource": "case-studies/humanize/adapter.py"
+    },
+    {
+      "name": "read",
+      "callId": "call_01_V8CE37IJyTsst5ITZ6i00403",
+      "callSeq": 566,
+      "resultSeq": 568,
+      "callTimeUtc": "2026-10-25T09:31:48.276Z",
+      "resultTimeUtc": "2026-10-25T09:31:48.287Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "4b0fd89626fe4234cb520b9316fd59f8e27bdc173452affb4e49461f1d2ccca2",
+      "resultSha256": "b688c0d07bd4907b8f8ddaf1a7f35b1aa08595d5c6f823ca35ddc8dac437b228",
+      "resource": "case-studies/xmltodict/xmltodict_adapter.py"
+    },
+    {
+      "name": "glob",
+      "callId": "call_02_hprBGMLZy4luBM4dgzqV3708",
+      "callSeq": 569,
+      "resultSeq": 570,
+      "callTimeUtc": "2026-10-25T09:31:48.288Z",
+      "resultTimeUtc": "2026-10-25T09:31:48.410Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "a5b2e896a997746a58a864f3c5380f1b7b44bf82c3f282fd90f980186358c87d",
+      "resultSha256": "da8d1242f4fd0815768768f178b6de083497da4ec208229743804649c22128ea"
+    },
+    {
+      "name": "read",
+      "callId": "call_00_XYckwlSUJzjgsZYEf8on8886",
+      "callSeq": 631,
+      "resultSeq": 632,
+      "callTimeUtc": "2026-10-25T09:31:50.206Z",
+      "resultTimeUtc": "2026-10-25T09:31:50.212Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "5eee96612964b7ac246a372a59fec64fead8a2c1b9f99c8d73cca30896605c71",
+      "resultSha256": "139fed8ac65230e9645aee48de525cdce478896d2e42142da862232f502cd4b3",
+      "resource": "case-studies/boltons-boundaries/boltons_boundaries_adapter.py"
+    },
+    {
+      "name": "pwsh",
+      "callId": "call_00_mSJQyXkl3WqGJZlGqsxs8669",
+      "callSeq": 896,
+      "resultSeq": 897,
+      "callTimeUtc": "2026-10-25T09:31:52.772Z",
+      "resultTimeUtc": "2026-10-25T09:31:56.802Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "672d9456010ef70a40e1ca17e191b47c4b1b1204c54327495e317e4ef1b55430",
+      "resultSha256": "654b3f8836e152ff61d05ed14895a628fbc9ddc81ad177fb88cecbe84705f910"
+    },
+    {
+      "name": "pwsh",
+      "callId": "call_00_ZEtwgYk44TZl6iIr64Ea3270",
+      "callSeq": 1169,
+      "resultSeq": 1170,
+      "callTimeUtc": "2026-10-25T09:32:02.116Z",
+      "resultTimeUtc": "2026-10-25T09:32:07.771Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "de6a67248d895bf3ed7e5696a4a629899fa4ac099a11897cee2cc60b3273ded7",
+      "resultSha256": "6986a852b56cdb76f7126d62d192da9a8e17a1dc85c968ae09e611a842669212"
+    },
+    {
+      "name": "pwsh",
+      "callId": "call_00_qnrnydQdauvBY6Qaxpcl1625",
+      "callSeq": 1441,
+      "resultSeq": 1442,
+      "callTimeUtc": "2026-10-25T09:32:11.696Z",
+      "resultTimeUtc": "2026-10-25T09:32:15.404Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "def3679b3f255f0cdcc89aa2efda816a54abf4ab7cc37827178794a4cde810c7",
+      "resultSha256": "077b219195ce683b39c59053da0c606749c5fed0053a384c76e808c6662b2725"
+    },
+    {
+      "name": "pwsh",
+      "callId": "call_00_BsVqqVmL8jfFG47cc4zx1648",
+      "callSeq": 1716,
+      "resultSeq": 1717,
+      "callTimeUtc": "2026-10-25T09:32:18.311Z",
+      "resultTimeUtc": "2026-10-25T09:32:23.487Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "bfc68f9a3df31196bfdad9beb66882357948b0fca3ee3219032897911962ce5e",
+      "resultSha256": "0cbce83860b16b65b102657f7ae44967a860833c3d9fe4e0dae889d26176ae36"
+    },
+    {
+      "name": "pwsh",
+      "callId": "call_00_ud6sdckq8uYUJ355yGnY2428",
+      "callSeq": 1993,
+      "resultSeq": 1994,
+      "callTimeUtc": "2026-10-25T09:32:26.360Z",
+      "resultTimeUtc": "2026-10-25T09:32:30.777Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "0b7ce5b264138aff8cdc899222d58c2d5fa24ded187d795367cca91c7d9f4dab",
+      "resultSha256": "ca953c45c25981ca4b9186acab924a3983120431a3ee5772e58271c162106026"
+    },
+    {
+      "name": "read",
+      "callId": "call_00_sYE3rIMWlt5sQpw3jh4I3827",
+      "callSeq": 2134,
+      "resultSeq": 2136,
+      "callTimeUtc": "2026-10-25T09:32:33.178Z",
+      "resultTimeUtc": "2026-10-25T09:32:33.192Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "5597c579a41861827ef1091e6a33e691bb88b48fb052a540c35365efc6acd6b2",
+      "resultSha256": "ac3cc3a0401e919c50ae36e6be72e0c52af42c359193fee22fbc0871ddc4600d",
+      "resource": ".property-lab/counterexamples-dsh-20261025/humanize/report.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_01_yKX3FQVXLDGJJxXWd0AJ8401",
+      "callSeq": 2135,
+      "resultSeq": 2137,
+      "callTimeUtc": "2026-10-25T09:32:33.178Z",
+      "resultTimeUtc": "2026-10-25T09:32:33.194Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "dd3af0be006000af4de631d8af3202ea55db0d3a19b297aad82d53c035b4b307",
+      "resultSha256": "9416deb1cf7e8502d30da4cbd8ad04fa7ba9993830f8d653f108d5c9c06a721c",
+      "resource": ".property-lab/counterexamples-dsh-20261025/humanize-control/report.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_00_iePQTV0FWg2Wq4PijvvV9974",
+      "callSeq": 2316,
+      "resultSeq": 2319,
+      "callTimeUtc": "2026-10-25T09:32:35.298Z",
+      "resultTimeUtc": "2026-10-25T09:32:35.312Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "1347f287802ed685ebf9680a19e76ed79f0c0f99ec8defb7230289424fdb0363",
+      "resultSha256": "006e2a910df793dae7d6a5259cce2adfe56ea5f8c720a395fa98e95a10444e66",
+      "resource": ".property-lab/counterexamples-dsh-20261025/xmltodict/report.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_01_4IkZw5vH0JN9uYaWrcVe0458",
+      "callSeq": 2317,
+      "resultSeq": 2320,
+      "callTimeUtc": "2026-10-25T09:32:35.299Z",
+      "resultTimeUtc": "2026-10-25T09:32:35.313Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "bc6793c3f2b8d354d56940d05e420b0223f6af46bb2b17fb10b925de4b5bfdf6",
+      "resultSha256": "2566cff6c0df6bdafa014de8ec584854e897f6a3dd065b2293291312e743a1cc",
+      "resource": ".property-lab/counterexamples-dsh-20261025/xmltodict-control/report.json"
+    },
+    {
+      "name": "read",
+      "callId": "call_02_rWyXc5tr5klYqg2egVU28407",
+      "callSeq": 2318,
+      "resultSeq": 2321,
+      "callTimeUtc": "2026-10-25T09:32:35.299Z",
+      "resultTimeUtc": "2026-10-25T09:32:35.314Z",
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "aec22c99a6984665510637512773f04bdbc6c3084c632e4425be3c60f1a79c47",
+      "resultSha256": "ef2efb73c72bf0f4a24b9e481ed8726d8f8d22e6df5c8e09306ef6e3d35070ed",
+      "resource": ".property-lab/counterexamples-dsh-20261025/boltons-split/report.json"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "file": ".property-lab/counterexamples-dsh-20261025/run-record.json",
+      "sha256": "0c90c4a6ea25c312b10b6f5e180a42e355bdfe95546717fcb33ced82b90bfe5f"
+    },
+    {
+      "file": ".property-lab/counterexamples-dsh-20261025/stdout.log",
+      "sha256": "4128d8f0ddd4e2c6845848d976ebe367b7aeecb5565cb266cb45392ad2785d58"
+    },
+    {
+      "file": ".property-lab/counterexamples-dsh-20261025/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "limitations": [
+    "The model reran prepared specifications; discovery, contract review, independent API checks and novelty classification are separate evidence in each case study.",
+    "A counterexample is evidence against the stated property, not automatic maintainer confirmation or a new vulnerability claim.",
+    "No-counterexample controls are bounded searches, not proofs; evaluations include generation and shrinking and are not unique-input counts.",
+    "Recorded workspace-write policy and absence of requested escalation do not independently prove every operating-system sandbox boundary.",
+    "Package source hashes were resolved with the same interpreters after execution and compared to prior provenance; driver before/after immutability covers the eight case files only.",
+    "Exact commands are compared before portable path substitution; raw run records and trace hashes identify the retained originals.",
+    "No model reasoning, full request bodies, credentials or personal absolute paths are included in this public summary."
+  ]
+}

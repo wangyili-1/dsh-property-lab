@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "name": "windowed-padding",
+  "kind": "equivalence",
+  "function": "probes:windowed_three",
+  "reference": "probes:windowed_reference",
+  "strategy": {
+    "type": "lists",
+    "elements": {
+      "type": "integers",
+      "min_value": -100,
+      "max_value": 100
+    },
+    "min_size": 0,
+    "max_size": 80
+  },
+  "rationale": "windowed_iter documents size-length sliding windows; with fill set, the number of windows equals the source length.",
+  "domain": "Integer lists of length 0 through 80 and values -100 through 100; size is fixed at 3 and fill at None."
+}

@@ -1,0 +1,411 @@
+{
+  "artifact_kind": "portable evidence summary, not original CLI report",
+  "transform": "Selected fields are copied from raw reports, removing machine-specific paths; raw report SHA-256 is retained. No result or evaluation count is altered.",
+  "count_warning": "Evaluations include generation and shrinking, not distinct inputs; different seeds may overlap. Repeated reproductions are not new discoveries.",
+  "classification": "Reproduced behavior conflicts with documented grouping for sep=None at positive maxsplit=1; maintainer confirmation and novelty are not established.",
+  "raw_evidence_directory_relative_to_task": "work/counterexamples/boltons",
+  "runs": [
+    {
+      "status": "no_counterexample",
+      "has_counterexample": false,
+      "counterexample": null,
+      "evaluations": 1500,
+      "observation": null,
+      "seed": 20261025,
+      "max_examples": 1500,
+      "started_at": "2026-10-25T09:26:43.083906+00:00",
+      "finished_at": "2026-10-25T09:26:46.355134+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "c6820f0a94b0fc9fc1e371eaf85a85590bd59287604abeeb46eeaf2908b310c7",
+      "run_name": "run-parse-seconds",
+      "raw_report_sha256": "735f4c6d70b0342421be0f9e71e9990c8149b0706e8516979dd54be1c7a6eb4c",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "probes.py",
+          "sha256": "184d2ded677af5b17c05de1fbd3cf858046f7c34aa2f20513fd9476df6f3215c"
+        }
+      ],
+      "replay_count": null,
+      "spec": {
+        "version": 1,
+        "name": "parse-seconds",
+        "kind": "equivalence",
+        "function": "probes:parse_seconds",
+        "reference": "probes:identity",
+        "strategy": {
+          "type": "integers",
+          "min_value": -100000000,
+          "max_value": 100000000
+        },
+        "rationale": "parse_timedelta documents weeks/days/hours/minutes/seconds and explicitly supports negative times; integral seconds are exactly representable in this range.",
+        "domain": "Signed integer seconds from -100000000 through 100000000, rendered as a single term ending in s; no repeated units or fractional precision assumptions."
+      }
+    },
+    {
+      "status": "no_counterexample",
+      "has_counterexample": false,
+      "counterexample": null,
+      "evaluations": 1500,
+      "observation": null,
+      "seed": 20261025,
+      "max_examples": 1500,
+      "started_at": "2026-10-25T09:26:43.086182+00:00",
+      "finished_at": "2026-10-25T09:26:47.244210+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "9ae71904d11ec329ab94d2aaf622b74c50d714215c4218fcb37cbff5690abce6",
+      "run_name": "run-windowed-padding",
+      "raw_report_sha256": "44052f0f519167d8794e11875f5cf96081c44443116876b5a64c69930046c1be",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "probes.py",
+          "sha256": "184d2ded677af5b17c05de1fbd3cf858046f7c34aa2f20513fd9476df6f3215c"
+        }
+      ],
+      "replay_count": null,
+      "spec": {
+        "version": 1,
+        "name": "windowed-padding",
+        "kind": "equivalence",
+        "function": "probes:windowed_three",
+        "reference": "probes:windowed_reference",
+        "strategy": {
+          "type": "lists",
+          "elements": {
+            "type": "integers",
+            "min_value": -100,
+            "max_value": 100
+          },
+          "min_size": 0,
+          "max_size": 80
+        },
+        "rationale": "windowed_iter documents size-length sliding windows; with fill set, the number of windows equals the source length.",
+        "domain": "Integer lists of length 0 through 80 and values -100 through 100; size is fixed at 3 and fill at None."
+      }
+    },
+    {
+      "status": "no_counterexample",
+      "has_counterexample": false,
+      "counterexample": null,
+      "evaluations": 1500,
+      "observation": null,
+      "seed": 20261025,
+      "max_examples": 1500,
+      "started_at": "2026-10-25T09:26:43.142254+00:00",
+      "finished_at": "2026-10-25T09:26:46.726823+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "861b67222152a75d5948992cc543631913f144f7bdedcf4d93ddaf67a9e54487",
+      "run_name": "run-bits-binary",
+      "raw_report_sha256": "beb549d3dd1b9dfc37acc2df571b1e7866d50ddb0a83e9cb03d1b11e2ad4d803",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "probes.py",
+          "sha256": "184d2ded677af5b17c05de1fbd3cf858046f7c34aa2f20513fd9476df6f3215c"
+        }
+      ],
+      "replay_count": null,
+      "spec": {
+        "version": 1,
+        "name": "bits-binary",
+        "kind": "equivalence",
+        "function": "probes:bits_roundtrip",
+        "reference": "probes:identity",
+        "strategy": {
+          "type": "text",
+          "alphabet": "01",
+          "min_size": 0,
+          "max_size": 128
+        },
+        "rationale": "Bits documents bit-string conversion and list-like access; from_bin accepts binary text and as_bin preserves its stored bit width, including the explicit empty-string case.",
+        "domain": "Binary strings with 0 through 128 characters from 0 and 1; no byte-padding or negative-integer assumptions."
+      }
+    },
+    {
+      "status": "counterexample",
+      "has_counterexample": true,
+      "counterexample": "a  ",
+      "evaluations": 14,
+      "observation": {
+        "passed": false,
+        "actual": "['a', ' ']",
+        "expected": "['a']",
+        "error": null
+      },
+      "seed": 20261025,
+      "max_examples": 1500,
+      "started_at": "2026-10-25T09:26:43.142409+00:00",
+      "finished_at": "2026-10-25T09:26:45.475949+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "1fedd0b48f21ac41696361bf0199a34e2d512954a1b23eb78a7e8a1b5fff825c",
+      "run_name": "run-split-grouped-candidate",
+      "raw_report_sha256": "c3dbd53585fe5fb0a63c20e4a4d245d4e95e9708845ee2451b6f13f8239eee5f",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "probes.py",
+          "sha256": "184d2ded677af5b17c05de1fbd3cf858046f7c34aa2f20513fd9476df6f3215c"
+        }
+      ],
+      "replay_count": 3,
+      "spec": {
+        "version": 1,
+        "name": "split-grouped-candidate",
+        "kind": "equivalence",
+        "function": "probes:split_grouped_once",
+        "reference": "probes:split_builtin_once",
+        "strategy": {
+          "type": "text",
+          "alphabet": "ab ",
+          "min_size": 0,
+          "max_size": 40
+        },
+        "rationale": "CANDIDATE FOR REVIEW: split docs describe str.split analogy and grouping separators with sep=None. Map each literal space to None, split once, then map the output back. This probes whether a consecutive separator run remains grouped at maxsplit=1, rather than treating every remaining separator as content. A mismatch is a documentation/behavior discrepancy requiring review, not automatically a confirmed defect.",
+        "domain": "Strings from a, b, and literal space, length 0 through 40. maxsplit is fixed at positive 1; maxsplit=0 is deliberately excluded because upstream tests specify unchanged output."
+      }
+    },
+    {
+      "status": "counterexample",
+      "has_counterexample": true,
+      "counterexample": [
+        0,
+        null,
+        null
+      ],
+      "evaluations": 44,
+      "observation": {
+        "passed": false,
+        "actual": "[[0], [None]]",
+        "expected": "[[0]]",
+        "error": null
+      },
+      "seed": 20261025,
+      "max_examples": 2000,
+      "started_at": "2026-10-25T09:28:26.434220+00:00",
+      "finished_at": "2026-10-25T09:28:28.537383+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "e055e6a0e77ddf6c1a45a02965f677dae6d02d760c4696fa29d3bd4d3ed92cc2",
+      "run_name": "run-token-20261025",
+      "raw_report_sha256": "fedb524d916d716b7622250d39fce2c9aed06a27ca7520bd9313538b9b4c2c1e",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "boltons_boundaries_adapter.py",
+          "sha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5"
+        }
+      ],
+      "replay_count": 3,
+      "spec": {
+        "version": 1,
+        "name": "boltons-grouped-split-limit",
+        "kind": "equivalence",
+        "function": "boltons_boundaries_adapter:split_once",
+        "reference": "boltons_boundaries_adapter:reference_split_once",
+        "strategy": {
+          "type": "lists",
+          "elements": {
+            "type": "one_of",
+            "strategies": [
+              {
+                "type": "integers",
+                "min_value": -9,
+                "max_value": 9
+              },
+              {
+                "type": "just",
+                "value": null
+              }
+            ]
+          },
+          "min_size": 0,
+          "max_size": 60
+        },
+        "rationale": "boltons 26.2.0 split says it behaves like str.split for iterables; split_iter explicitly says sep=None groups consecutive separators. With maxsplit fixed at positive 1, compare against str.split(None, 1) through an injective encoding of integer tokens as ASCII letters and None as space. The entire first separating run must be consumed. Separators later inside the unsplit remainder remain there; the oracle does not require all separators to disappear. Source: https://github.com/mahmoud/boltons/blob/4332b35a278d694f30c99881faa61cde695c7a96/boltons/iterutils.py#L109-L198 . This is a documented-behavior check, not a claim of maintainer-confirmed novelty.",
+        "domain": "Lists of length 0 through 60 with elements that are integers -9 through 9 or None. sep=None and maxsplit=1 are fixed. Empty inputs, consecutive None, and signed integer tokens are legal iterables under the documented contract. No booleans, custom equality, other separators, negative limits or maxsplit=0 are included; upstream explicitly tests different zero-limit behavior."
+      }
+    },
+    {
+      "status": "counterexample",
+      "has_counterexample": true,
+      "counterexample": [
+        0,
+        null,
+        null
+      ],
+      "evaluations": 29,
+      "observation": {
+        "passed": false,
+        "actual": "[[0], [None]]",
+        "expected": "[[0]]",
+        "error": null
+      },
+      "seed": 20261026,
+      "max_examples": 2000,
+      "started_at": "2026-10-25T09:28:26.435224+00:00",
+      "finished_at": "2026-10-25T09:28:28.498649+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "e055e6a0e77ddf6c1a45a02965f677dae6d02d760c4696fa29d3bd4d3ed92cc2",
+      "run_name": "run-token-20261026",
+      "raw_report_sha256": "54468256bfc95c77e37c6ccddbb89be95614dd4ba75012d64044ec33caaf71c1",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "boltons_boundaries_adapter.py",
+          "sha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5"
+        }
+      ],
+      "replay_count": 3,
+      "spec": {
+        "version": 1,
+        "name": "boltons-grouped-split-limit",
+        "kind": "equivalence",
+        "function": "boltons_boundaries_adapter:split_once",
+        "reference": "boltons_boundaries_adapter:reference_split_once",
+        "strategy": {
+          "type": "lists",
+          "elements": {
+            "type": "one_of",
+            "strategies": [
+              {
+                "type": "integers",
+                "min_value": -9,
+                "max_value": 9
+              },
+              {
+                "type": "just",
+                "value": null
+              }
+            ]
+          },
+          "min_size": 0,
+          "max_size": 60
+        },
+        "rationale": "boltons 26.2.0 split says it behaves like str.split for iterables; split_iter explicitly says sep=None groups consecutive separators. With maxsplit fixed at positive 1, compare against str.split(None, 1) through an injective encoding of integer tokens as ASCII letters and None as space. The entire first separating run must be consumed. Separators later inside the unsplit remainder remain there; the oracle does not require all separators to disappear. Source: https://github.com/mahmoud/boltons/blob/4332b35a278d694f30c99881faa61cde695c7a96/boltons/iterutils.py#L109-L198 . This is a documented-behavior check, not a claim of maintainer-confirmed novelty.",
+        "domain": "Lists of length 0 through 60 with elements that are integers -9 through 9 or None. sep=None and maxsplit=1 are fixed. Empty inputs, consecutive None, and signed integer tokens are legal iterables under the documented contract. No booleans, custom equality, other separators, negative limits or maxsplit=0 are included; upstream explicitly tests different zero-limit behavior."
+      }
+    },
+    {
+      "status": "counterexample",
+      "has_counterexample": true,
+      "counterexample": [
+        0,
+        null,
+        null
+      ],
+      "evaluations": 1,
+      "observation": {
+        "passed": false,
+        "actual": "[[0], [None]]",
+        "expected": "[[0]]",
+        "error": null
+      },
+      "seed": 20261025,
+      "max_examples": 2000,
+      "started_at": "2026-10-25T09:29:37.742403+00:00",
+      "finished_at": "2026-10-25T09:29:39.677354+00:00",
+      "timeout_seconds": 60,
+      "spec_sha256": "e055e6a0e77ddf6c1a45a02965f677dae6d02d760c4696fa29d3bd4d3ed92cc2",
+      "run_name": "replay-token",
+      "raw_report_sha256": "ba07afdff2700c0257ea3759974ab7b8a675df45cac4f91fa8db8580bdde459f",
+      "runtime": {
+        "python": "3.13.15",
+        "hypothesis": "6.170.9",
+        "property_lab": "0.1.0",
+        "platform": "Windows-11-10.0.26200-SP0"
+      },
+      "source_files": [
+        {
+          "name": "boltons_boundaries_adapter.py",
+          "sha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5"
+        }
+      ],
+      "replay_count": null,
+      "spec": {
+        "version": 1,
+        "name": "boltons-grouped-split-limit",
+        "kind": "equivalence",
+        "function": "boltons_boundaries_adapter:split_once",
+        "reference": "boltons_boundaries_adapter:reference_split_once",
+        "strategy": {
+          "type": "lists",
+          "elements": {
+            "type": "one_of",
+            "strategies": [
+              {
+                "type": "integers",
+                "min_value": -9,
+                "max_value": 9
+              },
+              {
+                "type": "just",
+                "value": null
+              }
+            ]
+          },
+          "min_size": 0,
+          "max_size": 60
+        },
+        "rationale": "boltons 26.2.0 split says it behaves like str.split for iterables; split_iter explicitly says sep=None groups consecutive separators. With maxsplit fixed at positive 1, compare against str.split(None, 1) through an injective encoding of integer tokens as ASCII letters and None as space. The entire first separating run must be consumed. Separators later inside the unsplit remainder remain there; the oracle does not require all separators to disappear. Source: https://github.com/mahmoud/boltons/blob/4332b35a278d694f30c99881faa61cde695c7a96/boltons/iterutils.py#L109-L198 . This is a documented-behavior check, not a claim of maintainer-confirmed novelty.",
+        "domain": "Lists of length 0 through 60 with elements that are integers -9 through 9 or None. sep=None and maxsplit=1 are fixed. Empty inputs, consecutive None, and signed integer tokens are legal iterables under the documented contract. No booleans, custom equality, other separators, negative limits or maxsplit=0 are included; upstream explicitly tests different zero-limit behavior."
+      }
+    }
+  ],
+  "regression_validation": {
+    "result": "1 failed as expected on unmodified boltons 26.2.0",
+    "counterexample": [
+      0,
+      null,
+      null
+    ],
+    "actual": [
+      [
+        0
+      ],
+      [
+        null
+      ]
+    ],
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  "source_verification_file": "independent-verification.json",
+  "notes": [
+    "CLI runs were executed by Codex; no DSH model participation is asserted by this summary.",
+    "The original replay report directory was moved intact from the case .property-lab subdirectory to work/counterexamples/boltons/replay-token; its internal recorded paths were not rewritten.",
+    "Public raw.githubusercontent.com downloads failed during initial independent-verification attempts; those logs are retained. Existing pinned release snapshots and the official GitHub contents API were used successfully."
+  ]
+}

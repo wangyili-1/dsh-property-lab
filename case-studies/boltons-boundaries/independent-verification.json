@@ -1,0 +1,688 @@
+{
+  "checked_at": "2026-10-25T09:34:28.629686+00:00",
+  "boltons_version": "26.2.0",
+  "release_commit": "4332b35a278d694f30c99881faa61cde695c7a96",
+  "head_commit": "4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+  "installed_source_sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+  "release_source_sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+  "release_tests_sha256": "53e87f22a9d57f742a295af65f69fd4c374bf40f917a6cd807e4c2f26a833263",
+  "head_source_sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+  "installed_matches_release": true,
+  "head_matches_release": true,
+  "direct_api_observations": [
+    {
+      "target": "release",
+      "input": [],
+      "expected": [],
+      "actual_repeated": [
+        [],
+        [],
+        []
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "release",
+      "input": [
+        null,
+        null
+      ],
+      "expected": [],
+      "actual_repeated": [
+        [],
+        [],
+        []
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "release",
+      "input": [
+        null,
+        0
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "release",
+      "input": [
+        0,
+        null
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "release",
+      "input": [
+        0,
+        null,
+        null
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null
+          ]
+        ]
+      ],
+      "matches_expected": false
+    },
+    {
+      "target": "release",
+      "input": [
+        0,
+        null,
+        null,
+        1
+      ],
+      "expected": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            null,
+            1
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null,
+            1
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null,
+            1
+          ]
+        ]
+      ],
+      "matches_expected": false
+    },
+    {
+      "target": "release",
+      "input": [
+        0,
+        null,
+        1,
+        null,
+        null
+      ],
+      "expected": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "release",
+      "input": [
+        0,
+        null,
+        1,
+        null,
+        null,
+        2
+      ],
+      "expected": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null,
+          2
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null,
+            2
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null,
+            2
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null,
+            2
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "release",
+      "input": [
+        null,
+        -9,
+        null,
+        null,
+        9
+      ],
+      "expected": [
+        [
+          -9
+        ],
+        [
+          9
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            -9
+          ],
+          [
+            null,
+            9
+          ]
+        ],
+        [
+          [
+            -9
+          ],
+          [
+            null,
+            9
+          ]
+        ],
+        [
+          [
+            -9
+          ],
+          [
+            null,
+            9
+          ]
+        ]
+      ],
+      "matches_expected": false
+    },
+    {
+      "target": "upstream_head",
+      "input": [],
+      "expected": [],
+      "actual_repeated": [
+        [],
+        [],
+        []
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        null,
+        null
+      ],
+      "expected": [],
+      "actual_repeated": [
+        [],
+        [],
+        []
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        null,
+        0
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        0,
+        null
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        0,
+        null,
+        null
+      ],
+      "expected": [
+        [
+          0
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null
+          ]
+        ]
+      ],
+      "matches_expected": false
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        0,
+        null,
+        null,
+        1
+      ],
+      "expected": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            null,
+            1
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null,
+            1
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            null,
+            1
+          ]
+        ]
+      ],
+      "matches_expected": false
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        0,
+        null,
+        1,
+        null,
+        null
+      ],
+      "expected": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        0,
+        null,
+        1,
+        null,
+        null,
+        2
+      ],
+      "expected": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null,
+          2
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null,
+            2
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null,
+            2
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1,
+            null,
+            null,
+            2
+          ]
+        ]
+      ],
+      "matches_expected": true
+    },
+    {
+      "target": "upstream_head",
+      "input": [
+        null,
+        -9,
+        null,
+        null,
+        9
+      ],
+      "expected": [
+        [
+          -9
+        ],
+        [
+          9
+        ]
+      ],
+      "actual_repeated": [
+        [
+          [
+            -9
+          ],
+          [
+            null,
+            9
+          ]
+        ],
+        [
+          [
+            -9
+          ],
+          [
+            null,
+            9
+          ]
+        ],
+        [
+          [
+            -9
+          ],
+          [
+            null,
+            9
+          ]
+        ]
+      ],
+      "matches_expected": false
+    }
+  ],
+  "split_doctests_attempted": 6,
+  "split_doctests_failed": 0,
+  "novelty_search": {
+    "query": "repo:mahmoud/boltons maxsplit",
+    "total_count": 2,
+    "urls": [
+      "https://github.com/mahmoud/boltons/pull/502",
+      "https://github.com/mahmoud/boltons/pull/406"
+    ],
+    "note": "One public keyword search is not proof of novelty."
+  },
+  "novelty": "Not established; no issue or PR submitted."
+}

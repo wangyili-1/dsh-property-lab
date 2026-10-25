@@ -1,0 +1,422 @@
+{
+  "artifact_type": "portable-evidence-summary-not-an-unmodified-runner-report",
+  "path_transformations": [
+    "case paths use case-studies/xmltodict",
+    "work paths use <WORK>",
+    "runtime executable uses <ISOLATED_VENV>"
+  ],
+  "tested_on": "2026-10-25",
+  "package": "xmltodict",
+  "release": "1.0.4",
+  "latest_release_checked_at": "2026-10-25T09:25:39.573117+00:00",
+  "pypi_latest_version_observed": "1.0.4",
+  "release_date": "2026-02-22",
+  "release_files": [
+    {
+      "filename": "xmltodict-1.0.4-py3-none-any.whl",
+      "sha256": "a4a00d300b0e1c59fc2bfccb53d7b2e88c32f200df138a0dd2229f842497026a",
+      "uploaded_at": "2026-02-22T02:21:21.039836Z"
+    },
+    {
+      "filename": "xmltodict-1.0.4.tar.gz",
+      "sha256": "6d94c9f834dd9e44514162799d344d815a3a4faec913717a9ecbfa5be1bb8e61",
+      "uploaded_at": "2026-02-22T02:21:22.074263Z"
+    }
+  ],
+  "assessment": "Known implementation defect independently reproduced: XML comment text is escaped as character data, changing its literal content.",
+  "novelty": "No novelty claim; existing open upstream PR #423 addresses this exact defect. No issue, message or PR was submitted by this experiment.",
+  "known_upstream": {
+    "number": 423,
+    "title": "fix(unparse): do not XML-escape comment text",
+    "html_url": "https://github.com/martinblech/xmltodict/pull/423",
+    "state": "open",
+    "created_at": "2026-08-02T11:22:10Z",
+    "updated_at": "2026-08-11T08:07:51Z",
+    "closed_at": null,
+    "pull_request": {
+      "url": "https://api.github.com/repos/martinblech/xmltodict/pulls/423",
+      "html_url": "https://github.com/martinblech/xmltodict/pull/423",
+      "diff_url": "https://github.com/martinblech/xmltodict/pull/423.diff",
+      "patch_url": "https://github.com/martinblech/xmltodict/pull/423.patch",
+      "merged_at": null
+    }
+  },
+  "contract_evidence": [
+    {
+      "url": "https://github.com/martinblech/xmltodict/blob/v1.0.4/tests/test_dicttoxml.py",
+      "symbols": [
+        "test_unparse_with_element_comment",
+        "test_comment_roundtrip_limited"
+      ],
+      "finding": "Explicit unparse comment support and element-level comment content preservation are tested."
+    },
+    {
+      "url": "https://github.com/martinblech/xmltodict/blob/v1.0.4/xmltodict.py#L553-L556",
+      "finding": "_XMLGenerator.comment validates comment syntax, then erroneously uses escape(text) before writing the comment."
+    },
+    {
+      "url": "https://www.w3.org/TR/xml/#sec-comments",
+      "finding": "XML 1.0 allows literal angle brackets and ampersands in comments; comments do not resolve entity references."
+    }
+  ],
+  "runtime": {
+    "python": "3.13.15",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "dependencies": {
+      "colorama": "0.4.6",
+      "dsh-property-lab": "0.1.0",
+      "hypothesis": "6.170.9",
+      "iniconfig": "2.3.1",
+      "packaging": "26.3",
+      "pip": "26.2.1",
+      "pluggy": "1.7.0",
+      "Pygments": "2.21.0",
+      "pytest": "9.1.1",
+      "sortedcontainers": "2.4.0",
+      "xmltodict": "1.0.4"
+    }
+  },
+  "installed_xmltodict_source_sha256": "701d42ae7298bbdf154163aed261e4f0fd3cc6c803748ec52f312a5bc402c46e",
+  "installed_source_matches_tag_download": true,
+  "runs": {
+    "comment": {
+      "raw_report_sha256": "395516a79d4b3d1065fd9ac66101e064cdfd83e37e53f6ef5d1a405a5a961b06",
+      "report_excerpt": {
+        "status": "counterexample",
+        "has_counterexample": true,
+        "counterexample": "<",
+        "evaluations": 19,
+        "observation": {
+          "passed": false,
+          "actual": "'&lt;'",
+          "expected": "'<'",
+          "error": null
+        },
+        "seed": 20261025,
+        "max_examples": 3000,
+        "hypothesis_version": "6.170.9",
+        "replay_observations": [
+          {
+            "passed": false,
+            "actual": "'&lt;'",
+            "expected": "'<'",
+            "error": null
+          },
+          {
+            "passed": false,
+            "actual": "'&lt;'",
+            "expected": "'<'",
+            "error": null
+          },
+          {
+            "passed": false,
+            "actual": "'&lt;'",
+            "expected": "'<'",
+            "error": null
+          }
+        ],
+        "replay_count": 3,
+        "message": "A Hypothesis-shrunk counterexample reproduced three times. Review whether the property and input domain are valid before classifying a code defect.",
+        "classification": "needs_review",
+        "elapsed_seconds": 0.213216,
+        "source_files": [
+          {
+            "path": "case-studies/xmltodict\\xmltodict_adapter.py",
+            "sha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c"
+          }
+        ],
+        "duration_seconds": 0.2152,
+        "runtime": {
+          "python": "3.13.15",
+          "executable": "<ISOLATED_VENV>\\Scripts\\python.exe",
+          "hypothesis": "6.170.9",
+          "property_lab": "0.1.0",
+          "platform": "Windows-11-10.0.26200-SP0"
+        },
+        "schema_version": 1,
+        "spec": {
+          "version": 1,
+          "name": "xmltodict-single-comment-roundtrip",
+          "kind": "roundtrip",
+          "function": "xmltodict_adapter:encode_comment",
+          "inverse": "xmltodict_adapter:decode_comment",
+          "strategy": {
+            "type": "text",
+            "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 &<>;#='\"[]()_/.:,!?\t\n中文éΩ",
+            "min_size": 1,
+            "max_size": 64
+          },
+          "rationale": "xmltodict 1.0.4 documents process_comments and comment roundtripping; upstream tests/test_dicttoxml.py::test_comment_roundtrip_limited asserts preserved element-level comment content. XML 1.0 sections 2.4 and 2.5 allow literal &, < and > in comments, and entity references are not interpreted in comments. A single nonempty element-level comment avoids the documented multiple-top-level-comment ordering limitation. Parse uses process_comments=True and strip_whitespace=False. The adapter only wraps and unwraps the public APIs.",
+          "domain": "One nonempty XML comment of length 1 through 64 from the explicit XML-legal alphabet in strategy. There is one fixed root element and one comment, with no mixed character data, attributes, namespaces, child elements or top-level comments. Hyphen is excluded to make -- and trailing - impossible. CR, illegal XML controls, surrogates and empty comments are excluded; whitespace preservation is explicitly enabled."
+        },
+        "project": "case-studies/xmltodict",
+        "output": "<WORK>/counterexamples/serialization\\runs\\comment",
+        "started_at": "2026-10-25T09:25:43.241989+00:00",
+        "finished_at": "2026-10-25T09:25:45.208229+00:00",
+        "timeout_seconds": 120,
+        "spec_sha256": "e6162cb198f46b57ff8cb420a365813644bd595c4b24f0b7ac52913987c0ea2f"
+      }
+    },
+    "text": {
+      "raw_report_sha256": "4aab3bcf1a869c4ee4e107e61babe8c62d29d3cece37e77402bb5a1f451a076b",
+      "report_excerpt": {
+        "status": "no_counterexample",
+        "has_counterexample": false,
+        "counterexample": null,
+        "evaluations": 3000,
+        "observation": null,
+        "seed": 20261025,
+        "max_examples": 3000,
+        "hypothesis_version": "6.170.9",
+        "message": "No counterexample found within this search budget; this is not proof of correctness.",
+        "elapsed_seconds": 1.537328,
+        "source_files": [
+          {
+            "path": "case-studies/xmltodict\\xmltodict_adapter.py",
+            "sha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c"
+          }
+        ],
+        "duration_seconds": 1.5393,
+        "runtime": {
+          "python": "3.13.15",
+          "executable": "<ISOLATED_VENV>\\Scripts\\python.exe",
+          "hypothesis": "6.170.9",
+          "property_lab": "0.1.0",
+          "platform": "Windows-11-10.0.26200-SP0"
+        },
+        "schema_version": 1,
+        "spec": {
+          "version": 1,
+          "name": "xmltodict-single-text-roundtrip-control",
+          "kind": "roundtrip",
+          "function": "xmltodict_adapter:encode_text",
+          "inverse": "xmltodict_adapter:decode_text",
+          "strategy": {
+            "type": "text",
+            "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 &<>;#='\"[]()_/.:,!?\t\n中文éΩ",
+            "min_size": 1,
+            "max_size": 64
+          },
+          "rationale": "The documented unparse/parse APIs and upstream test_simple_cdata assert preservation of a simple element text value. This control uses the same legal alphabet as the comment property, and disables whitespace stripping. XML character data must escape markup characters on serialization, then decode them on parsing.",
+          "domain": "One nonempty text node of length 1 through 64 from the explicit XML-legal alphabet in strategy, inside one fixed root. CR, illegal XML controls, surrogates and empty-string/None ambiguity are excluded. No attributes, namespaces, mixed content, children, comments, pretty printing or custom hooks."
+        },
+        "project": "case-studies/xmltodict",
+        "output": "<WORK>/counterexamples/serialization\\runs\\text",
+        "started_at": "2026-10-25T09:25:46.000150+00:00",
+        "finished_at": "2026-10-25T09:25:49.315095+00:00",
+        "timeout_seconds": 120,
+        "spec_sha256": "47c4542a642da6a44cf4b773795fc60710e4f4455226a878099c4d55581bd799"
+      }
+    },
+    "replay": {
+      "raw_report_sha256": "628e998cd666bab656b4d2b5722c7c4c8de88043a9b9d393c5ea7f1546d634dd",
+      "report_excerpt": {
+        "status": "counterexample",
+        "has_counterexample": true,
+        "counterexample": "<",
+        "observation": {
+          "passed": false,
+          "actual": "'&lt;'",
+          "expected": "'<'",
+          "error": null
+        },
+        "evaluations": 1,
+        "replay": true,
+        "source_files": [
+          {
+            "path": "case-studies/xmltodict\\xmltodict_adapter.py",
+            "sha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c"
+          }
+        ],
+        "duration_seconds": 0.0305,
+        "runtime": {
+          "python": "3.13.15",
+          "executable": "<ISOLATED_VENV>\\Scripts\\python.exe",
+          "hypothesis": "6.170.9",
+          "property_lab": "0.1.0",
+          "platform": "Windows-11-10.0.26200-SP0"
+        },
+        "schema_version": 1,
+        "spec": {
+          "version": 1,
+          "name": "xmltodict-single-comment-roundtrip",
+          "kind": "roundtrip",
+          "function": "xmltodict_adapter:encode_comment",
+          "inverse": "xmltodict_adapter:decode_comment",
+          "strategy": {
+            "type": "text",
+            "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 &<>;#='\"[]()_/.:,!?\t\n中文éΩ",
+            "min_size": 1,
+            "max_size": 64
+          },
+          "rationale": "xmltodict 1.0.4 documents process_comments and comment roundtripping; upstream tests/test_dicttoxml.py::test_comment_roundtrip_limited asserts preserved element-level comment content. XML 1.0 sections 2.4 and 2.5 allow literal &, < and > in comments, and entity references are not interpreted in comments. A single nonempty element-level comment avoids the documented multiple-top-level-comment ordering limitation. Parse uses process_comments=True and strip_whitespace=False. The adapter only wraps and unwraps the public APIs.",
+          "domain": "One nonempty XML comment of length 1 through 64 from the explicit XML-legal alphabet in strategy. There is one fixed root element and one comment, with no mixed character data, attributes, namespaces, child elements or top-level comments. Hyphen is excluded to make -- and trailing - impossible. CR, illegal XML controls, surrogates and empty comments are excluded; whitespace preservation is explicitly enabled."
+        },
+        "project": "case-studies/xmltodict",
+        "output": "<WORK>/counterexamples/serialization\\runs\\replay",
+        "started_at": "2026-10-25T09:27:15.853889+00:00",
+        "finished_at": "2026-10-25T09:27:17.249606+00:00",
+        "seed": 20261025,
+        "max_examples": 3000,
+        "timeout_seconds": 60,
+        "spec_sha256": "e6162cb198f46b57ff8cb420a365813644bd595c4b24f0b7ac52913987c0ea2f",
+        "replayed_from": "<WORK>/counterexamples/serialization\\runs\\comment",
+        "original_source_files": [
+          {
+            "path": "case-studies/xmltodict\\xmltodict_adapter.py",
+            "sha256": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c"
+          }
+        ]
+      }
+    }
+  },
+  "search_commands": [
+    {
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "-m",
+        "dsh_property_lab",
+        "run",
+        "case-studies/xmltodict\\comment-roundtrip.json",
+        "--project",
+        "case-studies/xmltodict",
+        "--seed",
+        "20261025",
+        "--max-examples",
+        "3000",
+        "--timeout",
+        "120",
+        "--output",
+        "<WORK>/counterexamples/serialization\\runs\\comment"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:25:42.389320+00:00",
+      "finished_at": "2026-10-25T09:25:45.316483+00:00",
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "-m",
+        "dsh_property_lab",
+        "run",
+        "case-studies/xmltodict\\text-roundtrip.json",
+        "--project",
+        "case-studies/xmltodict",
+        "--seed",
+        "20261025",
+        "--max-examples",
+        "3000",
+        "--timeout",
+        "120",
+        "--output",
+        "<WORK>/counterexamples/serialization\\runs\\text"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:25:45.316600+00:00",
+      "finished_at": "2026-10-25T09:25:49.445086+00:00",
+      "exit_code": 0
+    }
+  ],
+  "verification_commands": [
+    {
+      "name": "replay",
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "-m",
+        "dsh_property_lab",
+        "replay",
+        "<WORK>/counterexamples/serialization\\runs\\comment\\report.json",
+        "--project",
+        "case-studies/xmltodict",
+        "--output",
+        "<WORK>/counterexamples/serialization\\runs\\replay"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:27:15.197803+00:00",
+      "finished_at": "2026-10-25T09:27:17.342930+00:00",
+      "exit_code": 1,
+      "stdout_sha256": "25e05a43da757f80376de6c9655c27637dabfafbb15a9662e550c7b860fd9dc0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "Status: counterexample\nCounterexample: \"<\"\nReview the property and input domain before classifying an implementation defect.\nReport: <WORK>/counterexamples/serialization\\runs\\replay\\report.html\nEvidence: <WORK>/counterexamples/serialization\\runs\\replay\\report.json\n"
+    },
+    {
+      "name": "regression",
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "test_regression_comment.py",
+        "-q"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:27:17.342957+00:00",
+      "finished_at": "2026-10-25T09:27:18.971760+00:00",
+      "exit_code": 1,
+      "stdout_sha256": "92f2cdd23c7ae888bab9ac8da607390cc4ea5d173c5566a5758593f13b08cfb5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "F                                                                        [100%]\n================================== FAILURES ===================================\n_______________________________ test_regression _______________________________\n\n    def test_regression():\n>       _assert_property(COUNTEREXAMPLE)\n\ntest_regression_comment.py:42: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\nvalue = '<'\n\n    def _assert_property(value):\n        expected = deepcopy(value)\n        actual = _inverse(_function(deepcopy(value)))\n>       assert actual == expected, (actual, expected)\nE       AssertionError: ('&lt;', '<')\nE       assert '&lt;' == '<'\nE         \nE         - <\nE         + &lt;\n\ntest_regression_comment.py:37: AssertionError\n=========================== short test summary info ===========================\nFAILED test_regression_comment.py::test_regression - AssertionError: ('&lt;',...\n1 failed in 1.07s\n"
+    },
+    {
+      "name": "control",
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "test_property_text.py",
+        "-q"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:27:18.971805+00:00",
+      "finished_at": "2026-10-25T09:27:22.232150+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "0847c425aef5f0a0f24e483289b430b288b37da412292c8515cd746a5b4adf9c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": ".                                                                        [100%]\n1 passed in 2.56s\n"
+    },
+    {
+      "name": "upstream-tests",
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "<WORK>/counterexamples/serialization\\upstream\\test_dicttoxml.py",
+        "<WORK>/counterexamples/serialization\\upstream\\test_xmltodict.py",
+        "-q"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:27:22.232166+00:00",
+      "finished_at": "2026-10-25T09:27:24.122207+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "4eae09e8cbe01a9f49ced82b364333cb7f40399921d39beca8887ce87fcae02c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "........................................................................ [ 60%]\n...............................................                          [100%]\n119 passed in 1.31s\n"
+    },
+    {
+      "name": "independent",
+      "command": [
+        "<ISOLATED_VENV>\\Scripts\\python.exe",
+        "reproduce.py"
+      ],
+      "cwd": "case-studies/xmltodict",
+      "started_at": "2026-10-25T09:27:24.122230+00:00",
+      "finished_at": "2026-10-25T09:27:24.540157+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "e0393ec786df2762264b0c8608a01f3f713624bf261bb3a6713ad185c60b34c5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "independent_reproduction_sha256": "fac3cbb37e54e9aa7aac1fec0e23c9677bf874d0ae78482f5074068a12a753f0",
+  "upstream_tests": {
+    "scope": "Downloaded v1.0.4 tests/test_dicttoxml.py and tests/test_xmltodict.py",
+    "result": "119 passed",
+    "full_upstream_suite_claim": false
+  },
+  "limitations": [
+    "The comment counterexample was hypothesized after source inspection; this was a guided search, not a blind discovery.",
+    "The text control is a bounded search, not a correctness proof.",
+    "The source domain deliberately excludes CR, illegal XML characters, empty comments and mixed content/order nuances.",
+    "The GitHub HEAD metadata fetch failed once; this case makes no claim to have tested current unreleased HEAD.",
+    "The real DSH model was not invoked by this subtask; these are actual local CLI/Hypothesis runs."
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "xmltodict_version": "1.0.4",
+  "source_sha256": "701d42ae7298bbdf154163aed261e4f0fd3cc6c803748ec52f312a5bc402c46e",
+  "observations": [
+    {
+      "original": "<",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!--<--></root>",
+      "dom_reference_comment": "<",
+      "xmltodict_initial_parse": "<",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!--&lt;--></root>",
+      "xmltodict_roundtrip": "&lt;",
+      "dom_parse_of_xmltodict_encoded": "&lt;",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": false,
+      "text_control_preserved": true
+    },
+    {
+      "original": ">",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!-->--></root>",
+      "dom_reference_comment": ">",
+      "xmltodict_initial_parse": ">",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!--&gt;--></root>",
+      "xmltodict_roundtrip": "&gt;",
+      "dom_parse_of_xmltodict_encoded": "&gt;",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": false,
+      "text_control_preserved": true
+    },
+    {
+      "original": "&",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!--&--></root>",
+      "dom_reference_comment": "&",
+      "xmltodict_initial_parse": "&",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!--&amp;--></root>",
+      "xmltodict_roundtrip": "&amp;",
+      "dom_parse_of_xmltodict_encoded": "&amp;",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": false,
+      "text_control_preserved": true
+    },
+    {
+      "original": "<head> & <body>",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!--<head> & <body>--></root>",
+      "dom_reference_comment": "<head> & <body>",
+      "xmltodict_initial_parse": "<head> & <body>",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!--&lt;head&gt; &amp; &lt;body&gt;--></root>",
+      "xmltodict_roundtrip": "&lt;head&gt; &amp; &lt;body&gt;",
+      "dom_parse_of_xmltodict_encoded": "&lt;head&gt; &amp; &lt;body&gt;",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": false,
+      "text_control_preserved": true
+    },
+    {
+      "original": "ordinary",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!--ordinary--></root>",
+      "dom_reference_comment": "ordinary",
+      "xmltodict_initial_parse": "ordinary",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!--ordinary--></root>",
+      "xmltodict_roundtrip": "ordinary",
+      "dom_parse_of_xmltodict_encoded": "ordinary",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": true,
+      "text_control_preserved": true
+    },
+    {
+      "original": " \t\n",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!-- \t\n--></root>",
+      "dom_reference_comment": " \t\n",
+      "xmltodict_initial_parse": " \t\n",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!-- \t\n--></root>",
+      "xmltodict_roundtrip": " \t\n",
+      "dom_parse_of_xmltodict_encoded": " \t\n",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": true,
+      "text_control_preserved": true
+    },
+    {
+      "original": "中文éΩ",
+      "dom_reference_xml": "<?xml version=\"1.0\" ?><root><!--中文éΩ--></root>",
+      "dom_reference_comment": "中文éΩ",
+      "xmltodict_initial_parse": "中文éΩ",
+      "xmltodict_encoded": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<root><!--中文éΩ--></root>",
+      "xmltodict_roundtrip": "中文éΩ",
+      "dom_parse_of_xmltodict_encoded": "中文éΩ",
+      "public_dict_unparse_matches_xml_roundtrip": true,
+      "comment_preserved": true,
+      "text_control_preserved": true
+    }
+  ]
+}

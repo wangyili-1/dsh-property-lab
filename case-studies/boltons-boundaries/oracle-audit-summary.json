@@ -1,0 +1,255 @@
+{
+  "artifact_type": "portable summary of independent-reference-audit-actual-execution",
+  "started_at": "2026-10-25T09:34:12.881997+00:00",
+  "finished_at": "2026-10-25T09:34:12.890644+00:00",
+  "python": "3.13.15",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "boltons_version": "26.2.0",
+  "script_sha256": "5958d2963d5c51773ed39a45670616aa9e9d300fad11683c1b70e20f5d99ab0c",
+  "adapter_sha256": "4e1985d339714e943b18af21e2fc1a583d09c9640d942ec668eefabf85515dd5",
+  "installed_iterutils_sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+  "audit_domain": {
+    "alphabet": [
+      -1,
+      0,
+      1,
+      null
+    ],
+    "min_length": 0,
+    "max_length": 6,
+    "maxsplit": 1
+  },
+  "reference_comparisons": 5461,
+  "mismatch_count": 0,
+  "mismatches": [],
+  "observations": [
+    {
+      "input": [],
+      "public_api_actual": [],
+      "encoded_reference": [],
+      "scanned_reference": []
+    },
+    {
+      "input": [
+        null,
+        null
+      ],
+      "public_api_actual": [],
+      "encoded_reference": [],
+      "scanned_reference": []
+    },
+    {
+      "input": [
+        0,
+        null
+      ],
+      "public_api_actual": [
+        [
+          0
+        ]
+      ],
+      "encoded_reference": [
+        [
+          0
+        ]
+      ],
+      "scanned_reference": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "input": [
+        0,
+        null,
+        null
+      ],
+      "public_api_actual": [
+        [
+          0
+        ],
+        [
+          null
+        ]
+      ],
+      "encoded_reference": [
+        [
+          0
+        ]
+      ],
+      "scanned_reference": [
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "input": [
+        0,
+        null,
+        null,
+        1
+      ],
+      "public_api_actual": [
+        [
+          0
+        ],
+        [
+          null,
+          1
+        ]
+      ],
+      "encoded_reference": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "scanned_reference": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "input": [
+        null,
+        0,
+        null,
+        null,
+        1
+      ],
+      "public_api_actual": [
+        [
+          0
+        ],
+        [
+          null,
+          1
+        ]
+      ],
+      "encoded_reference": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "scanned_reference": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ]
+    },
+    {
+      "input": [
+        0,
+        null,
+        1,
+        null,
+        null
+      ],
+      "public_api_actual": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null
+        ]
+      ],
+      "encoded_reference": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null
+        ]
+      ],
+      "scanned_reference": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          null
+        ]
+      ]
+    },
+    {
+      "input": [
+        0,
+        null,
+        1,
+        null,
+        2
+      ],
+      "public_api_actual": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          2
+        ]
+      ],
+      "encoded_reference": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          2
+        ]
+      ],
+      "scanned_reference": [
+        [
+          0
+        ],
+        [
+          1,
+          null,
+          2
+        ]
+      ]
+    }
+  ],
+  "zero_limit_outside_test_domain": {
+    "input": [
+      null,
+      0,
+      null
+    ],
+    "boltons_actual": [
+      [
+        null,
+        0,
+        null
+      ]
+    ],
+    "stdlib_encoded_actual": [
+      "J "
+    ],
+    "note": "maxsplit=0 intentionally excluded; boltons has an explicit upstream zero-limit test."
+  },
+  "interpretation": "The two independent reference implementations agree on all 5461 audit inputs. This is an oracle audit, not a new CLI search or a proof over the full case domain.",
+  "status": "passed",
+  "transform": "Only the local command and cwd fields were removed; all audit results and source hashes are retained.",
+  "raw_record_sha256": "3d1427018f4991b8acf5e8207639a730fd099af643f058847cce28562afef456"
+}

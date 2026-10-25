@@ -1,0 +1,14 @@
+{
+  "comment-roundtrip.json": "3ddd473c5277713864452ee688b4356aaad60eb95724a07652b2f6ed4ea532d8",
+  "independent-reproduction.json": "fac3cbb37e54e9aa7aac1fec0e23c9677bf874d0ae78482f5074068a12a753f0",
+  "README.md": "f934fbedcc32c479d8a9525a92ae45ab6e3b790c805ebdfb141d6f77f571f8d1",
+  "reproduce.py": "f915c6bae8b500c794a72a7590d64720035ed6148a3c783ef2003edf24daac6a",
+  "requirements.txt": "04a9eae151d0a484f2f241a23f84c66b12e8db01406f4ffcc589eea72e0fdfbb",
+  "source-manifest.json": "545de45e624b5ffd32421a4ecc9df3e2b92d869a8fa430e6262551d2c68b9c2f",
+  "summary.json": "7f75babcdbec4d3f093dd8ba80fbbfdf0a84023d47afa21a5fc59e2be6473c4d",
+  "test_property_comment.py": "1089601d862769ae4df03332752f2d2c405bae5e29f2b4184eb505f39881d8a2",
+  "test_property_text.py": "5f42d5c8928df97ea42007b612b9feefa9efeb25e193e96f29d13e222c48e577",
+  "test_regression_comment.py": "f82ffbd37d106d40d1640b3706cd96398c04584736217a5cc088801edafca91c",
+  "text-roundtrip.json": "8152e27c16d02bf1483c3cbf32465bb465171b719a68c521e6d58faf2c075216",
+  "xmltodict_adapter.py": "0eb4ab8f09641296a32a31bdd19236da0382618ddc1b425a032a68df268acc5c"
+}

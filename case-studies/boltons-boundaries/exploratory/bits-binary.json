@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "bits-binary",
+  "kind": "equivalence",
+  "function": "probes:bits_roundtrip",
+  "reference": "probes:identity",
+  "strategy": {
+    "type": "text",
+    "alphabet": "01",
+    "min_size": 0,
+    "max_size": 128
+  },
+  "rationale": "Bits documents bit-string conversion and list-like access; from_bin accepts binary text and as_bin preserves its stored bit width, including the explicit empty-string case.",
+  "domain": "Binary strings with 0 through 128 characters from 0 and 1; no byte-padding or negative-integer assumptions."
+}

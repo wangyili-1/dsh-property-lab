@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "xmltodict-single-comment-roundtrip",
+  "kind": "roundtrip",
+  "function": "xmltodict_adapter:encode_comment",
+  "inverse": "xmltodict_adapter:decode_comment",
+  "strategy": {
+    "type": "text",
+    "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 &<>;#='\"[]()_/.:,!?\t\n中文éΩ",
+    "min_size": 1,
+    "max_size": 64
+  },
+  "rationale": "xmltodict 1.0.4 documents process_comments and comment roundtripping; upstream tests/test_dicttoxml.py::test_comment_roundtrip_limited asserts preserved element-level comment content. XML 1.0 sections 2.4 and 2.5 allow literal &, < and > in comments, and entity references are not interpreted in comments. A single nonempty element-level comment avoids the documented multiple-top-level-comment ordering limitation. Parse uses process_comments=True and strip_whitespace=False. The adapter only wraps and unwraps the public APIs.",
+  "domain": "One nonempty XML comment of length 1 through 64 from the explicit XML-legal alphabet in strategy. There is one fixed root element and one comment, with no mixed character data, attributes, namespaces, child elements or top-level comments. Hyphen is excluded to make -- and trailing - impossible. CR, illegal XML controls, surrogates and empty comments are excluded; whitespace preservation is explicitly enabled."
+}

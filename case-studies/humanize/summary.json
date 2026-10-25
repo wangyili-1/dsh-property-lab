@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "project": "humanize",
+  "version": "4.16.0",
+  "version_checked_on": "2026-10-25",
+  "latest_pypi_stable_at_check": "4.16.0",
+  "release_date": "2026-06-30",
+  "release_commit": "3c577d7650508d52aa2982e930b0e744c343082f",
+  "classification": "supported_implementation_defect_novelty_unconfirmed",
+  "new_bug_claim": false,
+  "distinct_defects_counted": 1,
+  "conclusion": "intcomma(n, ndigits=0) changes an exact signed 64-bit integer's digits. The same value with default precision remains exact. The requested decimal-place rounding does not require changing an integer with no fractional part.",
+  "runtime": {
+    "python": "3.13.15",
+    "humanize": "4.16.0",
+    "hypothesis": "6.170.9"
+  },
+  "property_spec": "intcomma-zero-digits.json",
+  "control_spec": "intcomma-default-control.json",
+  "upstream_sources": {
+    "pypi": "https://pypi.org/project/humanize/4.16.0/",
+    "documentation": "https://humanize.readthedocs.io/en/stable/number/#humanize.number.intcomma",
+    "release_source": "https://github.com/python-humanize/humanize/blob/3c577d7650508d52aa2982e930b0e744c343082f/src/humanize/number.py",
+    "release_tests": "https://github.com/python-humanize/humanize/blob/3c577d7650508d52aa2982e930b0e744c343082f/tests/test_number.py"
+  },
+  "source_verification": {
+    "installed_number_sha256": "dfbd68811a62fa8d824da8aaffc288409ae01351852ec2d301899ea1a6270307",
+    "downloaded_release_number_sha256": "dfbd68811a62fa8d824da8aaffc288409ae01351852ec2d301899ea1a6270307",
+    "downloaded_release_tests_sha256": "703c355569c36c77d6ced94c26c2b5793a186e37c1d19aa0ce38f225d6cd3476",
+    "installed_release_source_matches_download": true
+  },
+  "runs": [
+    {
+      "status": "counterexample",
+      "has_counterexample": true,
+      "counterexample": 9007199254740993,
+      "evaluations": 146,
+      "observation": {
+        "passed": false,
+        "actual": "'9,007,199,254,740,992'",
+        "expected": "'9,007,199,254,740,993'",
+        "error": null
+      },
+      "seed": 20261025,
+      "max_examples": 3000,
+      "started_at": "2026-10-25T09:25:02.546383+00:00",
+      "finished_at": "2026-10-25T09:25:04.592676+00:00",
+      "elapsed_seconds": 0.463974,
+      "duration_seconds": 0.4659,
+      "spec_sha256": "bcba1a91e0d22f5e2083c635a1ec1475573817aea748118733b6964fce49dec0",
+      "replay_count": 3,
+      "replay_observations": [
+        {
+          "passed": false,
+          "actual": "'9,007,199,254,740,992'",
+          "expected": "'9,007,199,254,740,993'",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "'9,007,199,254,740,992'",
+          "expected": "'9,007,199,254,740,993'",
+          "error": null
+        },
+        {
+          "passed": false,
+          "actual": "'9,007,199,254,740,992'",
+          "expected": "'9,007,199,254,740,993'",
+          "error": null
+        }
+      ],
+      "raw_artifact_location": "work/counterexamples/humanize/run-zero-digits",
+      "raw_report_sha256": "1c39d04e2145faddd2c06a1bd67b9397aa9f9f93bd54edb9e98d6443c9d5f885"
+    },
+    {
+      "status": "no_counterexample",
+      "has_counterexample": false,
+      "counterexample": null,
+      "evaluations": 3000,
+      "observation": null,
+      "seed": 20261025,
+      "max_examples": 3000,
+      "started_at": "2026-10-25T09:25:41.724346+00:00",
+      "finished_at": "2026-10-25T09:25:45.011503+00:00",
+      "elapsed_seconds": 1.526417,
+      "duration_seconds": 1.5285,
+      "spec_sha256": "adf605ec050b2f7565351632b9f1d77630224ca25b91a980417e01ec4dfc45ad",
+      "raw_artifact_location": "work/counterexamples/humanize/run-default-control",
+      "raw_report_sha256": "25d4c50da404865f8cc72d01cf6e30b3e9a0ed15938e9f67d8f44b4805b89d04"
+    }
+  ],
+  "independent_cli_replays": [
+    {
+      "raw_artifact_location": "work/counterexamples/humanize/copied-replay-1",
+      "raw_report_sha256": "39fd021c39c3bb0945a4a4639a02728e75d0fb8d2b8aa6a4f30bd3607e7c050d",
+      "status": "counterexample",
+      "counterexample": 9007199254740993,
+      "observation": {
+        "passed": false,
+        "actual": "'9,007,199,254,740,992'",
+        "expected": "'9,007,199,254,740,993'",
+        "error": null
+      },
+      "note": "Exact copy of raw CLI replay output; original embedded paths retained."
+    },
+    {
+      "raw_artifact_location": "work/counterexamples/humanize/copied-replay-2",
+      "raw_report_sha256": "a8eece84e7e0920a4786416793e983cd215b40074006e022f5fdec08e9ec6448",
+      "status": "counterexample",
+      "counterexample": 9007199254740993,
+      "observation": {
+        "passed": false,
+        "actual": "'9,007,199,254,740,992'",
+        "expected": "'9,007,199,254,740,993'",
+        "error": null
+      },
+      "note": "Exact copy of raw CLI replay output; original embedded paths retained."
+    },
+    {
+      "raw_artifact_location": "work/counterexamples/humanize/copied-replay-3",
+      "raw_report_sha256": "a44e11158a72b72cd1b9dfcae1967d3607cc0fcb17aa905bc11b7cf894027ab8",
+      "status": "counterexample",
+      "counterexample": 9007199254740993,
+      "observation": {
+        "passed": false,
+        "actual": "'9,007,199,254,740,992'",
+        "expected": "'9,007,199,254,740,993'",
+        "error": null
+      },
+      "note": "Exact copy of raw CLI replay output; original embedded paths retained."
+    }
+  ],
+  "direct_api": {
+    "humanize": "4.16.0",
+    "observations": [
+      {
+        "input": 0,
+        "actual_ndigits_0": "0",
+        "expected_decimal_format": "0",
+        "default_ndigits_none": "0",
+        "decimal_value_preserved": true
+      },
+      {
+        "input": 12345,
+        "actual_ndigits_0": "12,345",
+        "expected_decimal_format": "12,345",
+        "default_ndigits_none": "12,345",
+        "decimal_value_preserved": true
+      },
+      {
+        "input": -12345,
+        "actual_ndigits_0": "-12,345",
+        "expected_decimal_format": "-12,345",
+        "default_ndigits_none": "-12,345",
+        "decimal_value_preserved": true
+      },
+      {
+        "input": 9007199254740992,
+        "actual_ndigits_0": "9,007,199,254,740,992",
+        "expected_decimal_format": "9,007,199,254,740,992",
+        "default_ndigits_none": "9,007,199,254,740,992",
+        "decimal_value_preserved": true
+      },
+      {
+        "input": 9007199254740993,
+        "actual_ndigits_0": "9,007,199,254,740,992",
+        "expected_decimal_format": "9,007,199,254,740,993",
+        "default_ndigits_none": "9,007,199,254,740,993",
+        "decimal_value_preserved": false
+      },
+      {
+        "input": -9007199254740993,
+        "actual_ndigits_0": "-9,007,199,254,740,992",
+        "expected_decimal_format": "-9,007,199,254,740,993",
+        "default_ndigits_none": "-9,007,199,254,740,993",
+        "decimal_value_preserved": false
+      }
+    ]
+  },
+  "verification": [
+    {
+      "name": "replay-1",
+      "exit_code": 1,
+      "started_at": "2026-10-25T09:26:23.324971+00:00",
+      "raw_log_location": "work/counterexamples/humanize/replay-1.log",
+      "log_sha256": "6a826786af3983e063594f99033fa3600a38abc1c45f970e9872713b42ea7cdf"
+    },
+    {
+      "name": "replay-2",
+      "exit_code": 1,
+      "started_at": "2026-10-25T09:26:25.466602+00:00",
+      "raw_log_location": "work/counterexamples/humanize/replay-2.log",
+      "log_sha256": "309e08ec6ec6759fc4d7ac50a5cdbf734df5ee43e854baf34fd38e3f164d2e93"
+    },
+    {
+      "name": "replay-3",
+      "exit_code": 1,
+      "started_at": "2026-10-25T09:26:27.737655+00:00",
+      "raw_log_location": "work/counterexamples/humanize/replay-3.log",
+      "log_sha256": "d43fbc00c95296c4b99ded3627bf493c8f34ce65047f6f55cb85b6116d807d34"
+    },
+    {
+      "name": "exported-regression",
+      "exit_code": 1,
+      "started_at": "2026-10-25T09:26:30.180279+00:00",
+      "raw_log_location": "work/counterexamples/humanize/exported-regression.log",
+      "log_sha256": "22954618e66456d6a5668f5e945fa2b4bcb24768fa93dbd179feb7ea7f0e176d"
+    },
+    {
+      "name": "exported-control",
+      "exit_code": 0,
+      "started_at": "2026-10-25T09:26:31.797419+00:00",
+      "raw_log_location": "work/counterexamples/humanize/exported-control.log",
+      "log_sha256": "9b199a6f776d1c754fcaa41a2d915b3eba66481bd9d69ebaddf507dec6577da5"
+    },
+    {
+      "name": "upstream-intcomma-tests",
+      "exit_code": 0,
+      "started_at": "2026-10-25T09:26:34.498513+00:00",
+      "raw_log_location": "work/counterexamples/humanize/upstream-intcomma-tests.log",
+      "log_sha256": "923770513eaf2a917510ad32a40135a2eb8f1447b8c5ea5b826348eb6f25284d"
+    },
+    {
+      "name": "direct-api",
+      "exit_code": 0,
+      "started_at": "2026-10-25T09:26:35.553893+00:00",
+      "raw_log_location": "work/counterexamples/humanize/direct-api.log",
+      "log_sha256": "586cbb9cd350050a7226f51dbb95cfa1eef81ae40735a253752d88fc7ff967b0"
+    }
+  ],
+  "test_results": {
+    "exported_regression": "1 failed (expected against the unfixed dependency)",
+    "exported_control": "1 passed",
+    "upstream_intcomma_tests": "34 passed, 193 deselected; only the release's intcomma tests were run"
+  },
+  "issue_search": {
+    "checked_on": "2026-10-25",
+    "queries": [
+      "repo:python-humanize/humanize intcomma precision",
+      "repo:python-humanize/humanize intcomma integer"
+    ],
+    "matched_exact_case": false,
+    "limitation": "Search is not proof of novelty. No issue or PR was submitted. Related float-conversion defects were already public.",
+    "related": [
+      {
+        "url": "https://github.com/python-humanize/humanize/pull/392",
+        "relation": "Known overflow on huge Python integers with default precision; merged after 4.16.0; explicitly leaves decimal-place formatting out of scope."
+      },
+      {
+        "url": "https://github.com/python-humanize/humanize/pull/404",
+        "relation": "Known huge integer string misclassified as infinity with default precision; different input and output from this bounded 64-bit ndigits=0 case."
+      },
+      {
+        "url": "https://github.com/python-humanize/humanize/issues/419",
+        "relation": "Known OverflowError beyond float range; this counterexample is finite and does not overflow."
+      }
+    ],
+    "raw_query_files": [
+      {
+        "path": "work/counterexamples/humanize/search-intcomma-precision.json",
+        "sha256": "cf8743d2f58cde6114ca2df99d6833e449464cf8ab66762cfcbf6c88946df400"
+      },
+      {
+        "path": "work/counterexamples/humanize/search-intcomma-integer.json",
+        "sha256": "90777b40f368193786023b8aea27aa540130603be5432b7314a1421ac45d3e56"
+      },
+      {
+        "path": "work/counterexamples/humanize/pr-392.json",
+        "sha256": "39c8075f7273b124457e8a10eaecb0b6769742f3954e1c625817842e99a1349b"
+      },
+      {
+        "path": "work/counterexamples/humanize/pr-404.json",
+        "sha256": "acce917d0cd4c5ddc27b1560d67884421e89b28ed59608eb8ee48875510af6d3"
+      },
+      {
+        "path": "work/counterexamples/humanize/issue-419.json",
+        "sha256": "3c4c27494241137345040c87585c88156bdf1c4d4fe26b78e20ce3acf64be49a"
+      }
+    ]
+  },
+  "not_counted": [
+    "fractional(2**53+1) also loses the final digit during float conversion; observed in a direct probe but not counted as another independently tested bug.",
+    "Negative ordinal suffixes have disputed semantics in upstream PR #405 and duplicate #321. No bug count or property search is based on that candidate."
+  ],
+  "exported_files": [
+    {
+      "path": "adapter.py",
+      "sha256": "645dbf6d9dcc39cff541fe01678cbcd38b2f579a36158e246922d3b58e326cd7"
+    },
+    {
+      "path": "intcomma-zero-digits.json",
+      "sha256": "4e4ef5d8ceed4b011600e4f07df1cbfd00a04a3835e76bb0cf65837585205874"
+    },
+    {
+      "path": "intcomma-default-control.json",
+      "sha256": "07e66986a50ea3774fbce31dbcf1c4e748c828a57ed4561dc3481cb8cdbec719"
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "287aa28dfab14ea0b113525d5f6b03208862aa2b0d8c8821ca59800c37204314"
+    },
+    {
+      "path": "test_regression.py",
+      "sha256": "f64ccb835a2d5b7970ec712b18d761b5b44ef27d75ba074aac42618c1fa9e78a"
+    },
+    {
+      "path": "test_property.py",
+      "sha256": "ced988c920af5c45f8f2c9c35f42f607fb026e0dcbc92d70a9343c29e042ab73"
+    },
+    {
+      "path": "test_control.py",
+      "sha256": "b15583352da40eb2bf8e76549c424a630c6e5135fdb20e914a97101fceea6e36"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "5b29addff7462891f15878fb93422c9d44b221f6801baca55dab61cef1ffda6a"
+    }
+  ],
+  "portability_note": "Raw logs/reports and evidence snapshots are retained under work/counterexamples/humanize. This summary omits host-specific command paths, but source evidence and original CLI reports are unchanged. Generated tests require the case directory as cwd or PROPERTY_LAB_PROJECT."
+}

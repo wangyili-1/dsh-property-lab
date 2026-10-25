@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "parse-seconds",
+  "kind": "equivalence",
+  "function": "probes:parse_seconds",
+  "reference": "probes:identity",
+  "strategy": {
+    "type": "integers",
+    "min_value": -100000000,
+    "max_value": 100000000
+  },
+  "rationale": "parse_timedelta documents weeks/days/hours/minutes/seconds and explicitly supports negative times; integral seconds are exactly representable in this range.",
+  "domain": "Signed integer seconds from -100000000 through 100000000, rendered as a single term ending in s; no repeated units or fractional precision assumptions."
+}

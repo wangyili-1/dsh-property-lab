@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "xmltodict-single-text-roundtrip-control",
+  "kind": "roundtrip",
+  "function": "xmltodict_adapter:encode_text",
+  "inverse": "xmltodict_adapter:decode_text",
+  "strategy": {
+    "type": "text",
+    "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 &<>;#='\"[]()_/.:,!?\t\n中文éΩ",
+    "min_size": 1,
+    "max_size": 64
+  },
+  "rationale": "The documented unparse/parse APIs and upstream test_simple_cdata assert preservation of a simple element text value. This control uses the same legal alphabet as the comment property, and disables whitespace stripping. XML character data must escape markup characters on serialization, then decode them on parsing.",
+  "domain": "One nonempty text node of length 1 through 64 from the explicit XML-legal alphabet in strategy, inside one fixed root. CR, illegal XML controls, surrogates and empty-string/None ambiguity are excluded. No attributes, namespaces, mixed content, children, comments, pretty printing or custom hooks."
+}

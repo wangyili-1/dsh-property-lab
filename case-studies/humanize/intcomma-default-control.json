@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "humanize-intcomma-default-preserves-integers-control",
+  "kind": "equivalence",
+  "function": "humanize:intcomma",
+  "reference": "adapter:exact_integer_groups",
+  "strategy": {
+    "type": "integers",
+    "min_value": -9223372036854775808,
+    "max_value": 9223372036854775807
+  },
+  "rationale": "humanize 4.16.0 documents intcomma as inserting separators into an integer. The independent oracle groups decimal digits without float conversion or numeric formatting. This control uses the identical signed 64-bit input domain as intcomma-zero-digits.json but leaves ndigits at its default None. Official contract: https://humanize.readthedocs.io/en/stable/number/#humanize.number.intcomma .",
+  "domain": "Python int inputs from -2**63 through 2**63-1, default English locale, ndigits=None. Excludes floats, fractions, strings, custom locales and integers outside this bound."
+}

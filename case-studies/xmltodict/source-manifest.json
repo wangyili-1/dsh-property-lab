@@ -1,0 +1,50 @@
+{
+  "fetched_at": "2026-10-25T09:25:39.573117+00:00",
+  "sources": [
+    {
+      "name": "pypi.json",
+      "url": "https://pypi.org/pypi/xmltodict/json",
+      "sha256": "8adcd0049b220d59abf56667dce9875cf1fb0b10f163c75184e5f1fe45610e72"
+    },
+    {
+      "name": "xmltodict.py",
+      "url": "https://raw.githubusercontent.com/martinblech/xmltodict/v1.0.4/xmltodict.py",
+      "sha256": "701d42ae7298bbdf154163aed261e4f0fd3cc6c803748ec52f312a5bc402c46e"
+    },
+    {
+      "name": "test_dicttoxml.py",
+      "url": "https://raw.githubusercontent.com/martinblech/xmltodict/v1.0.4/tests/test_dicttoxml.py",
+      "sha256": "a75c3074abfb49d9c2bf389414dcadb870c9779c86e94995b30fd365168cd1e7"
+    },
+    {
+      "name": "test_xmltodict.py",
+      "url": "https://raw.githubusercontent.com/martinblech/xmltodict/v1.0.4/tests/test_xmltodict.py",
+      "sha256": "d80481c009423986f9c545790c20a79e9d95a71f0313e27404946b9c73acf97f"
+    },
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/martinblech/xmltodict/v1.0.4/README.md",
+      "sha256": "e9be4d284e2c87794a5c7880418b7876d9f4e551bf8749939ff88d00adf788cf"
+    },
+    {
+      "name": "CHANGELOG.md",
+      "url": "https://raw.githubusercontent.com/martinblech/xmltodict/v1.0.4/CHANGELOG.md",
+      "sha256": "b560f1073f4bcdf8faaf9941bf4d43b06ea709bec7032ec594b119d1663dceef"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/martinblech/xmltodict/v1.0.4/LICENSE",
+      "sha256": "d66d5eb8f83a0ba21d3dd04318b8817588e8764daabea852d1035e3f07ffda55"
+    },
+    {
+      "name": "head.json",
+      "url": "https://api.github.com/repos/martinblech/xmltodict/commits/master",
+      "error": "URLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)'))"
+    },
+    {
+      "name": "related-issues.json",
+      "url": "https://api.github.com/search/issues?q=repo:martinblech/xmltodict+comment+escape",
+      "sha256": "7551c1c51d47bf2ff83110ebe7b475914b39bc52f9758db4bd01a5c7c1607cc2"
+    }
+  ]
+}

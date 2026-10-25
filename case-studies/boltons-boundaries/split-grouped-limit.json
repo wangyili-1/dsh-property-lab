@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "boltons-grouped-split-limit",
+  "kind": "equivalence",
+  "function": "boltons_boundaries_adapter:split_once",
+  "reference": "boltons_boundaries_adapter:reference_split_once",
+  "strategy": {
+    "type": "lists",
+    "elements": {
+      "type": "one_of",
+      "strategies": [
+        {"type": "integers", "min_value": -9, "max_value": 9},
+        {"type": "just", "value": null}
+      ]
+    },
+    "min_size": 0,
+    "max_size": 60
+  },
+  "rationale": "boltons 26.2.0 split says it behaves like str.split for iterables; split_iter explicitly says sep=None groups consecutive separators. With maxsplit fixed at positive 1, compare against str.split(None, 1) through an injective encoding of integer tokens as ASCII letters and None as space. The entire first separating run must be consumed. Separators later inside the unsplit remainder remain there; the oracle does not require all separators to disappear. Source: https://github.com/mahmoud/boltons/blob/4332b35a278d694f30c99881faa61cde695c7a96/boltons/iterutils.py#L109-L198 . This is a documented-behavior check, not a claim of maintainer-confirmed novelty.",
+  "domain": "Lists of length 0 through 60 with elements that are integers -9 through 9 or None. sep=None and maxsplit=1 are fixed. Empty inputs, consecutive None, and signed integer tokens are legal iterables under the documented contract. No booleans, custom equality, other separators, negative limits or maxsplit=0 are included; upstream explicitly tests different zero-limit behavior."
+}

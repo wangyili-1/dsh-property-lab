@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "form-encoding-buggy",
+  "kind": "roundtrip",
+  "function": "examples.demo_targets:encode_buggy",
+  "inverse": "examples.demo_targets:decode",
+  "strategy": {
+    "type": "text",
+    "alphabet": "abAB09 +%_",
+    "min_size": 0,
+    "max_size": 40
+  },
+  "rationale": "The form-encoding contract in examples/demo_targets.py requires decode(encode(text)) to recover the original text, including literal plus signs and spaces. This fixture deliberately violates that contract.",
+  "domain": "ASCII strings of length 0 through 40 using letters a, b, A, B; digits 0, 9; space; plus; percent; underscore."
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "space-normalization-fixed",
+  "kind": "idempotence",
+  "function": "examples.demo_targets:normalize_fixed",
+  "strategy": {
+    "type": "text",
+    "alphabet": "ab ",
+    "min_size": 0,
+    "max_size": 40
+  },
+  "rationale": "The normalization contract in examples/demo_targets.py collapses every run of ASCII spaces to one. Normalizing an already normalized value must not change it. This is the corrected fixture with the same input domain.",
+  "domain": "Strings of length 0 through 40 containing a, b and ASCII space. Leading, trailing and repeated spaces are valid input."
+}

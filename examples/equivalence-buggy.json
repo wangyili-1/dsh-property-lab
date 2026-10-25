@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "name": "stable-unique-buggy",
+  "kind": "equivalence",
+  "function": "examples.demo_targets:unique_buggy",
+  "reference": "examples.demo_targets:reference_unique",
+  "strategy": {
+    "type": "lists",
+    "elements": {
+      "type": "integers",
+      "min_value": -10,
+      "max_value": 10
+    },
+    "min_size": 0,
+    "max_size": 25
+  },
+  "rationale": "The stable-unique contract in examples/demo_targets.py removes duplicates while preserving first-occurrence order. The independent reference uses an explicit loop. This fixture deliberately sorts its result.",
+  "domain": "Lists of length 0 through 25, containing integers from -10 through 10. Duplicates and arbitrary input ordering are allowed."
+}

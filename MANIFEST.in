@@ -1,0 +1,7 @@
+include README.en.md
+include VALIDATION.md
+include requirements-dev.lock
+recursive-include scripts *.py *.ps1 *.sh *.mjs
+recursive-include examples *.py *.json
+recursive-include src/dsh_property_lab/resources *.md *.py
+recursive-include tests *.py

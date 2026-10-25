@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dsh-property-lab"
+version = "0.1.0"
+description = "Executable property testing, shrunk counterexamples and regression artifacts for DeepSeek Harness"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["hypothesis>=6.130,<7"]
+keywords = ["deepseek", "dsh", "hypothesis", "property-based-testing", "agent-skills"]
+classifiers = ["Programming Language :: Python :: 3", "Topic :: Software Development :: Testing"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "build>=1.2,<2"]
+
+[project.scripts]
+dsh-property-lab = "dsh_property_lab.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dsh_property_lab = ["resources/**/*"]
+
+[tool.setuptools.data-files]
+"share/dsh-property-lab/examples" = ["examples/*.py", "examples/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

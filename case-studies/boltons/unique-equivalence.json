@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "name": "boltons-unique-integers-equivalence",
+  "kind": "equivalence",
+  "function": "boltons.iterutils:unique",
+  "reference": "boltons_adapter:reference_unique",
+  "strategy": {
+    "type": "one_of",
+    "strategies": [
+      {
+        "type": "lists",
+        "elements": {"type": "integers", "min_value": -8, "max_value": 8},
+        "min_size": 0,
+        "max_size": 80
+      },
+      {
+        "type": "lists",
+        "elements": {"type": "integers"},
+        "min_size": 0,
+        "max_size": 80
+      }
+    ]
+  },
+  "rationale": "The upstream unique docstring in boltons 26.2.0 (release commit 4332b35a278d694f30c99881faa61cde695c7a96, boltons/iterutils.py lines 820-849) promises first-occurrence order and removal of duplicate values, with key=None using values themselves. The independent oracle uses nested equality comparisons and appends only first occurrences; it does not call boltons, unique_iter, set, or dict. Official documentation: https://boltons.readthedocs.io/en/latest/iterutils.html#boltons.iterutils.unique .",
+  "domain": "Lists of Python integers, length 0 through 80, with duplicates and arbitrary order allowed. The strategy mixes a dense -8..8 integer branch (to exercise repeats) with unrestricted Python integers. Excludes floats/NaN, unhashable items, custom equality objects, and custom key functions."
+}

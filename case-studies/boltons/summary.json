@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "project": "boltons",
+  "version": "26.2.0",
+  "version_checked_on": "2026-10-25",
+  "release_date": "2026-09-07",
+  "release_commit": "4332b35a278d694f30c99881faa61cde695c7a96",
+  "classification": "no_counterexample_in_bounded_search",
+  "new_bug_claim": false,
+  "conclusion": "No counterexample was found in either 3000-evaluation run. This does not prove correctness or cover the whole boltons project.",
+  "property_spec": "unique-equivalence.json",
+  "runtime": {
+    "python": "3.13.15",
+    "hypothesis": "6.170.9",
+    "property_lab": "0.1.0",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "upstream_sources": {
+    "pypi": "https://pypi.org/project/boltons/26.2.0/",
+    "documentation": "https://boltons.readthedocs.io/en/latest/iterutils.html#boltons.iterutils.unique",
+    "pinned_release_source": "https://github.com/mahmoud/boltons/blob/4332b35a278d694f30c99881faa61cde695c7a96/boltons/iterutils.py#L820-L866",
+    "inspected_upstream_tests": "https://github.com/mahmoud/boltons/blob/4332b35a278d694f30c99881faa61cde695c7a96/tests/test_iterutils.py"
+  },
+  "upstream_verification": {
+    "python": "3.13.15",
+    "boltons": "26.2.0",
+    "upstream_commit": "4332b35a278d694f30c99881faa61cde695c7a96",
+    "installed_iterutils_sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+    "downloaded_upstream_iterutils_sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+    "downloaded_upstream_test_iterutils_sha256": "53e87f22a9d57f742a295af65f69fd4c374bf40f917a6cd807e4c2f26a833263",
+    "source_bytes_match": true,
+    "doctests_attempted": 6,
+    "doctests_failed": 0,
+    "upstream_test_note": "Inspected tests/test_iterutils.py; it has no direct unique tests. Ran unique and unique_iter examples from release docstrings. This is not a full upstream test-suite run."
+  },
+  "runs": [
+    {
+      "status": "no_counterexample",
+      "has_counterexample": false,
+      "counterexample": null,
+      "evaluations": 3000,
+      "observation": null,
+      "seed": 20261025,
+      "max_examples": 3000,
+      "elapsed_seconds": 3.04554,
+      "duration_seconds": 3.0473,
+      "started_at": "2026-10-25T08:53:21.498208+00:00",
+      "finished_at": "2026-10-25T08:53:26.307468+00:00",
+      "timeout_seconds": 180,
+      "spec_sha256": "98dbd74953adb88b138be8b1f8dce2bedb789d5bbefc72709bc855e0905616bb",
+      "raw_artifact_location": "work/real-projects/boltons/run-20261025",
+      "raw_report_sha256": "608e27d92007aa7996b36cdbb833a5caa29049ec6e120b7d72bd6e7c5d1f9d4b",
+      "source_files": [
+        {
+          "path": "site-packages/boltons/iterutils.py",
+          "sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510"
+        },
+        {
+          "path": "case-studies/boltons/boltons_adapter.py",
+          "sha256": "b08ddb3cd362fe8bb7fa35f00b57201651343fd8daa5a2b40508cf948d56c000"
+        }
+      ]
+    },
+    {
+      "status": "no_counterexample",
+      "has_counterexample": false,
+      "counterexample": null,
+      "evaluations": 3000,
+      "observation": null,
+      "seed": 20261026,
+      "max_examples": 3000,
+      "elapsed_seconds": 2.096354,
+      "duration_seconds": 2.0985,
+      "started_at": "2026-10-25T08:54:04.630567+00:00",
+      "finished_at": "2026-10-25T08:54:07.871572+00:00",
+      "timeout_seconds": 180,
+      "spec_sha256": "98dbd74953adb88b138be8b1f8dce2bedb789d5bbefc72709bc855e0905616bb",
+      "raw_artifact_location": "work/real-projects/boltons/run-20261026",
+      "raw_report_sha256": "e30f684ff958a75bd5cb3be514dae3abccdc33785d5f96b713338bfad4c19eed",
+      "source_files": [
+        {
+          "path": "site-packages/boltons/iterutils.py",
+          "sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510"
+        },
+        {
+          "path": "case-studies/boltons/boltons_adapter.py",
+          "sha256": "b08ddb3cd362fe8bb7fa35f00b57201651343fd8daa5a2b40508cf948d56c000"
+        }
+      ]
+    }
+  ],
+  "exported_property_test": {
+    "from_run_seed": 20261025,
+    "result": "1 passed",
+    "log_location": "work/real-projects/boltons/exported-test.log",
+    "log_sha256": "e08ab2d30a2863a156f3542db6d7e4c263a7a18f44a344d5ac7e6bb2fa0e7e80"
+  },
+  "portability_note": "Absolute local paths were omitted from this summary only. Raw CLI reports remain unchanged in the task workspace; hashes identify them. Reproduction commands create fresh reports at paths selected by the reader."
+}

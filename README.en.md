@@ -14,6 +14,22 @@ A local **Python + Hypothesis** execution companion for DeepSeek Harness (DSH). 
 
 Version 1 supports synchronous functions taking one positional argument and JSON-compatible inputs: text, integers, booleans, lists, fixed values, and combinations of strategies. Each specification must explain its contract in `rationale` and its valid input domain in `domain`.
 
+## Real open-source case studies
+
+On 2026-10-25, three projects' current PyPI releases were tested on Windows 11, Python 3.13.15 and Hypothesis 6.170.9, in separate environments. Target code was not modified. Specifications follow upstream contracts and explicitly bound the input domain.
+
+| Target | Property | Actual initial CLI evaluations | Observed result |
+| --- | --- | --- | --- |
+| [toml 0.10.2](case-studies/toml/README.md) | String and string-list roundtrips | 29 / 32 | U+001F causes an encoder `IndexError`; `['"']` roundtrips to `['']`. Both reproduce three times. |
+| [python-dotenv 1.2.4](case-studies/dotenv/README.md) | Quoted values through public write/read APIs, interpolation disabled | 2,500 | No counterexample; exported property test plus 14 direct boundary controls pass. |
+| [boltons 26.2.0](case-studies/boltons/README.md) | Ordered integer deduplication vs an independent oracle | 3,000 | No counterexample; a second seed also completes 3,000 evaluations without a violation. |
+
+The toml control-character result reproduces known [issue #246](https://github.com/uiri/toml/issues/246). Novelty of the quote-in-list finding is not established. Both were independently reproduced using public APIs, saved regressions and `tomllib`; the two exported regressions fail as expected on the unmodified release. Both exact inputs also reproduce at the checked upstream HEAD. The latest toml release dates from 2020; this is not a claim of active maintenance or newly discovered bugs.
+
+A real DSH 0.1.2-rc.1 / `deepseek-flash` session loaded the skill and reran all four prepared specifications. The two toml findings and boltons result matched. **The DSH dotenv attempt was inconclusive:** temporary-directory cleanup raised `PermissionError / WinError 5`, resulting in exit 2. Its successful 2,500-evaluation CLI run must not be confused with that DSH attempt. See the [verified tool-call evidence](case-studies/dsh-verification.json).
+
+Each linked case includes contract sources, fixed dependencies, commands, source hashes and a clearly labelled portable evidence summary. Raw local evidence is retained separately; no upstream issues or PRs were submitted. Counts include shrinking and can overlap across runs. No-counterexample is not a correctness proof, and environment failures are not upstream bugs.
+
 ## Install
 
 Python **3.10+** is required. Use a dedicated virtual environment and install the target project's dependencies in the same environment.

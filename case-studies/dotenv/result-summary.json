@@ -1,0 +1,127 @@
+{
+  "artifact_type": "portable-evidence-summary-not-an-unmodified-runner-report",
+  "path_transformations": {
+    "project_and_adapter_source": "repository-relative path",
+    "output": "work-directory placeholder; raw evidence remains local",
+    "runtime_executable": "isolated-venv placeholder",
+    "upstream_source_paths": "installed package-relative path; SHA256 is from the actual installed files"
+  },
+  "classification": "no_counterexample_within_stated_domain_and_budget",
+  "runner_report_excerpt": {
+    "status": "no_counterexample",
+    "has_counterexample": false,
+    "counterexample": null,
+    "evaluations": 2500,
+    "observation": null,
+    "seed": 20261025,
+    "max_examples": 2500,
+    "hypothesis_version": "6.170.9",
+    "message": "No counterexample found within this search budget; this is not proof of correctness.",
+    "elapsed_seconds": 6.428105,
+    "source_files": [
+      {
+        "path": "case-studies/dotenv/adapter.py",
+        "sha256": "26d81b3374f91ca5cbe955ee4cff7873b5050ae8c9a069a404179a956230ef9e"
+      }
+    ],
+    "duration_seconds": 6.4293,
+    "runtime": {
+      "python": "3.13.15",
+      "executable": "<ISOLATED_VENV>/Scripts/python.exe",
+      "hypothesis": "6.170.9",
+      "property_lab": "0.1.0",
+      "platform": "Windows-11-10.0.26200-SP0"
+    },
+    "schema_version": 1,
+    "spec": {
+      "version": 1,
+      "name": "python-dotenv-quoted-roundtrip",
+      "kind": "roundtrip",
+      "function": "adapter:write_value",
+      "inverse": "adapter:read_value",
+      "strategy": {
+        "type": "text",
+        "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-./\\'\"#=$:{}+%\n\té中🙂",
+        "min_size": 0,
+        "max_size": 120
+      },
+      "rationale": "python-dotenv v1.2.4 README File format documents quoted values, escaped backslashes and quotes, and multiline values; tests/test_main.py::test_set_key_round_trips asserts writing and reading restores strings and preserves a following sentinel. src/dotenv/main.py documents interpolate=False to disable POSIX expansion. This extends that existing contract to combinations of the stated characters, using the real public set_key and dotenv_values APIs.",
+      "domain": "Strings of length 0..120 drawn from the explicit alphabet: ASCII letters/digits, common path and dotenv punctuation including single/double quotes, backslash, dollar/braces, LF, TAB, space, and é/中/🙂. Fixed valid keys VALUE/SENTINEL; UTF-8; quote_mode=always; interpolate=False. Excludes CR (text-mode line-ending normalization), NUL, lone surrogates, arbitrary keys, shell sourcing, interpolation semantics, and filesystem permission/symlink behavior. Files are synthetic and automatically removed."
+    },
+    "project": "case-studies/dotenv",
+    "output": "<WORK>/real-projects/dotenv/run-2500",
+    "started_at": "2026-10-25T08:53:50.240325+00:00",
+    "finished_at": "2026-10-25T08:53:57.829854+00:00",
+    "timeout_seconds": 180,
+    "spec_sha256": "a2c5f4029f3764db136398a509b3eb4fd30ecc539cecbabce0754f07dbaa662f"
+  },
+  "provenance": {
+    "recorded_at": "2026-10-25T08:55:57.368562+00:00",
+    "pypi_latest_stable_version_observed": "1.2.4",
+    "package_version": "1.2.4",
+    "pypi_url": "https://pypi.org/project/python-dotenv/1.2.4/",
+    "upstream_repository": "https://github.com/theskumar/python-dotenv",
+    "upstream_tag": "v1.2.4",
+    "upstream_commit": "a565c2cc41599c48eabc6b7b7f5b826d43c5a6d7",
+    "installed_package_sources": [
+      {
+        "path": "site-packages/dotenv/main.py",
+        "sha256": "697eb33eee75d78b73db61eaf96bf9a6547548c1811c93501b67e056e5470dea"
+      },
+      {
+        "path": "site-packages/dotenv/parser.py",
+        "sha256": "0bc1350444eeff987f2c22924400ad0b7727563798118c641cd4c0de55bd30d0"
+      },
+      {
+        "path": "site-packages/dotenv/version.py",
+        "sha256": "5c1287f04d4b983c6fd3a537f72a8c05b5d96a93844458080840d866cfe446ca"
+      }
+    ],
+    "pypi_release_files": [
+      {
+        "filename": "python_dotenv-1.2.4-py3-none-any.whl",
+        "sha256": "42269a8a5b3fd54ffa6f3d84b18abed50064717576b4ecf03dc4a55d8aa04fdc",
+        "upload_time_iso_8601": "2026-10-01T05:36:08.633003Z"
+      },
+      {
+        "filename": "python_dotenv-1.2.4.tar.gz",
+        "sha256": "f0d53e69935a851c0dcc78f3ab7aaccd8cabef0b92382b576b824212902873c0",
+        "upload_time_iso_8601": "2026-10-01T05:36:10.000890Z"
+      }
+    ],
+    "installed_versions": {
+      "python-dotenv": "1.2.4",
+      "hypothesis": "6.170.9",
+      "pytest": "9.1.1",
+      "dsh-property-lab": "0.1.0"
+    },
+    "raw_report_sha256": "7f5e945f1824f1b71b97b34b5346a7774602bed61ea8e7228e73dfce6eccbad8",
+    "raw_test_property_sha256": "9fe077f9fe43eceb8fd2cf0ebddcea449af1aad2841bc310b6da80da3ad76822",
+    "pytest_log_sha256": "b9244b8b12bab438cb063fa50d5c650e1403aebc41fe10a11384b66eb14095f6"
+  },
+  "commands_from_repository_root": [
+    "python -m dsh_property_lab run case-studies/dotenv/roundtrip.json --project case-studies/dotenv --seed 20261025 --max-examples 2500 --timeout 180 --output <EMPTY_OUTPUT>",
+    "cd case-studies/dotenv && python -m pytest -q -p no:cacheprovider test_property_exported.py test_direct_examples.py"
+  ],
+  "cli_exit_code": 0,
+  "pytest": {
+    "exit_code": 0,
+    "summary": "...............                                                          [100%]\n15 passed in 7.05s",
+    "exported_property_tests": 1,
+    "direct_public_file_api_edge_controls": 14,
+    "exported_property_budget": 2500,
+    "note": "pytest test count is not the Hypothesis evaluation count"
+  },
+  "additional_artifact_hashes": {
+    "roundtrip.json": "e2435e3852221197310390f0793cd367df4dd6096b67f22b20e1895677447bd0",
+    "requirements.txt": "d97e8f42f0d259660100915a112d7a5ebeca1cf2e2f92d821d871bcf5eacc9bb",
+    "test_property_exported.py": "9fe077f9fe43eceb8fd2cf0ebddcea449af1aad2841bc310b6da80da3ad76822",
+    "test_direct_examples.py": "ea391ac6df6b84bd583dc6555d8d9b53595dcc02d4a3c57aedbe1c3d9dac32e3"
+  },
+  "limitations": [
+    "No counterexample is not a proof of correctness or a claim that the project has no bugs.",
+    "The study targets quoted string values on the stated alphabet, fixed valid keys, UTF-8, and disabled interpolation.",
+    "CR, NUL, lone surrogates, arbitrary keys, shell sourcing, other quote modes, permissions and symlinks are outside this study.",
+    "The latest stable release was checked. With no counterexample to follow up, current main was not separately executed."
+  ]
+}

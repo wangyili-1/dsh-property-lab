@@ -24,6 +24,42 @@ DSH 负责阅读代码、提出有依据的性质和输入域；本项目的本�
 
 支持同步、单个位置参数的 Python 函数。输入策略包括字符串、整数、布尔值、列表、固定 JSON 值和策略组合。性质规格必须包含依据 `rationale` 和有效输入域 `domain`，避免把模型猜测直接当作程序契约。
 
+## 真实开源项目验证
+
+2026-10-25，在 Windows 11 / Python 3.13.15 / Hypothesis 6.170.9 上，实际测试了三个项目当日的 PyPI 最新稳定版。结果是：**在 toml 中复现两个实现缺陷；python-dotenv 和 boltons 在所测输入域及预算内未找到反例。** 这些案例调用未修改的第三方包；本仓库只提供薄适配器、独立参考实现和测试规格。
+
+| 项目与固定版本 | 实际检查的规则 | 首轮 CLI 评估次数 | 结果与证据 |
+| --- | --- | --- | --- |
+| [toml 0.10.2](https://pypi.org/project/toml/0.10.2/) | 字符串、字符串列表的序列化/解析往返 | 29 / 32 | U+001F 触发 `IndexError`；`['"']` 往返变为 `['']`。各稳定复现三次。[过程与复现](case-studies/toml/README.md) |
+| [python-dotenv 1.2.4](https://pypi.org/project/python-dotenv/1.2.4/) | 带引号值写入/读取，关闭变量展开并检查后续键 | 2,500 | `no_counterexample`；导出属性测试及 14 个独立边界样例共 15 项通过。[过程与复现](case-studies/dotenv/README.md) |
+| [boltons 26.2.0](https://pypi.org/project/boltons/26.2.0/) | `unique` 与独立保序去重实现等价 | 3,000 | `no_counterexample`；第二个 seed 再评估 3,000 次也未发现差异。[过程与复现](case-studies/boltons/README.md) |
+
+toml 的控制字符问题对应已公开的 [issue #246](https://github.com/uiri/toml/issues/246)，属于**已知问题复现**。数组引号问题经独立复核支持定性为实现缺陷，但没有确认首次发现。0.10.2 虽是该包最新发布版，发布时间是 2020 年；本次也对获取的上游 HEAD 直接复现了这两个输入。没有向上游提交 issue 或 PR。
+
+### 实际验证流程
+
+1. 核对官方版本、文档、源码及现有测试，先确定输入域与性质；每个目标使用独立虚拟环境。
+2. 编写可审查的 JSON 规格和薄适配器，固定版本及 seed `20261025`，执行真正的 `dsh-property-lab run`。toml 每条搜索预算为 2,000，dotenv 为 2,500，boltons 为 3,000；表中记录实际评估数。
+3. 对 toml 反例执行独立 `replay` 与导出的回归测试：两项回归测试均按预期失败；再绕过适配器调用公开 API，并用标准库 `tomllib` 交叉检查。
+4. 让真实 DSH `0.1.2-rc.1` / `deepseek-flash` 加载技能，用准备好的独立环境重跑四份规格，再核对持久化工具调用与报告。[DSH 调用证据](case-studies/dsh-verification.json)
+5. 保存版本、命令、输入域、真实观测、时间与源码/报告 SHA-256；仓库中的摘要明确标注了本机路径的替换方式。
+
+**DSH 复跑有一项环境限制：** toml 两条结果一致，boltons 仍未找到反例；dotenv 的临时目录清理触发 `PermissionError / WinError 5`，该轮状态是 `inconclusive`、退出码 2，不能算 dotenv 缺陷，也不能算 DSH 验证通过。上表 2,500 次是独立 CLI 的成功运行。原始记录保留，未关闭沙箱或忽略清理错误来改变结论。
+
+可独立复现的 toml 示例（安装案例的固定依赖后）：
+
+```python
+import toml
+import tomllib  # Python 3.11+
+
+original = {"value": ['"']}
+encoded = toml.dumps(original)
+print(toml.loads(encoded))     # {'value': ['']}
+print(tomllib.loads(encoded))  # {'value': ['"']}
+```
+
+每个案例目录都提供安装/运行命令、规格与可移植证据。未发现反例不等于证明正确；不同轮次的输入可能重叠，评估次数不能直接当作独立输入总数。核心测试、案例测试、第三方缺陷复现和 DSH 环境问题分别记录，不汇总成一个“全通过”数字。
+
 ## 本地安装
 
 需要 Python **3.10 或更高版本**。建议在项目独立的虚拟环境运行，目标代码的依赖也需安装在该环境中。

@@ -1,0 +1,655 @@
+{
+  "schema": "dsh-property-lab.real-project-dsh-verification.v1",
+  "verifiedAtUtc": "2026-10-25T09:00:17.960Z",
+  "verificationVerdict": "verified_with_inconclusive_case",
+  "propertyRunOutcome": "toml reproduced two counterexamples; boltons found no counterexample; dotenv inconclusive due to an execution-environment error",
+  "allFourPropertyRunsConclusive": false,
+  "session": {
+    "id": "session-7f295b1a-4348-4d79-bc8b-e60d6208467d",
+    "tag": "DSH_PROPERTY_LAB_REAL_PROJECTS_20261025",
+    "driverStartedAtUtc": "2026-10-25T08:55:23.267425+00:00",
+    "driverFinishedAtUtc": "2026-10-25T08:56:36.237936+00:00",
+    "driverExitCode": 0,
+    "createdAtUtc": "2026-10-25T08:55:28.622Z",
+    "completedAtUtc": "2026-10-25T08:56:36.183Z",
+    "completedSeq": 4548,
+    "turnReason": "completed",
+    "cwd": "<repo>",
+    "context": [
+      {
+        "seq": 12,
+        "provider": "deepseek-official",
+        "model": "deepseek-flash"
+      }
+    ],
+    "tracePath": "<DSH_HOME>/sessions/<encoded-repo-cwd>/session-7f295b1a-4348-4d79-bc8b-e60d6208467d/session.jsonl.zstd",
+    "traceBytes": 91934,
+    "traceSha256": "42d970674a0da94b832e86bf2b19ef6bcd7f442ac4a407c61109998ddbf85a24",
+    "zstdFrames": 156,
+    "storedRows": 325,
+    "toolCalls": 22,
+    "toolResults": 22,
+    "taggedPromptSha256": "c12a381a2df4f160ef6a793f20030c5ebc210fd99b38484d026dd192b078904c"
+  },
+  "assertions": {
+    "sessionTimeCwdAndTagMatched": true,
+    "providerModelRecorded": true,
+    "modelLoadedSkill": true,
+    "preparedSpecsAndAdaptersReadBeforeRun": true,
+    "allFourCommandsExactlyMatchDriverRecord": true,
+    "executionWasRequestedByModel": true,
+    "explicitExitCodesMatchReportStatuses": true,
+    "modelReadAllFourUnchangedReportsAfterJob": true,
+    "sourceFingerprintsMatchCurrentFiles": true,
+    "allCaseArtifactsWrittenDuringSession": true,
+    "allToolCallsPairedAndModelRequested": true,
+    "turnCompleted": true
+  },
+  "skill": {
+    "name": "dsh-property-lab",
+    "callSeq": 45,
+    "resultSeq": 46,
+    "modelRequested": true,
+    "isError": false,
+    "argumentsSha256": "7f57bc9c1286a2bfd41406a7cebf689c1cf77e161b6491642cc5a9b4f3f8c435",
+    "resultSha256": "5851119ead2c18dc72f4320afec83ecf7b1830176cfaf759f66b8bc51fb76638",
+    "contentPresent": true,
+    "instructionsSha256": "78e1848824f0dfb68e81ab5db52f759c7c5cf7e2f30dc686fc460bf23f7913d2"
+  },
+  "execution": {
+    "batch": {
+      "name": "pwsh",
+      "callSeq": 1823,
+      "resultSeq": 1824,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "f55ab557ed17e2a2ffeda50073ef439df556fa0810e5985ca574b237f96638cd",
+      "resultSha256": "112fe6a33679301730f655f14d7da41daec6a24ec3cc95d2c1f9a73efed3ccab"
+    },
+    "jobOutput": {
+      "name": "job_output",
+      "callSeq": 1861,
+      "resultSeq": 1862,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "38ad7f82c61ce6c5e4e74b43c504af624103961eb83141225ca226833f6c9b76",
+      "resultSha256": "d8cd18ad15002b622fb6ff01ce3393f2b68d756bb6f4163eaf6de46e73ca5426"
+    },
+    "commandsMatchDriverRecord": true,
+    "cliExitCodesInCommandOrder": [
+      1,
+      1,
+      2,
+      0
+    ],
+    "backgroundJobExitCode": 0,
+    "note": "The background batch and DSH driver both exited 0. The individual property CLI exits were 1, 1, 2, 0; the last successful command does not make all property runs successful."
+  },
+  "preparedReads": [
+    {
+      "name": "read",
+      "callSeq": 340,
+      "resultSeq": 343,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "43d8e3e9888def9735162bad00313489707d28289c9af722ed558b626ee6b383",
+      "resultSha256": "ae673ad1d9e3a6f3c9f050d12c8482b780a5b9bc79fda1e0262c496b5a5b16fb",
+      "file": "case-studies/toml/string-roundtrip.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 341,
+      "resultSeq": 344,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "ce7b1b8336d6b2974b271073dbb04d021780f16ecf65c6c3c8886625df83c0e5",
+      "resultSha256": "9bb0608983143006c4ccf1fbb9cd8196f6113d86f754a980799e567eebcae7d7",
+      "file": "case-studies/toml/string-list-roundtrip.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 342,
+      "resultSeq": 345,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "0dd4334c77910050adb3eb9972bb2d6d4bd2aa533af508b458d5c4a4d6c08178",
+      "resultSha256": "756c7ca832766efdc64dca891a61e5ebf706f5759be6023fa1721db7a8c30ea0",
+      "file": "case-studies/toml/toml_adapter.py",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 551,
+      "resultSeq": 555,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "85d2767e539702c511b568b1b6bd0ed9a17539017e394eb952f3f0995e9a543e",
+      "resultSha256": "97ab516cbac2f82a5bf6fa7b56bd39f533be5b62a3ab1ae2a18fd7f732d579aa",
+      "file": "case-studies/dotenv/roundtrip.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 552,
+      "resultSeq": 556,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "3a21c333983c5ab63e4a9f4c6b026002c4848132384e63d0d65b295983fa5c74",
+      "resultSha256": "1295b1215a31dcbab84a6bb4aa4aa872a51dd73817c5a9a459ee4d64991eee66",
+      "file": "case-studies/dotenv/adapter.py",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 553,
+      "resultSeq": 557,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "ca43d6bdbc3ca2900aa2c61dce4dfee1dd74a89fe005985fc7f57d1ce4e8b90e",
+      "resultSha256": "9d5ef8e95221bf5ffc82401a4b72a3677f104ed38caba4b2d63f090619345309",
+      "file": "case-studies/boltons/unique-equivalence.json",
+      "contentMatchesCurrentFile": true
+    },
+    {
+      "name": "read",
+      "callSeq": 554,
+      "resultSeq": 558,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "e2aefc3f9d7020d8dbee47c80e7f9682a58e39d2770dcaf3f47114069a2eb43b",
+      "resultSha256": "8afea075681141c956e088d215da96d47a8846d2e9a63fcc31c32cf7fb19a7f1",
+      "file": "case-studies/boltons/boltons_adapter.py",
+      "contentMatchesCurrentFile": true
+    }
+  ],
+  "cases": [
+    {
+      "name": "toml-string",
+      "commandIndex": 1,
+      "cliExitCode": 1,
+      "status": "counterexample",
+      "seed": 20261025,
+      "maxExamples": 2000,
+      "evaluations": 29,
+      "hasCounterexample": true,
+      "counterexample": "\u001f",
+      "candidateInputIfInconclusive": null,
+      "observation": {
+        "passed": false,
+        "actual": "'<not evaluated>'",
+        "expected": "'\\x1f'",
+        "error": "IndexError: list index out of range"
+      },
+      "replayCount": 3,
+      "startedAtUtc": "2026-10-25T08:56:00.589746+00:00",
+      "finishedAtUtc": "2026-10-25T08:56:01.747621+00:00",
+      "specSha256": "a5029ab9ed5acdc8cf7dc8e645f4d2abed48015a324926ba2ab6698a895cc049",
+      "reportSha256": "b1ece0f834614f0de3ae78edaf1f63158cc4a2f42826c6d2d977b10d04e7afe2",
+      "report": ".property-lab/real-dsh-20261025/toml-string/report.json",
+      "readEvidence": {
+        "callSeq": 2002,
+        "resultSeq": 2004,
+        "modelRequested": true,
+        "readContentMatchesCurrentFile": true
+      },
+      "sourceFiles": [
+        {
+          "path": "<repo>\\case-studies\\toml\\toml_adapter.py",
+          "sha256": "fcca2f9769875c675bb13edd0652071a466a77901653bdc7b0615f8e189d303c",
+          "matchesCurrentFile": true
+        }
+      ],
+      "interpretation": "Counterexample observed and replayed internally three times; contract and defect classification require the separate case-study review."
+    },
+    {
+      "name": "toml-list",
+      "commandIndex": 2,
+      "cliExitCode": 1,
+      "status": "counterexample",
+      "seed": 20261025,
+      "maxExamples": 2000,
+      "evaluations": 32,
+      "hasCounterexample": true,
+      "counterexample": [
+        "\""
+      ],
+      "candidateInputIfInconclusive": null,
+      "observation": {
+        "passed": false,
+        "actual": "['']",
+        "expected": "['\"']",
+        "error": null
+      },
+      "replayCount": 3,
+      "startedAtUtc": "2026-10-25T08:56:02.299678+00:00",
+      "finishedAtUtc": "2026-10-25T08:56:03.575662+00:00",
+      "specSha256": "31fd2735cb1e0071bb4da7423814502f11fb1c8ece761e3b687dda87bc685d27",
+      "reportSha256": "0ffc6cf28606125144e7703eb1e755484fa3161a3bb0aa88f911651b0344e5f4",
+      "report": ".property-lab/real-dsh-20261025/toml-list/report.json",
+      "readEvidence": {
+        "callSeq": 2003,
+        "resultSeq": 2005,
+        "modelRequested": true,
+        "readContentMatchesCurrentFile": true
+      },
+      "sourceFiles": [
+        {
+          "path": "<repo>\\case-studies\\toml\\toml_adapter.py",
+          "sha256": "fcca2f9769875c675bb13edd0652071a466a77901653bdc7b0615f8e189d303c",
+          "matchesCurrentFile": true
+        }
+      ],
+      "interpretation": "Counterexample observed and replayed internally three times; contract and defect classification require the separate case-study review."
+    },
+    {
+      "name": "dotenv",
+      "commandIndex": 3,
+      "cliExitCode": 2,
+      "status": "inconclusive",
+      "seed": 20261025,
+      "maxExamples": 2500,
+      "evaluations": 3,
+      "hasCounterexample": false,
+      "counterexample": null,
+      "candidateInputIfInconclusive": "",
+      "observation": {
+        "passed": false,
+        "actual": "'<not evaluated>'",
+        "expected": "''",
+        "error": "PermissionError: [WinError 5] 拒绝访问。: '<repo>\\\\case-studies\\\\dotenv\\\\.dotenv-case-pqlu8omj'"
+      },
+      "replayCount": 3,
+      "startedAtUtc": "2026-10-25T08:56:04.118665+00:00",
+      "finishedAtUtc": "2026-10-25T08:56:05.309996+00:00",
+      "specSha256": "a2c5f4029f3764db136398a509b3eb4fd30ecc539cecbabce0754f07dbaa662f",
+      "reportSha256": "e2f53ea9d720c67a6c605f8b2c31787f94ec73502312c120dbbb73f266802b95",
+      "report": ".property-lab/real-dsh-20261025/dotenv/report.json",
+      "readEvidence": {
+        "callSeq": 2121,
+        "resultSeq": 2123,
+        "modelRequested": true,
+        "readContentMatchesCurrentFile": true
+      },
+      "sourceFiles": [
+        {
+          "path": "<repo>\\case-studies\\dotenv\\adapter.py",
+          "sha256": "26d81b3374f91ca5cbe955ee4cff7873b5050ae8c9a069a404179a956230ef9e",
+          "matchesCurrentFile": true
+        }
+      ],
+      "interpretation": "Environment failure: PermissionError/WinError 5 while cleaning synthetic temporary directories. Differing temporary path strings make replay observations unequal. No confirmed library counterexample; 3 predicate attempts are not 3 successful tests."
+    },
+    {
+      "name": "boltons",
+      "commandIndex": 4,
+      "cliExitCode": 0,
+      "status": "no_counterexample",
+      "seed": 20261025,
+      "maxExamples": 3000,
+      "evaluations": 3000,
+      "hasCounterexample": false,
+      "counterexample": null,
+      "candidateInputIfInconclusive": null,
+      "observation": null,
+      "replayCount": 0,
+      "startedAtUtc": "2026-10-25T08:56:05.856179+00:00",
+      "finishedAtUtc": "2026-10-25T08:56:09.197243+00:00",
+      "specSha256": "98dbd74953adb88b138be8b1f8dce2bedb789d5bbefc72709bc855e0905616bb",
+      "reportSha256": "619719c3f38a1f0a540dde893f804c15febebbd5f021cf75124c5f9673c58325",
+      "report": ".property-lab/real-dsh-20261025/boltons/report.json",
+      "readEvidence": {
+        "callSeq": 2122,
+        "resultSeq": 2124,
+        "modelRequested": true,
+        "readContentMatchesCurrentFile": true
+      },
+      "sourceFiles": [
+        {
+          "path": "<workspace>\\work\\real-projects\\boltons\\.venv\\Lib\\site-packages\\boltons\\iterutils.py",
+          "sha256": "7fb67f49dc1d895051549b523c2e21161e3c1f4e21590fa7fd09039386d08510",
+          "matchesCurrentFile": true
+        },
+        {
+          "path": "<repo>\\case-studies\\boltons\\boltons_adapter.py",
+          "sha256": "b08ddb3cd362fe8bb7fa35f00b57201651343fd8daa5a2b40508cf948d56c000",
+          "matchesCurrentFile": true
+        }
+      ],
+      "interpretation": "No counterexample within this seed and budget; not a proof of correctness."
+    }
+  ],
+  "additionalCommands": [
+    {
+      "name": "pwsh",
+      "callSeq": 2663,
+      "resultSeq": 2664,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "126ad779fce522404ec67286c43b3bb28ed0414b0ea3cb579fdd027681c7c05f",
+      "resultSha256": "f3b5717660c63bd0b2c21e3f1e3e01b6094956322df5a3a2c4ae6e820815baf5",
+      "purpose": "Probe toml serialization and dotenv dir ACL",
+      "processExitCode": null,
+      "exitCodeNote": "No explicit process exit marker is present in this synchronous tool result; isError=false is recorded separately and is not treated as a numeric exit code.",
+      "observations": [
+        "Direct toml serialization probe printed IndexError for the control-character input.",
+        "The next attempt to use the unset variable d printed a caught NameError.",
+        "A list serialization probe printed parsed value {value: [empty string]}; this was not an exported regression-test run or a dsh_property_lab replay.",
+        "Version queries printed toml 0.10.2, python-dotenv 1.2.4, and boltons 26.2.0.",
+        "A directory ACL was inspected; no identity or ACL contents are exported."
+      ]
+    },
+    {
+      "name": "pwsh",
+      "callSeq": 2946,
+      "resultSeq": 2947,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "9b2af597aa918902d563bb6322c6afed1e0dd2b2196576836998e44febc6ee80",
+      "resultSha256": "604bffaf16c7bc2cb3b316e37f31826f06800096dd4a4b95f35442f054475d4f",
+      "purpose": "Test whether shell can write in dotenv case dir",
+      "processExitCode": null,
+      "exitCodeNote": "No explicit process exit marker is present in this synchronous tool result; isError=false is recorded separately and is not treated as a numeric exit code.",
+      "observations": [
+        "The model created its synthetic .dotenv-case-probe directory and x.env file; output reported MKDIR OK and WRITE OK."
+      ]
+    },
+    {
+      "name": "pwsh",
+      "callSeq": 3059,
+      "resultSeq": 3060,
+      "modelRequested": true,
+      "isError": false,
+      "argumentsSha256": "ca362d1a5e3f62b1625366f183023ad68a5756522a1e3e7ed38ddf6a76a492bc",
+      "resultSha256": "f6c6d8b841ac4eef105bd4975c54f9f100706313cb986ff09583cc4667de5f04",
+      "purpose": "Remove own probe directory",
+      "processExitCode": null,
+      "exitCodeNote": "No explicit process exit marker is present in this synchronous tool result; isError=false is recorded separately and is not treated as a numeric exit code.",
+      "observations": [
+        "The model deleted its own .dotenv-case-probe directory; output reported CLEANUP OK."
+      ]
+    }
+  ],
+  "explicitReplayCommandCount": 0,
+  "artifacts": [
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:00.591Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/report.html",
+      "bytes": 4599,
+      "sha256": "20e11c9b08150cccc622ffd117fe5e59f30d3895cf36df6d061f30a3ecb028c5",
+      "lastModifiedUtc": "2026-10-25T08:56:01.749Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/report.json",
+      "bytes": 3227,
+      "sha256": "b1ece0f834614f0de3ae78edaf1f63158cc4a2f42826c6d2d977b10d04e7afe2",
+      "lastModifiedUtc": "2026-10-25T08:56:01.749Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/report.md",
+      "bytes": 1365,
+      "sha256": "75d65ac69fc9627575188b0975fbe7299d3b3485f14ecb61b4139f340b779731",
+      "lastModifiedUtc": "2026-10-25T08:56:01.749Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/request.json",
+      "bytes": 1220,
+      "sha256": "1043c166343357427bb2dfcd8f7d674b8baf20aa4473fd55953905ddcfe6dbea",
+      "lastModifiedUtc": "2026-10-25T08:56:00.591Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/spec.json",
+      "bytes": 1004,
+      "sha256": "da69867fa38a49796e2f6dcd9c0a1c9b18a848b73f131e66bc846376c874dffe",
+      "lastModifiedUtc": "2026-10-25T08:56:00.590Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/test_property.py",
+      "bytes": 2042,
+      "sha256": "817ee2a9d0df5bc215958bf4674f9db3ca76a85161ecc12224fe3191b2d4a3d3",
+      "lastModifiedUtc": "2026-10-25T08:56:01.748Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/test_regression.py",
+      "bytes": 1855,
+      "sha256": "eddecf736721a2f9744e5827404663627fae643937925480b907afe9ed7296c3",
+      "lastModifiedUtc": "2026-10-25T08:56:01.748Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/worker.json",
+      "bytes": 1694,
+      "sha256": "cab02c8a696677f69da933b3192aee976bb580de79b4e23066d3e3b2ed828476",
+      "lastModifiedUtc": "2026-10-25T08:56:01.678Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-string/worker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:01.747Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:02.301Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/report.html",
+      "bytes": 4392,
+      "sha256": "99e7a544cea8365fc10dec9b1b0a115462e706da5c76c57c94fd71daf8a6ce5b",
+      "lastModifiedUtc": "2026-10-25T08:56:03.578Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/report.json",
+      "bytes": 2993,
+      "sha256": "0ffc6cf28606125144e7703eb1e755484fa3161a3bb0aa88f911651b0344e5f4",
+      "lastModifiedUtc": "2026-10-25T08:56:03.577Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/report.md",
+      "bytes": 1159,
+      "sha256": "1d9d32e83bc3ae9811b8c22b683cbb8ae19c4826b23bc9c040fa2b6f25363017",
+      "lastModifiedUtc": "2026-10-25T08:56:03.578Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/request.json",
+      "bytes": 1167,
+      "sha256": "3a103aa7aeb72c0e25636b3ce5a6927263908f2b4f87ba5a308ba32ceeda6f6d",
+      "lastModifiedUtc": "2026-10-25T08:56:02.300Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/spec.json",
+      "bytes": 941,
+      "sha256": "2d4e2df8420d5721b456215403f118a03fc2ff30f5edf3b69e3af53e5f5dff1e",
+      "lastModifiedUtc": "2026-10-25T08:56:02.300Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/test_property.py",
+      "bytes": 1964,
+      "sha256": "1b3a1039e8c8824e3625299c3619e0d05f1616492fe7300e254ebf823f63c767",
+      "lastModifiedUtc": "2026-10-25T08:56:03.576Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/test_regression.py",
+      "bytes": 1743,
+      "sha256": "ab6d13a4a4e49efc470f315fe8b4554fa2e8087b8cbdac7b7cbb6643d37a2b39",
+      "lastModifiedUtc": "2026-10-25T08:56:03.576Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/worker.json",
+      "bytes": 1515,
+      "sha256": "1717dfdb7e6fdc0cb8fcc4abaa523ab298294a10e8e590cefe70379f8196c484",
+      "lastModifiedUtc": "2026-10-25T08:56:03.504Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/toml-list/worker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:03.575Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:04.120Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/report.html",
+      "bytes": 4916,
+      "sha256": "6916a59199820ad2f826f39e3bcbc8f1f34456cd297bf8cf5b33b803b5cdf534",
+      "lastModifiedUtc": "2026-10-25T08:56:05.311Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/report.json",
+      "bytes": 4171,
+      "sha256": "e2f53ea9d720c67a6c605f8b2c31787f94ec73502312c120dbbb73f266802b95",
+      "lastModifiedUtc": "2026-10-25T08:56:05.311Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/report.md",
+      "bytes": 1732,
+      "sha256": "1bd58801de300689fa0ed6d3ce5c15e324b84045493262cc24fb0749192f24d6",
+      "lastModifiedUtc": "2026-10-25T08:56:05.311Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/request.json",
+      "bytes": 1607,
+      "sha256": "bd6df9a1568f96997cd1c2fb9e4998e5be5c0b7f10bc07dad4740a03b03c9f0c",
+      "lastModifiedUtc": "2026-10-25T08:56:04.119Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/spec.json",
+      "bytes": 1387,
+      "sha256": "2fdb474e8336ada1704f471e50db6f8f77a0c597ecc8b0ee9d9542e77e7d3fa3",
+      "lastModifiedUtc": "2026-10-25T08:56:04.119Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/test_property.py",
+      "bytes": 2182,
+      "sha256": "9fe077f9fe43eceb8fd2cf0ebddcea449af1aad2841bc310b6da80da3ad76822",
+      "lastModifiedUtc": "2026-10-25T08:56:05.310Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/worker.json",
+      "bytes": 2256,
+      "sha256": "c198f844aad682f4239b01eea4e59bd5ca3090b04053c801f1daceaa3210a884",
+      "lastModifiedUtc": "2026-10-25T08:56:05.242Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/dotenv/worker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:05.310Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/process.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:05.857Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/report.html",
+      "bytes": 4511,
+      "sha256": "299f1c30a8cb4ecc6971d8159977dae3a6f4eb6ab0113d2484f7303960398562",
+      "lastModifiedUtc": "2026-10-25T08:56:09.199Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/report.json",
+      "bytes": 3192,
+      "sha256": "619719c3f38a1f0a540dde893f804c15febebbd5f021cf75124c5f9673c58325",
+      "lastModifiedUtc": "2026-10-25T08:56:09.199Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/report.md",
+      "bytes": 1407,
+      "sha256": "fa3e9ad11c64ee6c3b15144b1d67faf3204d93762803096cecf332018affa7a6",
+      "lastModifiedUtc": "2026-10-25T08:56:09.199Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/request.json",
+      "bytes": 1712,
+      "sha256": "78af01a4bd557e97857d3db6da59b18c7c7b786340f301396b5607096138b402",
+      "lastModifiedUtc": "2026-10-25T08:56:05.856Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/spec.json",
+      "bytes": 1457,
+      "sha256": "c890bbb0993b076c387dc8660471cc47b608a87d2eb64610a1f457b2b704d6c5",
+      "lastModifiedUtc": "2026-10-25T08:56:05.856Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/test_property.py",
+      "bytes": 2246,
+      "sha256": "626a508fc4790b5ba89091c9bdb186ad170672d4bda0ff695c97f5863ba7d91d",
+      "lastModifiedUtc": "2026-10-25T08:56:09.198Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/worker.json",
+      "bytes": 1171,
+      "sha256": "b2aff1392fd6940a2e13e3dc9a544dbe02da9c8d85b0a84926d6b443f50e7732",
+      "lastModifiedUtc": "2026-10-25T08:56:09.069Z",
+      "modifiedDuringSession": true
+    },
+    {
+      "path": ".property-lab/real-dsh-20261025/boltons/worker.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lastModifiedUtc": "2026-10-25T08:56:09.197Z",
+      "modifiedDuringSession": true
+    }
+  ],
+  "detailedVerification": {
+    "path": ".property-lab/real-dsh-20261025/trace-verification-detail.json",
+    "sha256": "6f0f4df0378d9054f6d0ff91bc8abf24aef202c9a3348d46b634048395d4755a"
+  },
+  "notes": [
+    "This is a model-orchestrated DSH run of prewritten case-study specifications. It does not establish that DSH autonomously discovered or authored these properties.",
+    "Local direct CLI runs and this DSH run are distinct evidence routes. The local python-dotenv case study found no counterexample; this DSH worker encountered a temporary-directory cleanup permission failure and remains inconclusive.",
+    "For dotenv, differing random temporary paths make full error strings differ across three internal replays. No confirmed library bug can be inferred from this environment failure. Do not interpret its three predicate attempts as three successful input evaluations.",
+    "The DSH final text contains overstatements that are not adopted here: it describes some exported regression files as present although no-counterexample/inconclusive runs only export property tests, and its direct probe is not an independently passing regression-test execution.",
+    "No raw reasoning, model request headers/bodies, credentials, ACL identities, or absolute personal paths are included. Trace and output hashes identify the unchanged local records.",
+    "A bounded no-counterexample result is not a proof of correctness. This verification does not assert novel upstream bugs, and no issue or push was performed."
+  ]
+}

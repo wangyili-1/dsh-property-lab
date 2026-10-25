@@ -7,3 +7,6 @@
 *.yml text eol=lf
 *.toml text eol=lf
 *.ps1 text eol=crlf
+# Case evidence includes SHA-256 of source/spec/exported-test bytes.
+# Preserve those exact bytes across Git checkout and source archives.
+case-studies/** -text whitespace=trailing-space,space-before-tab,cr-at-eol

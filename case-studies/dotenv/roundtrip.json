@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "python-dotenv-quoted-roundtrip",
+  "kind": "roundtrip",
+  "function": "adapter:write_value",
+  "inverse": "adapter:read_value",
+  "strategy": {
+    "type": "text",
+    "alphabet": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-./\\'\"#=$:{}+%\n\té中🙂",
+    "min_size": 0,
+    "max_size": 120
+  },
+  "rationale": "python-dotenv v1.2.4 README File format documents quoted values, escaped backslashes and quotes, and multiline values; tests/test_main.py::test_set_key_round_trips asserts writing and reading restores strings and preserves a following sentinel. src/dotenv/main.py documents interpolate=False to disable POSIX expansion. This extends that existing contract to combinations of the stated characters, using the real public set_key and dotenv_values APIs.",
+  "domain": "Strings of length 0..120 drawn from the explicit alphabet: ASCII letters/digits, common path and dotenv punctuation including single/double quotes, backslash, dollar/braces, LF, TAB, space, and é/中/🙂. Fixed valid keys VALUE/SENTINEL; UTF-8; quote_mode=always; interpolate=False. Excludes CR (text-mode line-ending normalization), NUL, lone surrogates, arbitrary keys, shell sourcing, interpolation semantics, and filesystem permission/symlink behavior. Files are synthetic and automatically removed."
+}

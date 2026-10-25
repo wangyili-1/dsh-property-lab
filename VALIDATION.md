@@ -23,9 +23,15 @@ This file records checks actually run while preparing version 0.1.0. Local resul
 - The three new exported regressions each fail as expected on the target releases. The humanize default-precision and xmltodict ordinary-text controls each complete 3,000 evaluations and their exported property tests pass. Upstream tests selected for comparison also pass: 34 humanize `intcomma` tests and 119 tests across two xmltodict modules. These are not claims that entire upstream suites were run.
 - A fresh DSH 0.1.2-rc.1 / `deepseek-flash` session loaded the skill and executed those three cases plus the two controls under `workspace-write`. The five CLI exits were **1 / 0 / 1 / 0 / 1**, with evaluations **146 / 3,000 / 19 / 3,000 / 44**. Each counterexample reproduced three times. See `case-studies/counterexamples-dsh-verification.json` for durable call/result verification. Prepared source and spec hashes remained unchanged; raw `needs_review` reports were retained, with contract review documented separately.
 
+## GitHub publication and remote CI
+
+Published publicly at [wangyili-1/dsh-property-lab](https://github.com/wangyili-1/dsh-property-lab) on 2026-10-25. [GitHub Actions run 40182033615](https://github.com/wangyili-1/dsh-property-lab/actions/runs/40182033615) completed successfully for source commit `53ddd67797379116cd4fd456d4f60c36521d0d55`.
+
+All four matrix jobs passed: Ubuntu and Windows, each on Python 3.10 and 3.13. Each job installed the project, ran the core pytest suite and bundled demo, and uploaded demo evidence. The real-library case studies and model-driven DSH sessions above remain separate local evidence; this CI run did not rerun those cases or call DeepSeek. The subsequent publication-record update changes only this document.
+
 ## Not established
 
-- Linux/macOS and remote GitHub Actions have not been executed in this local session.
+- macOS execution has not been verified. Linux is now covered by the remote Ubuntu jobs above; the real DSH integration was verified on the local Windows installation.
 - The automated browser preview rejected the local `file:` URL. Report data and HTML escaping were tested; screenshot/layout inspection was not completed.
 - A bounded search with no counterexample is not a correctness proof. A reproduced counterexample still requires review of the proposed contract and input domain.
 
